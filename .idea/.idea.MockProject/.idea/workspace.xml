@@ -1,0 +1,498 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="70a0c39c-980f-4b28-8803-830578dfd298" name="Default" comment="">
+      <change beforePath="$PROJECT_DIR$/MockProject/Startup.cs" beforeDir="false" afterPath="$PROJECT_DIR$/MockProject/Startup.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MockProject/bin/Debug/netcoreapp2.2/MockProject.Views.dll" beforeDir="false" afterPath="$PROJECT_DIR$/MockProject/bin/Debug/netcoreapp2.2/MockProject.Views.dll" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MockProject/bin/Debug/netcoreapp2.2/MockProject.Views.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/MockProject/bin/Debug/netcoreapp2.2/MockProject.Views.pdb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MockProject/bin/Debug/netcoreapp2.2/MockProject.deps.json" beforeDir="false" afterPath="$PROJECT_DIR$/MockProject/bin/Debug/netcoreapp2.2/MockProject.deps.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MockProject/bin/Debug/netcoreapp2.2/MockProject.dll" beforeDir="false" afterPath="$PROJECT_DIR$/MockProject/bin/Debug/netcoreapp2.2/MockProject.dll" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MockProject/bin/Debug/netcoreapp2.2/MockProject.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/MockProject/bin/Debug/netcoreapp2.2/MockProject.pdb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MockProject/obj/Debug/netcoreapp2.2/MockProject.Views.dll" beforeDir="false" afterPath="$PROJECT_DIR$/MockProject/obj/Debug/netcoreapp2.2/MockProject.Views.dll" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MockProject/obj/Debug/netcoreapp2.2/MockProject.Views.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/MockProject/obj/Debug/netcoreapp2.2/MockProject.Views.pdb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MockProject/obj/Debug/netcoreapp2.2/MockProject.assets.cache" beforeDir="false" afterPath="$PROJECT_DIR$/MockProject/obj/Debug/netcoreapp2.2/MockProject.assets.cache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MockProject/obj/Debug/netcoreapp2.2/MockProject.csproj.CoreCompileInputs.cache" beforeDir="false" afterPath="$PROJECT_DIR$/MockProject/obj/Debug/netcoreapp2.2/MockProject.csproj.CoreCompileInputs.cache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MockProject/obj/Debug/netcoreapp2.2/MockProject.csproj.FileListAbsolute.txt" beforeDir="false" afterPath="$PROJECT_DIR$/MockProject/obj/Debug/netcoreapp2.2/MockProject.csproj.FileListAbsolute.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MockProject/obj/Debug/netcoreapp2.2/MockProject.csprojAssemblyReference.cache" beforeDir="false" afterPath="$PROJECT_DIR$/MockProject/obj/Debug/netcoreapp2.2/MockProject.csprojAssemblyReference.cache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MockProject/obj/Debug/netcoreapp2.2/MockProject.dll" beforeDir="false" afterPath="$PROJECT_DIR$/MockProject/obj/Debug/netcoreapp2.2/MockProject.dll" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MockProject/obj/Debug/netcoreapp2.2/MockProject.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/MockProject/obj/Debug/netcoreapp2.2/MockProject.pdb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MockProject/obj/Debug/netcoreapp2.2/Razor/Areas/Admin/Views/Faculties/Create.g.cshtml.cs" beforeDir="false" afterPath="$PROJECT_DIR$/MockProject/obj/Debug/netcoreapp2.2/Razor/Areas/Admin/Views/Faculties/Create.g.cshtml.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MockProject/obj/Debug/netcoreapp2.2/Razor/Areas/Admin/Views/Faculties/Delete.g.cshtml.cs" beforeDir="false" afterPath="$PROJECT_DIR$/MockProject/obj/Debug/netcoreapp2.2/Razor/Areas/Admin/Views/Faculties/Delete.g.cshtml.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MockProject/obj/Debug/netcoreapp2.2/Razor/Areas/Admin/Views/Faculties/Details.g.cshtml.cs" beforeDir="false" afterPath="$PROJECT_DIR$/MockProject/obj/Debug/netcoreapp2.2/Razor/Areas/Admin/Views/Faculties/Details.g.cshtml.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MockProject/obj/Debug/netcoreapp2.2/Razor/Areas/Admin/Views/Faculties/Edit.g.cshtml.cs" beforeDir="false" afterPath="$PROJECT_DIR$/MockProject/obj/Debug/netcoreapp2.2/Razor/Areas/Admin/Views/Faculties/Edit.g.cshtml.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MockProject/obj/Debug/netcoreapp2.2/Razor/Areas/Admin/Views/Faculties/Index.g.cshtml.cs" beforeDir="false" afterPath="$PROJECT_DIR$/MockProject/obj/Debug/netcoreapp2.2/Razor/Areas/Admin/Views/Faculties/Index.g.cshtml.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MockProject/obj/Debug/netcoreapp2.2/Razor/Areas/Admin/Views/Home/Index.g.cshtml.cs" beforeDir="false" afterPath="$PROJECT_DIR$/MockProject/obj/Debug/netcoreapp2.2/Razor/Areas/Admin/Views/Home/Index.g.cshtml.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MockProject/obj/Debug/netcoreapp2.2/Razor/Areas/Admin/Views/Login/ErrorForbbiden.g.cshtml.cs" beforeDir="false" afterPath="$PROJECT_DIR$/MockProject/obj/Debug/netcoreapp2.2/Razor/Areas/Admin/Views/Login/ErrorForbbiden.g.cshtml.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MockProject/obj/Debug/netcoreapp2.2/Razor/Areas/Admin/Views/Login/Index.g.cshtml.cs" beforeDir="false" afterPath="$PROJECT_DIR$/MockProject/obj/Debug/netcoreapp2.2/Razor/Areas/Admin/Views/Login/Index.g.cshtml.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MockProject/obj/Debug/netcoreapp2.2/Razor/Areas/Admin/Views/Shared/Error.g.cshtml.cs" beforeDir="false" afterPath="$PROJECT_DIR$/MockProject/obj/Debug/netcoreapp2.2/Razor/Areas/Admin/Views/Shared/Error.g.cshtml.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MockProject/obj/Debug/netcoreapp2.2/Razor/Areas/Admin/Views/Shared/_CookieConsentPartial.g.cshtml.cs" beforeDir="false" afterPath="$PROJECT_DIR$/MockProject/obj/Debug/netcoreapp2.2/Razor/Areas/Admin/Views/Shared/_CookieConsentPartial.g.cshtml.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MockProject/obj/Debug/netcoreapp2.2/Razor/Areas/Admin/Views/Shared/_Layout.g.cshtml.cs" beforeDir="false" afterPath="$PROJECT_DIR$/MockProject/obj/Debug/netcoreapp2.2/Razor/Areas/Admin/Views/Shared/_Layout.g.cshtml.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MockProject/obj/Debug/netcoreapp2.2/Razor/Areas/Admin/Views/Shared/_ValidationScriptsPartial.g.cshtml.cs" beforeDir="false" afterPath="$PROJECT_DIR$/MockProject/obj/Debug/netcoreapp2.2/Razor/Areas/Admin/Views/Shared/_ValidationScriptsPartial.g.cshtml.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MockProject/obj/Debug/netcoreapp2.2/Razor/Areas/Admin/Views/Subjects/Create.g.cshtml.cs" beforeDir="false" afterPath="$PROJECT_DIR$/MockProject/obj/Debug/netcoreapp2.2/Razor/Areas/Admin/Views/Subjects/Create.g.cshtml.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MockProject/obj/Debug/netcoreapp2.2/Razor/Areas/Admin/Views/Subjects/Delete.g.cshtml.cs" beforeDir="false" afterPath="$PROJECT_DIR$/MockProject/obj/Debug/netcoreapp2.2/Razor/Areas/Admin/Views/Subjects/Delete.g.cshtml.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MockProject/obj/Debug/netcoreapp2.2/Razor/Areas/Admin/Views/Subjects/Details.g.cshtml.cs" beforeDir="false" afterPath="$PROJECT_DIR$/MockProject/obj/Debug/netcoreapp2.2/Razor/Areas/Admin/Views/Subjects/Details.g.cshtml.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MockProject/obj/Debug/netcoreapp2.2/Razor/Areas/Admin/Views/Subjects/Edit.g.cshtml.cs" beforeDir="false" afterPath="$PROJECT_DIR$/MockProject/obj/Debug/netcoreapp2.2/Razor/Areas/Admin/Views/Subjects/Edit.g.cshtml.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MockProject/obj/Debug/netcoreapp2.2/Razor/Areas/Admin/Views/Subjects/Index.g.cshtml.cs" beforeDir="false" afterPath="$PROJECT_DIR$/MockProject/obj/Debug/netcoreapp2.2/Razor/Areas/Admin/Views/Subjects/Index.g.cshtml.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MockProject/obj/Debug/netcoreapp2.2/Razor/Areas/Admin/Views/Users/Create.g.cshtml.cs" beforeDir="false" afterPath="$PROJECT_DIR$/MockProject/obj/Debug/netcoreapp2.2/Razor/Areas/Admin/Views/Users/Create.g.cshtml.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MockProject/obj/Debug/netcoreapp2.2/Razor/Areas/Admin/Views/Users/Delete.g.cshtml.cs" beforeDir="false" afterPath="$PROJECT_DIR$/MockProject/obj/Debug/netcoreapp2.2/Razor/Areas/Admin/Views/Users/Delete.g.cshtml.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MockProject/obj/Debug/netcoreapp2.2/Razor/Areas/Admin/Views/Users/Details.g.cshtml.cs" beforeDir="false" afterPath="$PROJECT_DIR$/MockProject/obj/Debug/netcoreapp2.2/Razor/Areas/Admin/Views/Users/Details.g.cshtml.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MockProject/obj/Debug/netcoreapp2.2/Razor/Areas/Admin/Views/Users/Edit.g.cshtml.cs" beforeDir="false" afterPath="$PROJECT_DIR$/MockProject/obj/Debug/netcoreapp2.2/Razor/Areas/Admin/Views/Users/Edit.g.cshtml.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MockProject/obj/Debug/netcoreapp2.2/Razor/Areas/Admin/Views/Users/Index.g.cshtml.cs" beforeDir="false" afterPath="$PROJECT_DIR$/MockProject/obj/Debug/netcoreapp2.2/Razor/Areas/Admin/Views/Users/Index.g.cshtml.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MockProject/obj/Debug/netcoreapp2.2/Razor/Areas/Admin/Views/_ViewImports.g.cshtml.cs" beforeDir="false" afterPath="$PROJECT_DIR$/MockProject/obj/Debug/netcoreapp2.2/Razor/Areas/Admin/Views/_ViewImports.g.cshtml.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MockProject/obj/Debug/netcoreapp2.2/Razor/Areas/Admin/Views/_ViewStart.g.cshtml.cs" beforeDir="false" afterPath="$PROJECT_DIR$/MockProject/obj/Debug/netcoreapp2.2/Razor/Areas/Admin/Views/_ViewStart.g.cshtml.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MockProject/obj/Debug/netcoreapp2.2/Razor/Views/Home/Index.g.cshtml.cs" beforeDir="false" afterPath="$PROJECT_DIR$/MockProject/obj/Debug/netcoreapp2.2/Razor/Views/Home/Index.g.cshtml.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MockProject/obj/Debug/netcoreapp2.2/Razor/Views/Home/Privacy.g.cshtml.cs" beforeDir="false" afterPath="$PROJECT_DIR$/MockProject/obj/Debug/netcoreapp2.2/Razor/Views/Home/Privacy.g.cshtml.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MockProject/obj/Debug/netcoreapp2.2/Razor/Views/Shared/Error.g.cshtml.cs" beforeDir="false" afterPath="$PROJECT_DIR$/MockProject/obj/Debug/netcoreapp2.2/Razor/Views/Shared/Error.g.cshtml.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MockProject/obj/Debug/netcoreapp2.2/Razor/Views/Shared/_CookieConsentPartial.g.cshtml.cs" beforeDir="false" afterPath="$PROJECT_DIR$/MockProject/obj/Debug/netcoreapp2.2/Razor/Views/Shared/_CookieConsentPartial.g.cshtml.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MockProject/obj/Debug/netcoreapp2.2/Razor/Views/Shared/_Layout.g.cshtml.cs" beforeDir="false" afterPath="$PROJECT_DIR$/MockProject/obj/Debug/netcoreapp2.2/Razor/Views/Shared/_Layout.g.cshtml.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MockProject/obj/Debug/netcoreapp2.2/Razor/Views/Shared/_ValidationScriptsPartial.g.cshtml.cs" beforeDir="false" afterPath="$PROJECT_DIR$/MockProject/obj/Debug/netcoreapp2.2/Razor/Views/Shared/_ValidationScriptsPartial.g.cshtml.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MockProject/obj/Debug/netcoreapp2.2/Razor/Views/_ViewImports.g.cshtml.cs" beforeDir="false" afterPath="$PROJECT_DIR$/MockProject/obj/Debug/netcoreapp2.2/Razor/Views/_ViewImports.g.cshtml.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MockProject/obj/Debug/netcoreapp2.2/Razor/Views/_ViewStart.g.cshtml.cs" beforeDir="false" afterPath="$PROJECT_DIR$/MockProject/obj/Debug/netcoreapp2.2/Razor/Views/_ViewStart.g.cshtml.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MockProject/obj/MockProject.csproj.nuget.cache" beforeDir="false" afterPath="$PROJECT_DIR$/MockProject/obj/MockProject.csproj.nuget.cache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MockProject/obj/MockProject.csproj.nuget.g.props" beforeDir="false" afterPath="$PROJECT_DIR$/MockProject/obj/MockProject.csproj.nuget.g.props" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MockProject/obj/project.assets.json" beforeDir="false" afterPath="$PROJECT_DIR$/MockProject/obj/project.assets.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MockProject/obj/project.packagespec.json" beforeDir="false" afterPath="$PROJECT_DIR$/MockProject/obj/project.packagespec.json" afterDir="false" />
+    </list>
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="TRACKING_ENABLED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileEditorManager">
+    <leaf>
+      <file leaf-file-name="UsersController.cs" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/MockProject/Areas/Admin/Controllers/UsersController.cs">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-3040">
+              <folding>
+                <marker date="1565076020786" expanded="false" signature="6:261" ph="..." />
+                <marker date="1565076020786" expanded="true" signature="308:7133" ph="{...}" />
+                <marker date="1565076020786" expanded="true" signature="409:7131" ph="{...}" />
+                <marker date="1565076020786" expanded="true" signature="521:579" ph="{...}" />
+                <marker date="1565076020786" expanded="true" signature="692:2625" ph="{...}" />
+                <marker date="1565076020786" expanded="true" signature="1158:1552" ph="{...}" />
+                <marker date="1565076020786" expanded="true" signature="1288:1370" ph="{...}" />
+                <marker date="1565076020786" expanded="true" signature="1401:1521" ph="{...}" />
+                <marker date="1565076020786" expanded="true" signature="1599:1725" ph="{...}" />
+                <marker date="1565076020786" expanded="true" signature="1751:2518" ph="{...}" />
+                <marker date="1565076020786" expanded="true" signature="2705:3050" ph="{...}" />
+                <marker date="1565076020786" expanded="true" signature="2779:2842" ph="{...}" />
+                <marker date="1565076020786" expanded="true" signature="2945:3008" ph="{...}" />
+                <marker date="1565076020786" expanded="true" signature="3118:3421" ph="{...}" />
+                <marker date="1565076020786" expanded="true" signature="3431:3639" ph="/* POST: Users/Create ... */" />
+                <marker date="1565076020786" expanded="true" signature="3844:4393" ph="{...}" />
+                <marker date="1565076020786" expanded="true" signature="3926:4103" ph="{...}" />
+                <marker date="1565076020786" expanded="true" signature="4467:5047" ph="{...}" />
+                <marker date="1565076020786" expanded="true" signature="4541:4604" ph="{...}" />
+                <marker date="1565076020786" expanded="true" signature="4694:4757" ph="{...}" />
+                <marker date="1565076020786" expanded="true" signature="5057:5265" ph="/* POST: Users/Edit/5 ... */" />
+                <marker date="1565076020786" expanded="true" signature="5475:6292" ph="{...}" />
+                <marker date="1565076020786" expanded="true" signature="5552:5615" ph="{...}" />
+                <marker date="1565076020786" expanded="true" signature="5652:6002" ph="{...}" />
+                <marker date="1565076020786" expanded="true" signature="5686:5823" ph="{...}" />
+                <marker date="1565076020786" expanded="true" signature="5876:5932" ph="{...}" />
+                <marker date="1565076020786" expanded="true" signature="6369:6701" ph="{...}" />
+                <marker date="1565076020786" expanded="true" signature="6443:6506" ph="{...}" />
+                <marker date="1565076020786" expanded="true" signature="6596:6659" ph="{...}" />
+                <marker date="1565076020786" expanded="true" signature="6863:7115" ph="{...}" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="IUnitOfWork.cs" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/MockProject/Data/Interface/IUnitOfWork.cs">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="135">
+              <caret line="9" column="49" selection-start-line="9" selection-start-column="49" selection-end-line="9" selection-end-column="49" />
+              <folding>
+                <marker date="1565074638537" expanded="true" signature="63:345" ph="{...}" />
+                <marker date="1565074638537" expanded="true" signature="98:343" ph="{...}" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="UnitOfWork.cs" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/MockProject/Data/Repository/UnitOfWork.cs">
+          <provider selected="true" editor-type-id="text-editor">
+            <state>
+              <folding>
+                <marker date="1565074638609" expanded="false" signature="6:73" ph="..." />
+                <marker date="1565074638609" expanded="true" signature="112:1592" ph="{...}" />
+                <marker date="1565074638609" expanded="true" signature="167:1590" ph="{...}" />
+                <marker date="1565074638609" expanded="true" signature="270:322" ph="{...}" />
+                <marker date="1565074638609" expanded="true" signature="1107:1163" ph="{...}" />
+                <marker date="1565074638609" expanded="true" signature="1253:1466" ph="{...}" />
+                <marker date="1565074638609" expanded="true" signature="1291:1426" ph="{...}" />
+                <marker date="1565074638609" expanded="true" signature="1336:1412" ph="{...}" />
+                <marker date="1565074638609" expanded="true" signature="1498:1584" ph="{...}" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/MockProject/Data/Interface/IUnitOfWork.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/MockProject/Data/Repository/UnitOfWork.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/MockProject/Models/Role.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/MockProject/Areas/Admin/Controllers/UsersController.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/MockProject/Startup.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/MockProject/Areas/Admin/Views/Home/Index.cshtml" root0="FORCE_HIGHLIGHTING" />
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="CHANGED_PATHS">
+      <list>
+        <option value="$PROJECT_DIR$/MockProject/Startup.cs" />
+        <option value="$PROJECT_DIR$/MockProject/Areas/Admin/Views/Home/Index.cshtml" />
+      </list>
+    </option>
+  </component>
+  <component name="JsBuildToolGruntFileManager" detection-done="true" sorting="DEFINITION_ORDER" />
+  <component name="JsBuildToolPackageJson" detection-done="true" sorting="DEFINITION_ORDER" />
+  <component name="JsGulpfileManager">
+    <detection-done>true</detection-done>
+    <sorting>DEFINITION_ORDER</sorting>
+  </component>
+  <component name="NodePackageJsonFileManager">
+    <packageJsonPaths />
+  </component>
+  <component name="ProjectFrameBounds" extendedState="6">
+    <option name="x" value="1196" />
+    <option name="y" value="51" />
+    <option name="width" value="724" />
+    <option name="height" value="1000" />
+  </component>
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectView">
+    <navigator currentView="SolutionExplorer" proportions="" version="1">
+      <foldersAlwaysOnTop value="true" />
+    </navigator>
+    <panes>
+      <pane id="SolutionExplorer">
+        <subPane>
+          <expand>
+            <path>
+              <item name="" type="13324e5d:SolutionExplorerViewPane$ProjectViewPaneTreeStructure$createRoot$1" />
+              <item name="MockProject (1 project)" type="977d5f41:SolutionExplorerNodeRider" />
+            </path>
+            <path>
+              <item name="" type="13324e5d:SolutionExplorerViewPane$ProjectViewPaneTreeStructure$createRoot$1" />
+              <item name="MockProject (1 project)" type="977d5f41:SolutionExplorerNodeRider" />
+              <item name="MockProject" type="977d5f41:SolutionExplorerNodeRider" />
+            </path>
+            <path>
+              <item name="" type="13324e5d:SolutionExplorerViewPane$ProjectViewPaneTreeStructure$createRoot$1" />
+              <item name="MockProject (1 project)" type="977d5f41:SolutionExplorerNodeRider" />
+              <item name="MockProject" type="977d5f41:SolutionExplorerNodeRider" />
+              <item name="Areas" type="977d5f41:SolutionExplorerNodeRider" />
+            </path>
+            <path>
+              <item name="" type="13324e5d:SolutionExplorerViewPane$ProjectViewPaneTreeStructure$createRoot$1" />
+              <item name="MockProject (1 project)" type="977d5f41:SolutionExplorerNodeRider" />
+              <item name="MockProject" type="977d5f41:SolutionExplorerNodeRider" />
+              <item name="Areas" type="977d5f41:SolutionExplorerNodeRider" />
+              <item name="Admin" type="977d5f41:SolutionExplorerNodeRider" />
+            </path>
+            <path>
+              <item name="" type="13324e5d:SolutionExplorerViewPane$ProjectViewPaneTreeStructure$createRoot$1" />
+              <item name="MockProject (1 project)" type="977d5f41:SolutionExplorerNodeRider" />
+              <item name="MockProject" type="977d5f41:SolutionExplorerNodeRider" />
+              <item name="Areas" type="977d5f41:SolutionExplorerNodeRider" />
+              <item name="Admin" type="977d5f41:SolutionExplorerNodeRider" />
+              <item name="Controllers" type="977d5f41:SolutionExplorerNodeRider" />
+            </path>
+            <path>
+              <item name="" type="13324e5d:SolutionExplorerViewPane$ProjectViewPaneTreeStructure$createRoot$1" />
+              <item name="MockProject (1 project)" type="977d5f41:SolutionExplorerNodeRider" />
+              <item name="MockProject" type="977d5f41:SolutionExplorerNodeRider" />
+              <item name="Areas" type="977d5f41:SolutionExplorerNodeRider" />
+              <item name="Admin" type="977d5f41:SolutionExplorerNodeRider" />
+              <item name="Views" type="977d5f41:SolutionExplorerNodeRider" />
+            </path>
+            <path>
+              <item name="" type="13324e5d:SolutionExplorerViewPane$ProjectViewPaneTreeStructure$createRoot$1" />
+              <item name="MockProject (1 project)" type="977d5f41:SolutionExplorerNodeRider" />
+              <item name="MockProject" type="977d5f41:SolutionExplorerNodeRider" />
+              <item name="Areas" type="977d5f41:SolutionExplorerNodeRider" />
+              <item name="Admin" type="977d5f41:SolutionExplorerNodeRider" />
+              <item name="Views" type="977d5f41:SolutionExplorerNodeRider" />
+              <item name="Home" type="977d5f41:SolutionExplorerNodeRider" />
+            </path>
+            <path>
+              <item name="" type="13324e5d:SolutionExplorerViewPane$ProjectViewPaneTreeStructure$createRoot$1" />
+              <item name="MockProject (1 project)" type="977d5f41:SolutionExplorerNodeRider" />
+              <item name="MockProject" type="977d5f41:SolutionExplorerNodeRider" />
+              <item name="Controllers" type="977d5f41:SolutionExplorerNodeRider" />
+            </path>
+            <path>
+              <item name="" type="13324e5d:SolutionExplorerViewPane$ProjectViewPaneTreeStructure$createRoot$1" />
+              <item name="MockProject (1 project)" type="977d5f41:SolutionExplorerNodeRider" />
+              <item name="MockProject" type="977d5f41:SolutionExplorerNodeRider" />
+              <item name="Data" type="977d5f41:SolutionExplorerNodeRider" />
+            </path>
+            <path>
+              <item name="" type="13324e5d:SolutionExplorerViewPane$ProjectViewPaneTreeStructure$createRoot$1" />
+              <item name="MockProject (1 project)" type="977d5f41:SolutionExplorerNodeRider" />
+              <item name="MockProject" type="977d5f41:SolutionExplorerNodeRider" />
+              <item name="Data" type="977d5f41:SolutionExplorerNodeRider" />
+              <item name="Interface" type="977d5f41:SolutionExplorerNodeRider" />
+            </path>
+            <path>
+              <item name="" type="13324e5d:SolutionExplorerViewPane$ProjectViewPaneTreeStructure$createRoot$1" />
+              <item name="MockProject (1 project)" type="977d5f41:SolutionExplorerNodeRider" />
+              <item name="MockProject" type="977d5f41:SolutionExplorerNodeRider" />
+              <item name="Data" type="977d5f41:SolutionExplorerNodeRider" />
+              <item name="Repository" type="977d5f41:SolutionExplorerNodeRider" />
+            </path>
+            <path>
+              <item name="" type="13324e5d:SolutionExplorerViewPane$ProjectViewPaneTreeStructure$createRoot$1" />
+              <item name="MockProject (1 project)" type="977d5f41:SolutionExplorerNodeRider" />
+              <item name="MockProject" type="977d5f41:SolutionExplorerNodeRider" />
+              <item name="Models" type="977d5f41:SolutionExplorerNodeRider" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+        <option name="show-file-system" value="false" />
+        <option name="show-all-items" value="false" />
+      </pane>
+      <pane id="Scratches" />
+    </panes>
+  </component>
+  <component name="PropertiesComponent">
+    <property name="Rider.ProjectViewActivator.IsNotFirstRun" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="restartRequiresConfirmation" value="false" />
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="RunManager" selected=".NET Project.MockProject">
+    <configuration name="Default" type="DotNetProject" factoryName=".NET Project">
+      <option name="EXE_PATH" value="" />
+      <option name="PROGRAM_PARAMETERS" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="PASS_PARENT_ENVS" value="1" />
+      <option name="USE_EXTERNAL_CONSOLE" value="0" />
+      <option name="USE_MONO" value="0" />
+      <option name="PROJECT_PATH" value="" />
+      <option name="PROJECT_EXE_PATH_TRACKING" value="1" />
+      <option name="PROJECT_ARGUMENTS_TRACKING" value="1" />
+      <option name="PROJECT_WORKING_DIRECTORY_TRACKING" value="1" />
+      <option name="PROJECT_KIND" value="None" />
+      <option name="PROJECT_TFM" value="" />
+    </configuration>
+    <configuration name="MockProject" type="DotNetProject" factoryName=".NET Project" temporary="true">
+      <option name="EXE_PATH" value="$PROJECT_DIR$/MockProject/bin/Debug/netcoreapp2.2/MockProject.dll" />
+      <option name="PROGRAM_PARAMETERS" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/MockProject" />
+      <option name="PASS_PARENT_ENVS" value="1" />
+      <option name="USE_EXTERNAL_CONSOLE" value="0" />
+      <option name="USE_MONO" value="0" />
+      <option name="PROJECT_PATH" value="$PROJECT_DIR$/MockProject/MockProject.csproj" />
+      <option name="PROJECT_EXE_PATH_TRACKING" value="1" />
+      <option name="PROJECT_ARGUMENTS_TRACKING" value="1" />
+      <option name="PROJECT_WORKING_DIRECTORY_TRACKING" value="1" />
+      <option name="PROJECT_KIND" value="DotNetCore" />
+      <option name="PROJECT_TFM" value=".NETCoreApp,Version=v2.2" />
+    </configuration>
+    <list>
+      <item itemvalue=".NET Project.Default" />
+      <item itemvalue=".NET Project.MockProject" />
+    </list>
+    <recent_temporary>
+      <list>
+        <item itemvalue=".NET Project.MockProject" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="70a0c39c-980f-4b28-8803-830578dfd298" name="Default" comment="" />
+      <created>1565081546392</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1565081546392</updated>
+      <workItem from="1565081554644" duration="2788000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TimeTrackingManager">
+    <option name="totallyTimeSpent" value="2788000" />
+  </component>
+  <component name="TodoView">
+    <todo-panel id="selected-file">
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
+    <todo-panel id="all">
+      <are-packages-shown value="true" />
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="67" y="25" width="1853" height="1055" extended-state="6" />
+    <layout>
+      <window_info anchor="bottom" id="TODO" order="6" />
+      <window_info anchor="right" id="Errors In Solution" />
+      <window_info anchor="bottom" id="Event Log" side_tool="true" />
+      <window_info anchor="bottom" id="Unit Tests" />
+      <window_info anchor="bottom" id="Database Changes" show_stripe_button="false" />
+      <window_info anchor="bottom" id="REST Client" />
+      <window_info anchor="bottom" id="Version Control" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.32910052" />
+      <window_info anchor="bottom" id="Terminal" />
+      <window_info anchor="bottom" id="NuGet" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.24986508" />
+      <window_info anchor="bottom" id="Docker" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Build" />
+      <window_info anchor="right" id="Database" />
+      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
+      <window_info id="Favorites" side_tool="true" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
+      <window_info anchor="bottom" id="Find" order="1" />
+      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+    </layout>
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="UnityUnitTestConfiguration" currentTestLauncher="NUnit" />
+  <component name="VcsContentAnnotationSettings">
+    <option name="myLimit" value="2678400000" />
+  </component>
+  <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/MockProject/Models/Role.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <folding>
+            <marker date="1564717411000" expanded="false" signature="6:78" ph="..." />
+            <marker date="1564717411000" expanded="true" signature="108:300" ph="{...}" />
+            <marker date="1564717411000" expanded="true" signature="132:298" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/MockProject/Data/Interface/IUnitOfWork.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="135">
+          <caret line="9" column="49" selection-start-line="9" selection-start-column="49" selection-end-line="9" selection-end-column="49" />
+          <folding>
+            <marker date="1565074638537" expanded="true" signature="63:345" ph="{...}" />
+            <marker date="1565074638537" expanded="true" signature="98:343" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/MockProject/Startup.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="378">
+          <caret line="21" column="42" selection-start-line="21" selection-start-column="42" selection-end-line="21" selection-end-column="42" />
+          <folding>
+            <marker date="1565083708352" expanded="true" signature="6:428" ph="..." />
+            <marker date="1565083708352" expanded="true" signature="451:3441" ph="{...}" />
+            <marker date="1565083708352" expanded="true" signature="478:3439" ph="{...}" />
+            <marker date="1565083708352" expanded="true" signature="542:617" ph="{...}" />
+            <marker date="1565083708352" expanded="true" signature="840:2313" ph="{...}" />
+            <marker date="1565083708352" expanded="true" signature="913:1190" ph="{...}" />
+            <marker date="1565083708352" expanded="true" signature="1346:1498" ph="{...}" />
+            <marker date="1565083708352" expanded="true" signature="1573:1905" ph="{...}" />
+            <marker date="1565083708352" expanded="true" signature="2501:3433" ph="{...}" />
+            <marker date="1565083708352" expanded="true" signature="2548:2625" ph="{...}" />
+            <marker date="1565083708352" expanded="true" signature="2642:2901" ph="{...}" />
+            <marker date="1565083708352" expanded="true" signature="3093:3421" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/MockProject/Areas/Admin/Controllers/UsersController.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-3040">
+          <folding>
+            <marker date="1565076020786" expanded="false" signature="6:261" ph="..." />
+            <marker date="1565076020786" expanded="true" signature="308:7133" ph="{...}" />
+            <marker date="1565076020786" expanded="true" signature="409:7131" ph="{...}" />
+            <marker date="1565076020786" expanded="true" signature="521:579" ph="{...}" />
+            <marker date="1565076020786" expanded="true" signature="692:2625" ph="{...}" />
+            <marker date="1565076020786" expanded="true" signature="1158:1552" ph="{...}" />
+            <marker date="1565076020786" expanded="true" signature="1288:1370" ph="{...}" />
+            <marker date="1565076020786" expanded="true" signature="1401:1521" ph="{...}" />
+            <marker date="1565076020786" expanded="true" signature="1599:1725" ph="{...}" />
+            <marker date="1565076020786" expanded="true" signature="1751:2518" ph="{...}" />
+            <marker date="1565076020786" expanded="true" signature="2705:3050" ph="{...}" />
+            <marker date="1565076020786" expanded="true" signature="2779:2842" ph="{...}" />
+            <marker date="1565076020786" expanded="true" signature="2945:3008" ph="{...}" />
+            <marker date="1565076020786" expanded="true" signature="3118:3421" ph="{...}" />
+            <marker date="1565076020786" expanded="true" signature="3431:3639" ph="/* POST: Users/Create ... */" />
+            <marker date="1565076020786" expanded="true" signature="3844:4393" ph="{...}" />
+            <marker date="1565076020786" expanded="true" signature="3926:4103" ph="{...}" />
+            <marker date="1565076020786" expanded="true" signature="4467:5047" ph="{...}" />
+            <marker date="1565076020786" expanded="true" signature="4541:4604" ph="{...}" />
+            <marker date="1565076020786" expanded="true" signature="4694:4757" ph="{...}" />
+            <marker date="1565076020786" expanded="true" signature="5057:5265" ph="/* POST: Users/Edit/5 ... */" />
+            <marker date="1565076020786" expanded="true" signature="5475:6292" ph="{...}" />
+            <marker date="1565076020786" expanded="true" signature="5552:5615" ph="{...}" />
+            <marker date="1565076020786" expanded="true" signature="5652:6002" ph="{...}" />
+            <marker date="1565076020786" expanded="true" signature="5686:5823" ph="{...}" />
+            <marker date="1565076020786" expanded="true" signature="5876:5932" ph="{...}" />
+            <marker date="1565076020786" expanded="true" signature="6369:6701" ph="{...}" />
+            <marker date="1565076020786" expanded="true" signature="6443:6506" ph="{...}" />
+            <marker date="1565076020786" expanded="true" signature="6596:6659" ph="{...}" />
+            <marker date="1565076020786" expanded="true" signature="6863:7115" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/MockProject/Areas/Admin/Views/Home/Index.cshtml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="120">
+          <caret line="8" column="10" lean-forward="true" selection-start-line="8" selection-start-column="10" selection-end-line="8" selection-end-column="10" />
+          <folding>
+            <marker date="1565084328503" expanded="true" signature="15:72" ph="@..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/MockProject/Data/Repository/UnitOfWork.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <folding>
+            <marker date="1565074638609" expanded="false" signature="6:73" ph="..." />
+            <marker date="1565074638609" expanded="true" signature="112:1592" ph="{...}" />
+            <marker date="1565074638609" expanded="true" signature="167:1590" ph="{...}" />
+            <marker date="1565074638609" expanded="true" signature="270:322" ph="{...}" />
+            <marker date="1565074638609" expanded="true" signature="1107:1163" ph="{...}" />
+            <marker date="1565074638609" expanded="true" signature="1253:1466" ph="{...}" />
+            <marker date="1565074638609" expanded="true" signature="1291:1426" ph="{...}" />
+            <marker date="1565074638609" expanded="true" signature="1336:1412" ph="{...}" />
+            <marker date="1565074638609" expanded="true" signature="1498:1584" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+  </component>
+</project>

@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Authentication.Cookies;
+﻿using System.Linq;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -6,14 +7,18 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using MockProject.Data.Interface;
+using MockProject.Data.Repository;
 using MockProject.Models;
 
 namespace MockProject
 {
     public class Startup
     {
+    
         public Startup(IConfiguration configuration)
         {
+           
             Configuration = configuration;
         }
 
@@ -38,13 +43,15 @@ namespace MockProject
             //Authorize roles
             services.AddAuthorization(x =>
             {
+               
                 x.AddPolicy("admin", a => a.RequireAuthenticatedUser().RequireRole("admin"));
                 x.AddPolicy("teacher", a =>a.RequireAuthenticatedUser().RequireRole("teacher"));
                 x.AddPolicy("student",a => a.RequireAuthenticatedUser().RequireRole("student"));
             });
             //DbContext setup
             services.AddDbContext<AppDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
-
+            services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
+            services.AddTransient<IUnitOfWork, UnitOfWork>();
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
         }
 
