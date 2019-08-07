@@ -1,6 +1,8 @@
 using System.Linq;
+using System.Security.Cryptography;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -20,6 +22,13 @@ namespace MockProject.Areas.Admin.Controllers
             _unitOfWork = unitOfWork;
         }
 
+        public IActionResult InfoUser(int? id)
+        { 
+            ViewBag.Pages = "User";
+            var user =  _unitOfWork.UserRepository.Get(id);
+            return View(user);
+        }
+
         // GET: Users
         public async Task<IActionResult> Index(string search, string filter, string sort)
         {
@@ -36,7 +45,7 @@ namespace MockProject.Areas.Admin.Controllers
                 int role = int.Parse(filter);
                 if (role != 1 || role != 2 || role != 3 || role != 0)
                 {
-                    return Content("CLGT??");
+                    return View("NotFound");
                 }
                 if (role != 0)
                 {
@@ -94,6 +103,7 @@ namespace MockProject.Areas.Admin.Controllers
         }
 
         // GET: Users/Create
+        [HttpGet]
         public IActionResult Create()
         {
             ViewBag.Pages = "User";
@@ -112,12 +122,15 @@ namespace MockProject.Areas.Admin.Controllers
             ViewBag.Pages = "User";
             if (ModelState.IsValid)
             {
+                PasswordHasher<User> hasher = new PasswordHasher<User>();
+                user.Password = hasher.HashPassword(user,user.Name);
+                
                 _unitOfWork.UserRepository.Insert(user);
                 _unitOfWork.Save();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["FacultyId"] = new SelectList(_unitOfWork.FacultyRepository.GetAll().ToList(), "Id", "Id", user.FacultyId);
-            ViewData["RoleId"] = new SelectList(_unitOfWork.RoleRepository.GetAll().ToList(), "Id", "Id", user.RoleId);
+            ViewData["FacultyId"] = new SelectList(_unitOfWork.FacultyRepository.GetAll().ToList(), "Name", "Name", user.FacultyId);
+            ViewData["RoleId"] = new SelectList(_unitOfWork.RoleRepository.GetAll().ToList(), "Name", "Name", user.RoleId);
             return View(user);
         }
 
@@ -157,6 +170,9 @@ namespace MockProject.Areas.Admin.Controllers
             {
                 try
                 {
+                    PasswordHasher<User> hasher = new PasswordHasher<User>();
+                    user.Password = hasher.HashPassword(user,user.Password);
+                    
                     _unitOfWork.UserRepository.Update(user);
                     _unitOfWork.Save();
                 }
@@ -166,8 +182,8 @@ namespace MockProject.Areas.Admin.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["FacultyId"] = new SelectList(_unitOfWork.FacultyRepository.GetAll().ToList(), "Id", "Id", user.FacultyId);
-            ViewData["RoleId"] = new SelectList(_unitOfWork.RoleRepository.GetAll().ToList(), "Id", "Id", user.RoleId);
+            ViewData["FacultyId"] = new SelectList(_unitOfWork.FacultyRepository.GetAll().ToList(), "Name", "Name", user.FacultyId);
+            ViewData["RoleId"] = new SelectList(_unitOfWork.RoleRepository.GetAll().ToList(), "Name", "Name", user.RoleId);
             return View(user);
         }
 

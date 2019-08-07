@@ -1,8 +1,10 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using FluentValidation;
 
 namespace MockProject.Models
 {
+   //table nam hoc, hoc ki
     public class Semester
     {
         [Key] 
@@ -15,5 +17,15 @@ namespace MockProject.Models
         
         public virtual List<Schedule> Schedules { get; set; }
         public virtual Faculty Faculty { get; set; }
+    }
+
+    public class SemesterValidator : AbstractValidator<Semester>
+    {
+        public SemesterValidator()
+        {
+            RuleFor(x => x.Name).Length(3, 10).NotEmpty();
+            RuleFor(x => x.FacultyId).NotEmpty();
+            RuleFor(x => x.Year).NotEmpty();
+        }
     }
 }

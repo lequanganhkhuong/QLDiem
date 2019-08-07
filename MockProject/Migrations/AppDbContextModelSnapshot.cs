@@ -15,7 +15,7 @@ namespace MockProject.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "2.2.4-servicing-10062")
+                .HasAnnotation("ProductVersion", "2.2.6-servicing-10079")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
@@ -66,29 +66,6 @@ namespace MockProject.Migrations
                             IsActive = true,
                             Name = "ABC4"
                         });
-                });
-
-            modelBuilder.Entity("MockProject.Models.Grade", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<bool?>("IsPassed");
-
-                    b.Property<double>("Mark");
-
-                    b.Property<int>("SubjectId");
-
-                    b.Property<int>("TranscriptId");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("SubjectId");
-
-                    b.HasIndex("TranscriptId");
-
-                    b.ToTable("Grades");
                 });
 
             modelBuilder.Entity("MockProject.Models.Role", b =>
@@ -192,6 +169,10 @@ namespace MockProject.Migrations
 
                     b.Property<bool>("IsActive");
 
+                    b.Property<bool?>("IsPassed");
+
+                    b.Property<double?>("Mark");
+
                     b.Property<int?>("ScheduleId");
 
                     b.Property<int?>("UserId");
@@ -253,19 +234,6 @@ namespace MockProject.Migrations
                             RoleId = 1,
                             Username = "admin"
                         });
-                });
-
-            modelBuilder.Entity("MockProject.Models.Grade", b =>
-                {
-                    b.HasOne("MockProject.Models.Subject", "Subject")
-                        .WithMany("Grades")
-                        .HasForeignKey("SubjectId")
-                        .OnDelete(DeleteBehavior.Cascade);
-
-                    b.HasOne("MockProject.Models.Transcript", "Transcript")
-                        .WithMany("Grades")
-                        .HasForeignKey("TranscriptId")
-                        .OnDelete(DeleteBehavior.Cascade);
                 });
 
             modelBuilder.Entity("MockProject.Models.Schedule", b =>

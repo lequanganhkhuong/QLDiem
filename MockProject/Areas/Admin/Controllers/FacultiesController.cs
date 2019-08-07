@@ -8,7 +8,7 @@ using MockProject.Models;
 namespace MockProject.Areas.Admin.Controllers
 {
     [Area("Admin")]
-    [Authorize(Roles = "admin")]
+   [Authorize(Roles = "admin")]
     public class FacultiesController : Controller
     {
         private readonly AppDbContext _context;
@@ -19,6 +19,7 @@ namespace MockProject.Areas.Admin.Controllers
         }
 
         // GET: Faculties
+      
         public async Task<IActionResult> Index()
         {
             ViewBag.Pages = "Faculty";
@@ -26,6 +27,7 @@ namespace MockProject.Areas.Admin.Controllers
         }
 
         // GET: Faculties/Details/5
+       
         public async Task<IActionResult> Details(int? id)
         {
             ViewBag.Pages = "Faculty";
@@ -45,6 +47,7 @@ namespace MockProject.Areas.Admin.Controllers
         }
 
         // GET: Faculties/Create
+  
         public IActionResult Create()
         {
             ViewBag.Pages = "Faculty";
@@ -56,7 +59,8 @@ namespace MockProject.Areas.Admin.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Name,Credits,IsActive")] Faculty faculty)
+       
+        public async Task<IActionResult> Create([Bind("Id,Name,Credits,Code,IsActive")] Faculty faculty)
         {
             ViewBag.Pages = "Faculty";
             if (ModelState.IsValid)
@@ -69,6 +73,7 @@ namespace MockProject.Areas.Admin.Controllers
         }
 
         // GET: Faculties/Edit/5
+       
         public async Task<IActionResult> Edit(int? id)
         {
             ViewBag.Pages = "Faculty";
@@ -90,7 +95,8 @@ namespace MockProject.Areas.Admin.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Name,Credits,IsActive")] Faculty faculty)
+      
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Name,Credits,Code,IsActive")] Faculty faculty)
         {
             ViewBag.Pages = "Faculty";
             if (id != faculty.Id)
@@ -122,6 +128,7 @@ namespace MockProject.Areas.Admin.Controllers
         }
 
         // GET: Faculties/Delete/5
+  
         public async Task<IActionResult> Delete(int? id)
         {
             ViewBag.Pages = "Faculty";
@@ -143,6 +150,7 @@ namespace MockProject.Areas.Admin.Controllers
         // POST: Faculties/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+       
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             ViewBag.Pages = "Faculty";

@@ -1,10 +1,10 @@
 ﻿{
   "version": "1.0.0",
   "restore": {
-    "projectUniqueName": "/home/khuong/RiderProjects/MockProject/MockProject/MockProject.csproj",
+    "projectUniqueName": "/home/tam/project/kai_pro/MockProject/MockProject.csproj",
     "projectName": "MockProject",
-    "projectPath": "/home/khuong/RiderProjects/MockProject/MockProject/MockProject.csproj",
-    "outputPath": "/home/khuong/RiderProjects/MockProject/MockProject/obj/",
+    "projectPath": "/home/tam/project/kai_pro/MockProject/MockProject.csproj",
+    "outputPath": "/home/tam/project/kai_pro/MockProject/obj/",
     "projectStyle": "PackageReference",
     "fallbackFolders": [
       "/usr/share/dotnet/sdk/NuGetFallbackFolder"
@@ -26,6 +26,10 @@
   "frameworks": {
     "netcoreapp2.2": {
       "dependencies": {
+        "FluentValidation.AspNetCore": {
+          "target": "Package",
+          "version": "[8.4.0, )"
+        },
         "Microsoft.AspNetCore.App": {
           "suppressParent": "All",
           "target": "Package",
