@@ -5,132 +5,157 @@
 }
 
 <h1>User list</h1>
-
-<p>
-    <a asp-action="Create" class="btn btn-success">Create new </a>
-</p>
-<div class="container">
-    <div class="row">
-    <form asp-action="Index" method="get">
-        <div class="form-actions no-color">
-            <span>Filter by role</span>
-            <select name="filter">
-                @{
-                    var filter = ViewBag.Filter;
-                    if (filter.Equals("0") )
-                    {
-                        <option selected="selected" value="0">All</option>
-                        <option value="1">Admins</option>
-                        <option value="2">Teachers</option>
-                        <option value="3">Students</option>
-                    }
-                    if (filter.Equals("1"))
-                    {
-                        <option value="0">All</option>
-                        <option selected="selected" value="1">Admins</option>
-                        <option value="2">Teachers</option>
-                        <option value="3">Students</option>
-                    }
-                    if (filter.Equals("2"))
-                    {
-                        <option value="0">All</option>
-                        <option value="1">Admins</option>
-                        <option selected="selected" value="2">Teachers</option>
-                        <option value="3">Students</option>
-                    }
-                    if (filter.Equals("3"))
-                    {
-                        <option value="0">All</option>
-                        <option value="1">Admins</option>
-                        <option value="2">Teachers</option>
-                        <option selected="selected" value="3">Students</option>
-                    }
-                }
-                
-            </select>
-      
-            <input name="search" placeholder="search by name..." value="@ViewBag.Search"/>
-      
-            <input type="submit" value="Submit"  class="btn btn-default" />
+<div class="row">
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-content">
+                <div class="row">
+                    <p>
+                        <a asp-action="Create" class="btn btn-success">Create new </a>
+                    </p>
+                    <div class="container">
+                        <div class="row">
+                        <form asp-action="Index" method="get">
+                            <div class="form-actions no-color">
+                                <span>Filter by role</span>
+                                <select name="filter">
+                                    @{
+                                        var filter = ViewBag.Filter;
+                                        if (filter.Equals("0") )
+                                        {
+                                            <option selected="selected" value="0">All</option>
+                                            <option value="1">Admins</option>
+                                            <option value="2">Teachers</option>
+                                            <option value="3">Students</option>
+                                        }
+                                        if (filter.Equals("1"))
+                                        {
+                                            <option value="0">All</option>
+                                            <option selected="selected" value="1">Admins</option>
+                                            <option value="2">Teachers</option>
+                                            <option value="3">Students</option>
+                                        }
+                                        if (filter.Equals("2"))
+                                        {
+                                            <option value="0">All</option>
+                                            <option value="1">Admins</option>
+                                            <option selected="selected" value="2">Teachers</option>
+                                            <option value="3">Students</option>
+                                        }
+                                        if (filter.Equals("3"))
+                                        {
+                                            <option value="0">All</option>
+                                            <option value="1">Admins</option>
+                                            <option value="2">Teachers</option>
+                                            <option selected="selected" value="3">Students</option>
+                                        }
+                                    }
+                                    
+                                </select>
+                          
+                                
+                          
+                                <input type="submit" value="Submit"  class="btn btn-default" />
+                            </div>
+                            <a asp-action="Index">Back to Full List</a>
+                        </form>
+                        
+                        </div>
+                        <table id="tableUser" class="table">
+                            <thead>
+                                <tr>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.Username)
+                                    </th>
+                                   
+                                    
+                                    <th>
+                                        <a asp-action="Index" asp-route-search="@ViewBag.search" asp-route-sort="@ViewBag.Name">@Html.DisplayNameFor(model => model.Name)</a>
+                                      
+                                    </th>
+                                  
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.Address)
+                                    </th>
+                                    <th>
+                                        <a asp-action="Index" asp-route-search="@ViewBag.search" asp-route-sort="@ViewBag.Gender">@Html.DisplayNameFor(model => model.Gender)</a>
+                                       
+                                    </th>
+                                    <th>
+                                   
+                                        <a asp-action="Index" asp-route-search="@ViewBag.search" asp-route-sort="@ViewBag.IsActive">@Html.DisplayNameFor(model => model.IsActive)</a>
+                                    </th>
+                                    @* <th> *@
+                                    @*     @Html.DisplayNameFor(model => model.IsGraduated) *@
+                                    @* </th> *@
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.Faculty)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.Role)
+                                    </th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                        @foreach (var item in Model) {
+                                <tr>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Username)
+                                    </td>
+                                   
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Name)
+                                    </td>
+                                    
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Address)
+                                    </td>
+                                    <td>
+                                        @Html.Raw(item.Gender ? "Male" : "Female")
+                                        
+                                    </td>
+                                    <td>
+                                        
+                                        @Html.Raw(item.IsActive ? "Active" : "Blocked")
+                                    </td>
+                                    @* <td> *@
+                                    @*     @Html.DisplayFor(modelItem => item.IsGraduated) *@
+                                    @* </td> *@
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Faculty.Name)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Role.Name)
+                                    </td>
+                                    <td>
+                                        <a asp-action="Edit" asp-route-id="@item.Id" title="Edit">
+                                            <i class="fas fa-edit"></i>
+                                        </a> |
+                                        <a asp-action="Details" asp-route-id="@item.Id" title="Detail">
+                                            <i class="far fa-eye"></i>
+                                        </a>
+                                    </td>
+                                </tr>
+                        }
+                            </tbody>
+                        </table>
+                    
+                    </div>
+                </div>
+            </div>
         </div>
-        <a asp-action="Index">Back to Full List</a>
-    </form>
-    
     </div>
-    <table class="table">
-        <thead>
-            <tr>
-                <th>
-                    @Html.DisplayNameFor(model => model.Username)
-                </th>
-               
-                
-                <th>
-                    <a asp-action="Index" asp-route-search="@ViewBag.search" asp-route-sort="@ViewBag.Name">@Html.DisplayNameFor(model => model.Name)</a>
-                  
-                </th>
-              
-                <th>
-                    @Html.DisplayNameFor(model => model.Address)
-                </th>
-                <th>
-                    <a asp-action="Index" asp-route-search="@ViewBag.search" asp-route-sort="@ViewBag.Gender">@Html.DisplayNameFor(model => model.Gender)</a>
-                   
-                </th>
-                <th>
-               
-                    <a asp-action="Index" asp-route-search="@ViewBag.search" asp-route-sort="@ViewBag.IsActive">@Html.DisplayNameFor(model => model.IsActive)</a>
-                </th>
-                @* <th> *@
-                @*     @Html.DisplayNameFor(model => model.IsGraduated) *@
-                @* </th> *@
-                <th>
-                    @Html.DisplayNameFor(model => model.Faculty)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Role)
-                </th>
-                <th></th>
-            </tr>
-        </thead>
-        <tbody>
-    @foreach (var item in Model) {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Username)
-                </td>
-               
-                <td>
-                    @Html.DisplayFor(modelItem => item.Name)
-                </td>
-                
-                <td>
-                    @Html.DisplayFor(modelItem => item.Address)
-                </td>
-                <td>
-                    @Html.Raw(item.Gender ? "Male" : "Female")
-                    
-                </td>
-                <td>
-                    
-                    @Html.Raw(item.IsActive ? "Active" : "Blocked")
-                </td>
-                @* <td> *@
-                @*     @Html.DisplayFor(modelItem => item.IsGraduated) *@
-                @* </td> *@
-                <td>
-                    @Html.DisplayFor(modelItem => item.Faculty.Name)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Role.Name)
-                </td>
-                <td>
-                    <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                    <a asp-action="Details" asp-route-id="@item.Id">Details</a> 
-                </td>
-            </tr>
-    }
-        </tbody>
-    </table>
-
 </div>
+
+@section Scripts
+{
+    <script type="text/javascript">
+        $(document).ready(function() {
+
+            $('#tableUser').DataTable({
+                pageLength: 5
+            });
+        });
+    </script>
+}

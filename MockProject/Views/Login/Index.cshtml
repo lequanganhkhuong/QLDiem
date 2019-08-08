@@ -1,6 +1,6 @@
 ﻿﻿@using System.Threading
 @{
-    ViewData["Title"] = "Đăng nhập hệ thống";
+    ViewData["Title"] = "Login";
     Layout = null;
 }
 
@@ -40,21 +40,21 @@
                     <form class="login-form" autocomplete="off"  asp-action="Login" method="post">
                         <div class="row">
                             <div class="input-field col s12">
-                                <h5 class="ml-4">Đăng Nhập Hệ Thống</h5>
+                                <h5 class="ml-4">Log in</h5>
                             </div>
                         </div>
                         <div class="row margin">
                             <div class="input-field col s12">
                                 <i class="material-icons prefix pt-2">person_outline</i>
                                 <input id="username" name="username" type="text">
-                                <label for="username" class="center-align">Tên đăng nhập</label>
+                                <label for="username" class="center-align">Username</label>
                             </div>
                         </div>
                         <div class="row margin">
                             <div class="input-field col s12">
                                 <i class="material-icons prefix pt-2">lock_outline</i>
                                 <input id="password" name="password" type="password">
-                                <label for="password">Mật khẩu</label>
+                                <label for="password">Password</label>
                             </div>
                             
                         </div>

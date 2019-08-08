@@ -4,44 +4,73 @@
     ViewData["Title"] = "Subjects list";
 }
 
-<h1>Index</h1>
+<h1>Subjects list</h1>
+<div class="row">
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-content">
+                <div class="row">
+                    <p>
+                        <a asp-action="Create">Create New</a>
+                    </p>
+                    <div class="container">
+                        
+                            <table id="tableSubject" class="table">
+                                <thead>
+                                <tr>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.Name)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.Credits)
+                                    </th>
+                                    <th>
+                                        Is active
+                                    </th>
+                                    <th></th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                @foreach (var item in Model) {
+                                    <tr>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.Name)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.Credits)
+                                        </td>
+                                        <td>
+                                            @Html.Raw(item.IsActive ? "Active" : "Blocked")
+                                        </td>
+                                        <td>
+                                            <a asp-action="Edit" asp-route-id="@item.Id" title="Edit">
+                                                <i class="fas fa-edit"></i>
+                                            </a> |
+                                            <a asp-action="Details" asp-route-id="@item.Id" title="Detail">
+                                                <i class="far fa-eye"></i>
+                                            </a> 
+                                        </td>
+                                    </tr>
+                                }
+                                </tbody>
+                            </table>
+                        </div>
+                    
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Name)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Credits)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.IsActive)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Name)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Credits)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.IsActive)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
-            </td>
-        </tr>
+@section Scripts
+{
+    <script type="text/javascript">
+        $(document).ready(function() {
+
+            $('#tableSubject').DataTable({
+                pageLength: 5
+            });
+        });
+    </script>
 }
-    </tbody>
-</table>

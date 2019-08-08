@@ -113,35 +113,6 @@ namespace MockProject.Areas.Admin.Controllers
             return View(subject);
         }
 
-        // GET: Subjects/Delete/5
-        public IActionResult Delete(int? id)
-        {
-            ViewBag.Pages = "Subject";
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            var subject =  _unitOfWork.SubjectRepository.Get(id);
-            if (subject == null)
-            {
-                return NotFound();
-            }
-
-            return View(subject);
-        }
-
-        // POST: Subjects/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public IActionResult DeleteConfirmed(int id)
-        {
-            ViewBag.Pages = "Subject";
-            var subject = _unitOfWork.SubjectRepository.Get(id);
-            _unitOfWork.SubjectRepository.Remove(subject);
-            _unitOfWork.Save();
-            return RedirectToAction(nameof(Index));
-        }
 
        
     }

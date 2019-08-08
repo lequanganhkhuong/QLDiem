@@ -1,7 +1,8 @@
+﻿
 ﻿@{
-    ViewData["Title"] = "không có quyền truy cập";
-    Layout = null;
-}
+     ViewData["Title"] = "No Access";
+     Layout = null;
+ }
 <html>
 <head>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
@@ -9,10 +10,14 @@
 </head>
 <body>
 <div class="text-center">
-    <h1 class="text-danger">TỪ CHỐI TRUY CẬP</h1>
-    <h4 class="text-danger">Bạn Không Có Quyền Để Xem Trang Này.</h4>
+    <h1 class="text-danger">DENY ACCESS</h1>
+    <h4 class="text-danger">You Do Not Have Permissions To View This Page.</h4>
     <img src="~/app-assets/images/gallery/noaccess.jpg" style="height: 300px; width: 300px"/>
+    <br/>
+    <br/>
+    <div>
+        <a asp-controller="Login" asp-action="Logout" class="btn btn-danger">Back</a>
+    </div>
 </div>
 </body>
 </html>
-

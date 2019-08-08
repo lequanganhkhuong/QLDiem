@@ -29,13 +29,10 @@ namespace MockProject.Areas.Admin.Controllers
         }
 
         // GET: Users
-        public async Task<IActionResult> Index(string search, string filter, string sort)
+        public async Task<IActionResult> Index( string filter)
         {
             ViewBag.Pages = "User";
-            ViewBag.Name = string.IsNullOrEmpty(sort) ? "Name_desc" : "";
-            ViewBag.Gender = sort == "male" ? "female" : "male";
-            ViewBag.IsActive = sort == "true" ? "false" : "true";
-            ViewBag.search = search;
+           
             ViewBag.Filter = filter ?? "0";
             
             IQueryable<User> users = _unitOfWork.UserRepository.GetAll();
@@ -53,32 +50,7 @@ namespace MockProject.Areas.Admin.Controllers
                 }
                 
             }
-            if (!string.IsNullOrEmpty(search))
-            {
-                users = users.Where(x => x.Name.Contains(search) || x.Username.Contains(search));
-            }
-            switch (sort)
-            {
-                    
-                case "Name_desc":
-                    users = users.OrderByDescending(x => x.Name);
-                    break;
-                case "male":
-                    users = users.OrderBy(x => x.Gender);
-                    break;
-                case "female":
-                    users = users.OrderByDescending(x => x.Gender);
-                    break;
-                case "true":
-                    users = users.OrderBy(x => x.IsActive);
-                    break;
-                case "false":
-                    users = users.OrderByDescending(x => x.IsActive);
-                    break;
-                default:
-                    users = users.OrderBy(x => x.Name);
-                    break;
-            }
+            
             return View(await users.Include(u => u.Faculty).Include(u => u.Role).ToListAsync());
         }
 
@@ -116,7 +88,7 @@ namespace MockProject.Areas.Admin.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public  IActionResult Create([Bind("Id,Username,Password,Code,Name,Birthday,Address,Gender,IsActive,IsGraduated,FacultyId,RoleId")] User user)
+        public  IActionResult Create([Bind("Id,Username,Password,Code,Name,Birthday,Address,Gender,IsActive,FacultyId,RoleId")] User user)
         {
             ViewBag.Pages = "User";
             if (ModelState.IsValid)

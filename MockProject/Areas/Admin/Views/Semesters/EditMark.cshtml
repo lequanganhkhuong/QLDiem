@@ -5,15 +5,24 @@
     Layout = "_Layout";
 }
 
-<h2>Edit mark of Subject: @Model.Schedule.Subject.Name - Teacher: @Model.Schedule.User.Name - Semester: @Model.Schedule.Semester.Name</h2>
 
 
-<form asp-action="EditMark">
-    <div class="form-group">
-        <label  class="control-label">Mark</label>
-        <input name="Mark" class="form-control" value="@Model.Mark"/>
+<div class="row">
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-content">
+                 <h2>Edit mark of Subject: @Model.Schedule.Subject.Name - Teacher: @Model.Schedule.User.Name - Semester: @Model.Schedule.Semester.Name</h2>
+                 <form asp-action="EditMark">
+                        <div class="form-group">
+                            <label class="control-label">Mark</label>
+                            <input name="Mark" class="form-control" value="@Model.Mark"/>
+                        </div>
+                        <div class="form-group">
+                            <input type="submit" value="Save" class="btn btn-primary"/>
+                        </div>
+                    </form>
+            </div>
+        </div>
     </div>
-    <div class="form-group">
-        <input type="submit" value="Save" class="btn btn-primary" />
-    </div>
-</form>
+</div>
+

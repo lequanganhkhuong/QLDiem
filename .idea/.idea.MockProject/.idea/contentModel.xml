@@ -39,7 +39,6 @@
               </e>
               <e p="Subjects" t="Include">
                 <e p="Create.cshtml" t="Include" />
-                <e p="Delete.cshtml" t="Include" />
                 <e p="Details.cshtml" t="Include" />
                 <e p="Edit.cshtml" t="Include" />
                 <e p="Index.cshtml" t="Include" />

@@ -5,36 +5,58 @@
     Layout = "_Layout";
 }
 
-<h2>Subject: @Model.Item1.Subject.Name - Teacher: @Model.Item1.User.Name</h2>
-<table class="table">
-    <thead>
-    <tr>
-        <th>
-            Student Name
-        </th>
-        <th>
-            Mark
-        </th>
-         
-        <th>
-            Actions
-        </th>
-    </tr>
-    </thead>
-    <tbody>
-    @foreach (var item in Model.Item2) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.User.Name)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Mark)
-            </td>
-            <td>
-                <a asp-action="EditMark" asp-route-id="@item.Id">Edit</a> |
-                
-            </td>
-        </tr>
-    }
-    </tbody>
-</table>
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-content">
+                 <h2>Subject: @Model.Item1.Subject.Name - Teacher: @Model.Item1.User.Name</h2>
+                 <table id="tableTranscript" class="table">
+                        <thead>
+                        <tr>
+                            <th>
+                                Student Name
+                            </th>
+                            <th>
+                                Mark
+                            </th>
+
+                            <th>
+                                Actions
+                            </th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        @foreach (var item in Model.Item2)
+                        {
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.User.Name)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Mark)
+                                </td>
+                                <td>
+                                    <a asp-action="EditMark" asp-route-id="@item.Id">Edit</a> |
+
+                                </td>
+                            </tr>
+                        }
+                        </tbody>
+                    </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts
+{
+    <script type="text/javascript">
+        $(document).ready(function() {
+
+            $('#tableTranscript').DataTable({
+                pageLength: 5
+            });
+        });
+    </script>
+}
