@@ -15,7 +15,6 @@
 /home/khuong/RiderProjects/Git/MockProject/obj/Debug/netcoreapp2.2/MockProject.TagHelpers.output.cache
 /home/khuong/RiderProjects/Git/MockProject/obj/Debug/netcoreapp2.2/MockProject.RazorCoreGenerate.cache
 /home/khuong/RiderProjects/Git/MockProject/obj/Debug/netcoreapp2.2/Razor/Areas/Admin/Views/Faculties/Create.g.cshtml.cs
-/home/khuong/RiderProjects/Git/MockProject/obj/Debug/netcoreapp2.2/Razor/Areas/Admin/Views/Faculties/Delete.g.cshtml.cs
 /home/khuong/RiderProjects/Git/MockProject/obj/Debug/netcoreapp2.2/Razor/Areas/Admin/Views/Faculties/Details.g.cshtml.cs
 /home/khuong/RiderProjects/Git/MockProject/obj/Debug/netcoreapp2.2/Razor/Areas/Admin/Views/Faculties/Edit.g.cshtml.cs
 /home/khuong/RiderProjects/Git/MockProject/obj/Debug/netcoreapp2.2/Razor/Areas/Admin/Views/Faculties/Index.g.cshtml.cs
@@ -36,7 +35,6 @@
 /home/khuong/RiderProjects/Git/MockProject/obj/Debug/netcoreapp2.2/Razor/Areas/Admin/Views/Subjects/Edit.g.cshtml.cs
 /home/khuong/RiderProjects/Git/MockProject/obj/Debug/netcoreapp2.2/Razor/Areas/Admin/Views/Subjects/Index.g.cshtml.cs
 /home/khuong/RiderProjects/Git/MockProject/obj/Debug/netcoreapp2.2/Razor/Areas/Admin/Views/Users/Create.g.cshtml.cs
-/home/khuong/RiderProjects/Git/MockProject/obj/Debug/netcoreapp2.2/Razor/Areas/Admin/Views/Users/Delete.g.cshtml.cs
 /home/khuong/RiderProjects/Git/MockProject/obj/Debug/netcoreapp2.2/Razor/Areas/Admin/Views/Users/Details.g.cshtml.cs
 /home/khuong/RiderProjects/Git/MockProject/obj/Debug/netcoreapp2.2/Razor/Areas/Admin/Views/Users/Edit.g.cshtml.cs
 /home/khuong/RiderProjects/Git/MockProject/obj/Debug/netcoreapp2.2/Razor/Areas/Admin/Views/Users/Index.g.cshtml.cs

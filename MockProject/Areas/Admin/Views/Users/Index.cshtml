@@ -4,10 +4,10 @@
     ViewData["Title"] = "Users list";
 }
 
-<h1>Danh sách người dùng</h1>
+<h1>User list</h1>
 
 <p>
-    <a asp-action="Create" class="btn btn-success">Tạo Mới</a>
+    <a asp-action="Create" class="btn btn-success">Create new </a>
 </p>
 <div class="container">
     <div class="row">
@@ -108,12 +108,12 @@
                     @Html.DisplayFor(modelItem => item.Address)
                 </td>
                 <td>
-                    @Html.Raw(item.Gender ? "Nam" : "Nữ")
+                    @Html.Raw(item.Gender ? "Male" : "Female")
                     
                 </td>
                 <td>
                     
-                    @Html.Raw(item.IsActive ? "Kích hoạt" : "Khóa")
+                    @Html.Raw(item.IsActive ? "Active" : "Blocked")
                 </td>
                 @* <td> *@
                 @*     @Html.DisplayFor(modelItem => item.IsGraduated) *@
