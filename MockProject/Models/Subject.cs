@@ -1,8 +1,10 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using FluentValidation;
 
 namespace MockProject.Models
 {
+    //table mon hoc
     public class Subject
     {
         [Key] 
@@ -13,5 +15,14 @@ namespace MockProject.Models
         
         
         public virtual ICollection<Schedule> Schedules { get; set; }
+    }
+
+    public class SubjectValidator : AbstractValidator<Subject>
+    {
+       public SubjectValidator()
+       {
+           RuleFor(x => x.Name).Length(10, 30).NotEmpty();
+           RuleFor(x => x.Credits).NotEmpty();
+       }
     }
 }

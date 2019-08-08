@@ -1,4 +1,4 @@
-﻿using System.Linq;
+
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -10,6 +10,8 @@ using Microsoft.Extensions.DependencyInjection;
 using MockProject.Data.Interface;
 using MockProject.Data.Repository;
 using MockProject.Models;
+using FluentValidation.AspNetCore;
+
 
 namespace MockProject
 {
@@ -37,22 +39,43 @@ namespace MockProject
             services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
                 .AddCookie(x =>
                 {
-                    x.AccessDeniedPath = "/Login/ErrorForbbiden";
-                    x.LoginPath = "/Login/Index";
+                    x.AccessDeniedPath = "/Admin/Login/AccessDenied";
+                    x.LoginPath = "/Admin/Login/Index";
                 });
             //Authorize roles
             services.AddAuthorization(x =>
             {
                
                 x.AddPolicy("admin", a => a.RequireAuthenticatedUser().RequireRole("admin"));
-                x.AddPolicy("teacher", a =>a.RequireAuthenticatedUser().RequireRole("teacher"));
-                x.AddPolicy("student",a => a.RequireAuthenticatedUser().RequireRole("student"));
+                x.AddPolicy("teacher", a => a.RequireAuthenticatedUser().RequireRole("teacher"));
+                x.AddPolicy("student", a => a.RequireAuthenticatedUser().RequireRole("student"));
             });
             //DbContext setup
-            services.AddDbContext<AppDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+
+            services.AddDbContext<AppDbContext>(options =>
+                options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+
+
+            //fluent validator
+            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2)
+                .AddFluentValidation(fv =>
+                {
+                    fv.RegisterValidatorsFromAssemblyContaining<FacultyValidator>();
+                    fv.RegisterValidatorsFromAssemblyContaining<UserValidator>();
+                    fv.RegisterValidatorsFromAssemblyContaining<SubjectValidator>();
+                    fv.RegisterValidatorsFromAssemblyContaining<ScheduleValidator>();
+                    fv.RegisterValidatorsFromAssemblyContaining<SemesterValidator>();
+                    fv.RegisterValidatorsFromAssemblyContaining<TranscriptValidator>();
+                });
+
+
+            //repo
             services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
             services.AddTransient<IUnitOfWork, UnitOfWork>();
+
+ 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -73,7 +96,7 @@ namespace MockProject
             app.UseStaticFiles();
             app.UseCookiePolicy();
             app.UseAuthentication();
-            
+
             app.UseMvc(routes =>
             {
                 routes.MapRoute(

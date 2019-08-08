@@ -8,7 +8,7 @@ using MockProject.Models;
 namespace MockProject.Areas.Admin.Controllers
 {
     [Area("Admin")]
-    [Authorize(Roles = "admin")]
+   [Authorize(Roles = "admin")]
     public class FacultiesController : Controller
     {
         private readonly IUnitOfWork _unitOfWork;
@@ -19,6 +19,7 @@ namespace MockProject.Areas.Admin.Controllers
         }
 
         // GET: Faculties
+      
         public async Task<IActionResult> Index()
         {
             ViewBag.Pages = "Faculty";
@@ -26,6 +27,7 @@ namespace MockProject.Areas.Admin.Controllers
         }
 
         // GET: Faculties/Details/5
+
         public IActionResult Details(int? id)
         {
             ViewBag.Pages = "Faculty";
@@ -44,6 +46,7 @@ namespace MockProject.Areas.Admin.Controllers
         }
 
         // GET: Faculties/Create
+  
         public IActionResult Create()
         {
             ViewBag.Pages = "Faculty";
@@ -55,7 +58,9 @@ namespace MockProject.Areas.Admin.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Create([Bind("Id,Name,Credits,IsActive")] Faculty faculty)
+
+        public IActionResult Create([Bind("Id,Name,Credits,Code,IsActive")] Faculty faculty)
+
         {
             ViewBag.Pages = "Faculty";
             if (ModelState.IsValid)
@@ -68,7 +73,9 @@ namespace MockProject.Areas.Admin.Controllers
         }
 
         // GET: Faculties/Edit/5
+
         public IActionResult Edit(int? id)
+
         {
             ViewBag.Pages = "Faculty";
             if (id == null)
@@ -89,7 +96,9 @@ namespace MockProject.Areas.Admin.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Edit(int id, [Bind("Id,Name,Credits,IsActive")] Faculty faculty)
+
+        public IActionResult Edit(int id, [Bind("Id,Name,Credits,Code,IsActive")] Faculty faculty)
+
         {
             ViewBag.Pages = "Faculty";
             if (id != faculty.Id)
@@ -113,35 +122,7 @@ namespace MockProject.Areas.Admin.Controllers
             return View(faculty);
         }
 
-        // GET: Faculties/Delete/5
-        public IActionResult Delete(int? id)
-        {
-            ViewBag.Pages = "Faculty";
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            var faculty = _unitOfWork.FacultyRepository.Get(id);
-            if (faculty == null)
-            {
-                return NotFound();
-            }
-
-            return View(faculty);
-        }
-
-        // POST: Faculties/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public IActionResult DeleteConfirmed(int id)
-        {
-            ViewBag.Pages = "Faculty";
-            var faculty = _unitOfWork.FacultyRepository.Get(id);
-            _unitOfWork.FacultyRepository.Remove(faculty);
-            _unitOfWork.Save();
-            return RedirectToAction(nameof(Index));
-        }
+        
 
         
     }

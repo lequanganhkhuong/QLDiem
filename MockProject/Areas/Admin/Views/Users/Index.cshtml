@@ -1,13 +1,13 @@
-@model IEnumerable<MockProject.Models.User>
+@model IEnumerable<User>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Users list";
 }
 
-<h1>Index</h1>
+<h1>Danh sách người dùng</h1>
 
 <p>
-    <a asp-action="Create">Create New</a>
+    <a asp-action="Create" class="btn btn-success">Tạo Mới</a>
 </p>
 <div class="container">
     <div class="row">
@@ -63,19 +63,13 @@
                 <th>
                     @Html.DisplayNameFor(model => model.Username)
                 </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Password)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Code)
-                </th>
+               
+                
                 <th>
                     <a asp-action="Index" asp-route-search="@ViewBag.search" asp-route-sort="@ViewBag.Name">@Html.DisplayNameFor(model => model.Name)</a>
                   
                 </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Birthday)
-                </th>
+              
                 <th>
                     @Html.DisplayNameFor(model => model.Address)
                 </th>
@@ -105,33 +99,21 @@
                 <td>
                     @Html.DisplayFor(modelItem => item.Username)
                 </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Password)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Code)
-                </td>
+               
                 <td>
                     @Html.DisplayFor(modelItem => item.Name)
                 </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Birthday)
-                </td>
+                
                 <td>
                     @Html.DisplayFor(modelItem => item.Address)
                 </td>
                 <td>
-                    @if (item.Gender)
-                    {
-                        <p>Male</p> 
-                    }
-                    else
-                    {
-                        <p>Female</p> 
-                    }
+                    @Html.Raw(item.Gender ? "Nam" : "Nữ")
+                    
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.IsActive)
+                    
+                    @Html.Raw(item.IsActive ? "Kích hoạt" : "Khóa")
                 </td>
                 @* <td> *@
                 @*     @Html.DisplayFor(modelItem => item.IsGraduated) *@
@@ -144,8 +126,7 @@
                 </td>
                 <td>
                     <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                    <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                    <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                    <a asp-action="Details" asp-route-id="@item.Id">Details</a> 
                 </td>
             </tr>
     }

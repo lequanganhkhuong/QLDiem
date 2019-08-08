@@ -1,6 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
+<<<<<<< HEAD
+    <data-source source="LOCAL" name="@localhost" uuid="c113b4ae-5db5-4535-b38a-043927a8e8dc">
+      <driver-ref>sqlserver.ms</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>com.microsoft.sqlserver.jdbc.SQLServerDriver</jdbc-driver>
+      <jdbc-url>jdbc:sqlserver://localhost</jdbc-url>
+      <driver-properties>
+        <property name="applicationName" value="DataGrip" />
+=======
     <data-source source="LOCAL" name="qldiem@localhost" uuid="c4fb0d6c-3fbc-46be-b54c-68748dfea342">
       <driver-ref>sqlserver.jtds</driver-ref>
       <synchronize>true</synchronize>
@@ -8,6 +17,7 @@
       <jdbc-url>jdbc:jtds:sqlserver://localhost/qldiem</jdbc-url>
       <driver-properties>
         <property name="appName" value="DataGrip" />
+>>>>>>> develop
       </driver-properties>
     </data-source>
   </component>

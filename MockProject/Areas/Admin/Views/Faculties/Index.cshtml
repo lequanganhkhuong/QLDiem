@@ -1,13 +1,13 @@
-@model IEnumerable<MockProject.Models.Faculty>
+@model IEnumerable<Faculty>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Faculty list";
 }
 
-<h1>Index</h1>
+<h1>Danh sách khoa</h1>
 
 <p>
-    <a asp-action="Create">Create New</a>
+    <a asp-action="Create" class="btn btn-success">Tạo mới</a>
 </p>
 <table class="table">
     <thead>
@@ -17,6 +17,9 @@
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Credits)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Code)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.IsActive)
@@ -34,12 +37,14 @@
                 @Html.DisplayFor(modelItem => item.Credits)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.IsActive)
+                @Html.DisplayFor(modelItem => item.Code)
+            </td>
+            <td>
+                @Html.Raw(item.IsActive ? "Kích Hoạt" : "Khóa")
             </td>
             <td>
                 <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                <a asp-action="Details" asp-route-id="@item.Id">Details</a> 
             </td>
         </tr>
 }

@@ -16,7 +16,6 @@
             <e p="Views" t="Include">
               <e p="Faculties" t="Include">
                 <e p="Create.cshtml" t="Include" />
-                <e p="Delete.cshtml" t="Include" />
                 <e p="Details.cshtml" t="Include" />
                 <e p="Edit.cshtml" t="Include" />
                 <e p="Index.cshtml" t="Include" />
@@ -47,10 +46,11 @@
               </e>
               <e p="Users" t="Include">
                 <e p="Create.cshtml" t="Include" />
-                <e p="Delete.cshtml" t="Include" />
                 <e p="Details.cshtml" t="Include" />
                 <e p="Edit.cshtml" t="Include" />
                 <e p="Index.cshtml" t="Include" />
+                <e p="InfoUser.cshtml" t="Include" />
+                <e p="NotFound.cshtml" t="Include" />
               </e>
               <e p="_ViewImports.cshtml" t="Include" />
               <e p="_ViewStart.cshtml" t="Include" />
@@ -72,10 +72,8 @@
           </e>
         </e>
         <e p="Migrations" t="Include">
-          <e p="20190805070050_Init.Designer.cs" t="Include" />
-          <e p="20190805070050_Init.cs" t="Include" />
-          <e p="20190806062809_facultyCode.Designer.cs" t="Include" />
-          <e p="20190806062809_facultyCode.cs" t="Include" />
+          <e p="20190807053514_db.Designer.cs" t="Include" />
+          <e p="20190807053514_db.cs" t="Include" />
           <e p="20190807075158_Change transcript.Designer.cs" t="Include" />
           <e p="20190807075158_Change transcript.cs" t="Include" />
           <e p="AppDbContextModelSnapshot.cs" t="Include" />
@@ -103,6 +101,7 @@
             <e p="Privacy.cshtml" t="Include" />
           </e>
           <e p="Login" t="Include">
+            <e p="AccessDenied.cshtml" t="Include" />
             <e p="ErrorForbbiden.cshtml" t="Include" />
             <e p="Index.cshtml" t="Include" />
           </e>
@@ -176,6 +175,7 @@
               <e p="gallery" t="Include">
                 <e p="3.png" t="Include" />
                 <e p="flat-bg.jpg" t="Include" />
+                <e p="noaccess.jpg" t="Include" />
               </e>
               <e p="icon" t="Include">
                 <e p="apple-watch.png" t="Include" />

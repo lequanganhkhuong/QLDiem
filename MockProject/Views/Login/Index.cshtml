@@ -1,22 +1,10 @@
 ﻿﻿@using System.Threading
 @{
-    ViewData["Title"] = "Home Page";
+    ViewData["Title"] = "Đăng nhập hệ thống";
     Layout = null;
 }
 
 <!DOCTYPE html>
-<!--
-Template Name: Materialize - Material Design Admin Template
-Author: PixInvent
-Website: http://www.pixinvent.com/
-Contact: hello@pixinvent.com
-Follow: www.twitter.com/pixinvents
-Like: www.facebook.com/pixinvents
-Purchase: https://themeforest.net/item/materialize-material-design-admin-template/11446068?ref=pixinvent
-Renew Support: https://themeforest.net/item/materialize-material-design-admin-template/11446068?ref=pixinvent
-License: You must have a valid license purchased only from themeforest(the above link) in order to legally use the theme for your project.
-
--->
 <html class="loading" lang="en" data-textdirection="ltr">
   <!-- BEGIN: Head-->
   <head>
@@ -26,7 +14,7 @@ License: You must have a valid license purchased only from themeforest(the above
     <meta name="description" content="Materialize is a Material Design Admin Template,It's modern, responsive and based on Material Design by Google.">
     <meta name="keywords" content="materialize, admin template, dashboard template, flat admin template, responsive admin template, eCommerce dashboard, analytic dashboard">
     <meta name="author" content="ThemeSelect">
-    <title>User Login | Materialize - Material Design Admin Template</title>
+    <title>@ViewData["Title"]</title>
     <link rel="apple-touch-icon" href="/app-assets/images/favicon/apple-touch-icon-152x152.png">
     <link rel="shortcut icon" type="image/x-icon" href="/app-assets/images/favicon/favicon-32x32.png">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -49,24 +37,24 @@ License: You must have a valid license purchased only from themeforest(the above
     <div class="col s12">
         <div class="container"><div id="login-page" class="row">
                 <div class="col s12 m6 l4 z-depth-4 card-panel border-radius-6 login-card bg-opacity-8">
-                    <form class="login-form"  asp-action="Login" method="post">
+                    <form class="login-form" autocomplete="off"  asp-action="Login" method="post">
                         <div class="row">
                             <div class="input-field col s12">
-                                <h5 class="ml-4">Sign in</h5>
+                                <h5 class="ml-4">Đăng Nhập Hệ Thống</h5>
                             </div>
                         </div>
                         <div class="row margin">
                             <div class="input-field col s12">
                                 <i class="material-icons prefix pt-2">person_outline</i>
                                 <input id="username" name="username" type="text">
-                                <label for="username" class="center-align">Username</label>
+                                <label for="username" class="center-align">Tên đăng nhập</label>
                             </div>
                         </div>
                         <div class="row margin">
                             <div class="input-field col s12">
                                 <i class="material-icons prefix pt-2">lock_outline</i>
                                 <input id="password" name="password" type="password">
-                                <label for="password">Password</label>
+                                <label for="password">Mật khẩu</label>
                             </div>
                             
                         </div>
@@ -77,14 +65,14 @@ License: You must have a valid license purchased only from themeforest(the above
                                 </p>
                             </div>
                         </div>
-                        
-                       
+
+                        <b class="text-danger">@ViewBag.Message</b>
+
                         <div class="row">
                             <div class="input-field col s12">
-                                <button class="btn waves-effect waves-light border-round gradient-45deg-purple-deep-orange col s12" type="submit">Log in</button> 
+                                <button class="btn waves-effect waves-light border-round gradient-45deg-purple-deep-orange col s12" type="submit">Đăng Nhập</button> 
                             </div>
                         </div>
-                     
                     </form>
                 </div>
             </div>

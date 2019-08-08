@@ -1,8 +1,10 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using FluentValidation;
 
 namespace MockProject.Models
 {
+    //Table Lich hoc
     public class Schedule
     {
         [Key] 
@@ -18,5 +20,16 @@ namespace MockProject.Models
         public virtual Semester Semester { get; set; }
         
         public virtual ICollection<Transcript> Transcripts { get; set; }
+    }
+
+    public class ScheduleValidator : AbstractValidator<Schedule>
+    {
+        public ScheduleValidator()
+        {
+            RuleFor(x => x.UserId).NotEmpty();
+            RuleFor(x => x.SubjectId).NotEmpty();
+            RuleFor(x => x.SemesterId).NotEmpty();
+            
+        }
     }
 }
