@@ -1,12 +1,13 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using MockProject.Data.Interface;
 using MockProject.Models;
+using MockProject.Models.ViewModels;
 
 namespace MockProject.Areas.Admin.Controllers
 {
@@ -14,42 +15,63 @@ namespace MockProject.Areas.Admin.Controllers
     [Authorize(Roles = "admin")]
     public class SemestersController : Controller
     {
-        private readonly AppDbContext _context;
+        private readonly IUnitOfWork _unitOfWork;
 
-        public SemestersController(AppDbContext context)
+        public SemestersController(IUnitOfWork unitOfWork)
         {
-            _context = context;
+            _unitOfWork = unitOfWork;
         }
 
         // GET: Semesters
-        public async Task<IActionResult> Index()
+        public IActionResult Index()
         {
             ViewBag.Pages = "Semester";
-            var appDbContext = _context.Semesters.Include(s => s.Faculty);
-            return View(await appDbContext.ToListAsync());
+            var semesters = _unitOfWork.SemesterRepository.GetAll(includeProperties: "Faculty");
+            return View(semesters.ToList());
         }
         [HttpGet]
         public IActionResult AddSchedule(int? id)
         {
             ViewBag.Pages = "Semester";
+            //check if id is valid
             if (id == null)
             {
                 return NotFound();
             }
-
-            var semester = _context.Semesters
-                .Include(s => s.Faculty)
-                .FirstOrDefault(m => m.Id == id);
+            
+            //get semester info
+            var semester = _unitOfWork.SemesterRepository.GetAll(filter:x => x.Id == id).Include(x=>x.Faculty).SingleOrDefault();
             if (semester == null)
             {
                 return NotFound();
             }
-
-            var schedules = _context.Schedules.Where(x => x.SemesterId == id)
-                .Include(a => a.Subject)
-                .Include(a => a.User)
+            
+            //get schedules in this semester
+            var schedules = _unitOfWork.ScheduleRepository
+                .GetAll(filter: x => x.SemesterId == id, includeProperties:"Subject,User")
                 .ToList();
-            return View(Tuple.Create<Semester,List<Schedule>>(semester,schedules));
+            
+            //get teacher list and subject list
+            var teachers = _unitOfWork.UserRepository.GetAll(filter:x => x.RoleId == 2 && x.IsActive);
+            var subjects = _unitOfWork.SubjectRepository.GetAll(filter: x =>x.IsActive).ToList();
+
+            var teacherList = new List<TeacherListVm>();
+            foreach (var t in teachers)
+            {
+                var item = new TeacherListVm
+                {
+                    Id = t.Id,
+                    Name = t.Name
+                };
+                teacherList.Add(item);
+            }
+
+            ViewBag.Teachers = teacherList;
+            ViewBag.Subjects = subjects;
+            
+            
+            //return view
+            return View(Tuple.Create(semester,schedules));
         }
 
         [HttpPost]
@@ -63,26 +85,50 @@ namespace MockProject.Areas.Admin.Controllers
                 if (c < '0' || c > '9')
                     return Content("Number only");
             }
+            
+            //check if user have chosen teacher or subject yet
+            if (teacherId.Equals("0") )
+            {
+                return Content("Please choose teacher");
+            }
 
+            if (subjectId.Equals("0"))
+            {
+                return Content("Please choose subject");
+            }
+            
+            //int parse user input
             int semId = int.Parse(semesterId);
             int teaId = int.Parse(teacherId);
             int subId = int.Parse(subjectId);
                 
             //validate input
-            var sem = _context.Semesters.FirstOrDefault(x => x.Id == semId);
-            var teacher = _context.Users.FirstOrDefault(x => x.Id == teaId);
-            var subject = _context.Subjectses.FirstOrDefault(x => x.Id == subId);
+            var sem = _unitOfWork.SemesterRepository.Get(semId);
+            var teacher = _unitOfWork.UserRepository.Get(teaId);
+            var subject = _unitOfWork.SubjectRepository.Get(subId);
             
             if (sem == null || teacher == null || subject == null)
             {
                 return Content("invalid null value");
             }
             //check if schedule already existed
-            var checkSchedule = _context.Schedules.SingleOrDefault(x => x.UserId == teaId && x.SubjectId == subId && x.SemesterId == semId);
+            var checkSchedule = _unitOfWork.ScheduleRepository.GetAll(filter:x => x.UserId == teaId && x.SubjectId == subId && x.SemesterId == semId && x.IsActive);
             if (checkSchedule == null)
             {
                 return Content("This schedule already exists");
             }
+            
+            //check if subject and teacher is active
+            if (!teacher.IsActive)
+            {
+                return Content("The teacher is blocked");
+            }
+            if (!subject.IsActive)
+            {
+                return Content("The subject is blocked");
+            }
+            
+            
             //create schedule and add to db
             var sch = new Schedule
             {
@@ -91,14 +137,14 @@ namespace MockProject.Areas.Admin.Controllers
                 IsActive = true,
                 UserId = teaId
             };
-            _context.Schedules.Add(sch);
-            _context.SaveChanges();
+            _unitOfWork.ScheduleRepository.Insert(sch);
+            _unitOfWork.Save();
             
             //automatically create transcript for all students who havent completed this subject
             //get all student, check if they have completed that subject yet, 
             //
-            var students = _context.Users.Where(x => x.RoleId == 3).ToList();
-            var transcripts = _context.Transcripts.Where(x => x.Schedule.SubjectId == sch.SubjectId && x.IsPassed == true && x.IsActive);
+            var students = _unitOfWork.UserRepository.GetAll(filter:x => x.RoleId == 3).ToList();
+            var transcripts = _unitOfWork.TranscriptRepository.GetAll(filter:x => x.Schedule.SubjectId == sch.SubjectId && x.IsPassed == true && x.IsActive);
             var passedstudents = from a in students
                 join b in transcripts on a.Id equals b.UserId
                 select a;
@@ -119,10 +165,10 @@ namespace MockProject.Areas.Admin.Controllers
                     IsActive = true,
                     IsPassed = false
                 };
-                _context.Transcripts.Add(transcript);
+                _unitOfWork.TranscriptRepository.Insert(transcript);
             }
 
-            _context.SaveChanges();
+            _unitOfWork.Save();
             return RedirectToAction("AddSchedule");
         }
 //        [HttpGet]
@@ -155,25 +201,24 @@ namespace MockProject.Areas.Admin.Controllers
         public IActionResult ScheduleDetail(int? id)
         {
             ViewBag.Pages = "Semester";
-            var schedule = _context.Schedules.Where(x => x.Id == id)
-                .Include(x=>x.User)
-                .Include(x=>x.Subject)
-                .FirstOrDefault();
+            var schedule = _unitOfWork.ScheduleRepository
+                .GetAll(filter:x => x.Id == id,includeProperties:"User,Subject").SingleOrDefault();
             if (schedule == null)
             {
                 return NotFound();
             }
-            var transcripts = _context.Transcripts.Where(x => x.ScheduleId == id && x.IsActive)
-                .Include(x=>x.User).ToList();
+            var transcripts = _unitOfWork.TranscriptRepository
+                .GetAll(filter:x => x.ScheduleId == id && x.IsActive, includeProperties:"User")
+                .ToList();
             
-            return View(Tuple.Create<Schedule,List<Transcript>>(schedule,transcripts));
+            return View(Tuple.Create(schedule,transcripts));
         }
 
         public IActionResult EditMark(int? id)
         {
             ViewBag.Pages = "Semester";
 
-            var transcript = _context.Transcripts.Where(x => x.Id == id)
+            var transcript = _unitOfWork.TranscriptRepository.GetAll(filter:x => x.Id == id)
                 .Include(x => x.User)
                 .Include(x => x.Schedule.User)
                 .Include(x => x.Schedule.Subject)
@@ -188,34 +233,33 @@ namespace MockProject.Areas.Admin.Controllers
         }
 
         [HttpPost]
-        public IActionResult EditMark(int? id, string Mark)
+        public IActionResult EditMark(int? id, string mark)
         {
             ViewBag.Pages = "Semester";
             
             
-            var transcript = _context.Transcripts
-                .FirstOrDefault(x => x.Id == id);
+            var transcript = _unitOfWork.TranscriptRepository.Get(id);
             
             if (transcript == null)
             {
                 return NotFound();
             }
-            foreach (char c in Mark)
+            foreach (char c in mark)
             {
                 if (c < '0' || c > '9')
                     return Content("Number only");
             }
-            int mark = int.Parse(Mark);
-            transcript.Mark = mark;
-            _context.SaveChanges();
-            return RedirectToAction("ScheduleDetail", new {id = id});
+            int m = int.Parse(mark);
+            transcript.Mark = m;
+            _unitOfWork.Save();
+            return RedirectToAction("ScheduleDetail", new {transcript.ScheduleId});
         }
 
         // GET: Semesters/Create
         public IActionResult Create()
         {
             ViewBag.Pages = "Semester";
-            ViewData["FacultyId"] = new SelectList(_context.Faculties, "Id", "Id");
+            ViewData["FacultyId"] = new SelectList(_unitOfWork.FacultyRepository.GetAll(filter: x => x.IsActive), "Id", "Id");
             return View();
         }
 
@@ -224,21 +268,30 @@ namespace MockProject.Areas.Admin.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Name,FacultyId,Year,IsActive")] Semester semester)
+        public IActionResult Create([Bind("Id,Name,FacultyId,Year,IsActive")] Semester semester)
         {
             ViewBag.Pages = "Semester";
+            
+            //check if faculty is active
+            var fac = _unitOfWork.FacultyRepository.GetAll(filter: x => x.Id == semester.FacultyId && !x.IsActive);
+            if (fac.Any())
+            {
+                return Content("This faculty is no longer valid");
+            }
+            
+            //
             if (ModelState.IsValid)
             {
-                _context.Add(semester);
-                await _context.SaveChangesAsync();
+                _unitOfWork.SemesterRepository.Insert(semester);
+                _unitOfWork.Save();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["FacultyId"] = new SelectList(_context.Faculties, "Id", "Id", semester.FacultyId);
+            ViewData["FacultyId"] = new SelectList(_unitOfWork.FacultyRepository.GetAll(filter: x => x.IsActive), "Id", "Id", semester.FacultyId);
             return View(semester);
         }
 
         // GET: Semesters/Edit/5
-        public async Task<IActionResult> Edit(int? id)
+        public IActionResult Edit(int? id)
         {
             ViewBag.Pages = "Semester";
             if (id == null)
@@ -246,12 +299,12 @@ namespace MockProject.Areas.Admin.Controllers
                 return NotFound();
             }
 
-            var semester = await _context.Semesters.FindAsync(id);
+            var semester = _unitOfWork.SemesterRepository.Get(id);
             if (semester == null)
             {
                 return NotFound();
             }
-            ViewData["FacultyId"] = new SelectList(_context.Faculties, "Id", "Id", semester.FacultyId);
+            ViewData["FacultyId"] = new SelectList(_unitOfWork.FacultyRepository.GetAll(filter: x => x.IsActive), "Id", "Id", semester.FacultyId);
             return View(semester);
         }
 
@@ -260,9 +313,19 @@ namespace MockProject.Areas.Admin.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Name,FacultyId,Year,IsActive")] Semester semester)
+        public IActionResult Edit(int id, [Bind("Id,Name,FacultyId,Year,IsActive")] Semester semester)
         {
+            
             ViewBag.Pages = "Semester";
+            
+            //check if faculty is active
+            var fac = _unitOfWork.FacultyRepository.GetAll(filter: x => x.Id == semester.FacultyId && !x.IsActive);
+            if (fac.Any())
+            {
+                return Content("This faculty is no longer valid");
+            }
+            
+            //
             if (id != semester.Id)
             {
                 return NotFound();
@@ -272,8 +335,8 @@ namespace MockProject.Areas.Admin.Controllers
             {
                 try
                 {
-                    _context.Update(semester);
-                    await _context.SaveChangesAsync();
+                    _unitOfWork.SemesterRepository.Update(semester);
+                    _unitOfWork.Save();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
@@ -281,7 +344,7 @@ namespace MockProject.Areas.Admin.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["FacultyId"] = new SelectList(_context.Faculties, "Id", "Id", semester.FacultyId);
+            ViewData["FacultyId"] = new SelectList(_unitOfWork.FacultyRepository.GetAll(filter: x => x.IsActive), "Id", "Id", semester.FacultyId);
             return View(semester);
         }
 

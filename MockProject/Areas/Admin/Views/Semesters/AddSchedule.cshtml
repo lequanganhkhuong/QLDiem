@@ -1,69 +1,104 @@
-﻿@model Tuple<Semester,List<Schedule>>
-
+﻿@using System.Diagnostics
+@using MockProject.Models.ViewModels
+@model Tuple<Semester, List<Schedule>>
 @{
     ViewData["Title"] = "Add schedule";
+    var teachers =  ViewBag.Teachers as List<TeacherListVm>;
+    var subjects =  ViewBag.Subjects as List<Subject>;
 }
 
 <h1>Create</h1>
 
-<h4>Semester @Model.Item1.Name - Year @Model.Item1.Year - Faculty @Model.Item1.Faculty.Name</h4>
+<h4>Semester: @Model.Item1.Name - Year: @Model.Item1.Year - Faculty: @Model.Item1.Faculty.Name</h4>
 <hr />
 <div class="row">
-    <div class="col-md-4">
-        <form asp-action="AddSchedule">
-            
-            <div class="form-group">
-                <label  class="control-label">Teacher</label>
-                <input name="teacherId" class="form-control" />
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-content">
+                <div class="row">
+                    <div class="col-md-4">
+                        <form asp-action="AddSchedule">
+                        
+                            <select name="teacherId">
+                                <option selected="selected" value="0">Select teacher</option>
+                                @{
+                                    Debug.Assert(teachers != null, nameof(teachers) + " != null");
+                                }
+                                @foreach (var t in teachers)
+                                {
+                                    <option value="@t.Id">@t.Name</option>
+                                }
+                            </select>
+                            <select name="subjectId">
+                                <option selected="selected" value="0">Select subject</option>
+                                @{
+                                    Debug.Assert(subjects != null, nameof(subjects) + " != null");
+                                }
+                                @foreach (var s in subjects)
+                                {
+                                    <option value="@s.Id">@s.Name</option>
+                                }
+                            </select>
+                            <div class="form-group">
+                       
+                                <input name="semesterId" class="form-control" hidden value="@Model.Item1.Id"/>
+                            </div>
+                  
+                            <div class="form-group">
+                                <input type="submit" value="Create" class="btn btn-primary" />
+                            </div>
+                        </form>
+                    </div>
+                </div>
             </div>
-            <div class="form-group">
-                <label class="control-label">Subject</label>
-                <input name="subjectId" class="form-control" />
-            </div>
-            <div class="form-group">
-                <label class="control-label">Semester</label>
-                <input name="semesterId" class="form-control" hidden value="@Model.Item1.Id"/>
-            </div>
-          
-            <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
-            </div>
-        </form>
+        </div>
     </div>
 </div>
-<table class="table">
-     <thead>
-     <tr>
-         <th>
-             Teacher Name
-         </th>
-         <th>
-             Subject Name
-         </th>
-         
-         <th>
-             Actions
-         </th>
-     </tr>
-     </thead>
-     <tbody>
-     @foreach (var item in Model.Item2) {
-         <tr>
-             <td>
-                 @Html.DisplayFor(modelItem => item.User.Name)
-             </td>
-             <td>
-                 @Html.DisplayFor(modelItem => item.Subject.Name)
-             </td>
 
-             <td>
-                 <a asp-action="ScheduleDetail" asp-route-id="@item.Id">Details</a> |
+<div class="row">
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-content">
+                <div class="row">
+                    <table class="table">
+                        <thead>
+                        <tr>
+                            <th>
+                                Teacher Name
+                            </th>
+                            <th>
+                                Subject Name
+                            </th>
+         
+                            <th>
+                                Actions
+                            </th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        @foreach (var item in Model.Item2) {
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.User.Name)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Subject.Name)
+                                </td>
+
+                                <td>
+                                    <a asp-action="ScheduleDetail" asp-route-id="@item.Id">Details</a> |
                 
-             </td>
-         </tr>
-     }
-     </tbody>
-</table>
+                                </td>
+                            </tr>
+                        }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
 <div>
     <a asp-action="Index">Back to List</a>
 </div>

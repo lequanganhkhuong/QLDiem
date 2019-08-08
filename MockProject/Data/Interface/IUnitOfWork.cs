@@ -8,6 +8,9 @@ namespace MockProject.Data.Interface
         IRepository<Faculty> FacultyRepository { get; }
         IRepository<Subject> SubjectRepository { get; }
         IRepository<Role> RoleRepository { get; }
+        IRepository<Semester> SemesterRepository { get; }
+        IRepository<Transcript> TranscriptRepository { get; }
+        IRepository<Schedule> ScheduleRepository { get; }
         void Save();
     }
 }

@@ -89,6 +89,9 @@
           <e p="Subject.cs" t="Include" />
           <e p="Transcript.cs" t="Include" />
           <e p="User.cs" t="Include" />
+          <e p="ViewModels" t="Include">
+            <e p="TeacherListVm.cs" t="Include" />
+          </e>
         </e>
         <e p="Program.cs" t="Include" />
         <e p="Properties" t="Include">
