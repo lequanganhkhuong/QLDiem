@@ -10,7 +10,7 @@
     <meta name="description" content="Materialize is a Material Design Admin Template,It's modern, responsive and based on Material Design by Google.">
     <meta name="keywords" content="materialize, admin template, dashboard template, flat admin template, responsive admin template, eCommerce dashboard, analytic dashboard">
     <meta name="author" content="ThemeSelect">
-    <title>Dashboard eCommerce | Materialize - Material Design Admin Template</title>
+    <title>@ViewData["Title"]</title>
     <link rel="apple-touch-icon" href="/app-assets/images/favicon/apple-touch-icon-152x152.png">
     <link rel="shortcut icon" type="image/x-icon" href="/app-assets/images/favicon/favicon-32x32.png">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -29,9 +29,12 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <style>
         .check-box {
+          -ms-opacity: 1 !important;
           opacity: 1 !important;
         }
+
         input {
+          -ms-opacity: 1 !important;
           opacity: 1 !important;
           pointer-events: all !important;
         }
@@ -95,7 +98,16 @@
         }
         <li class="active"><a class="@src" asp-area="Admin" asp-controller="Subjects" asp-action="Index"  data-i18n=""><i class="material-icons">accessible</i><span>Subjects</span></a>
         </li>
-        
+        @if (active.Equals("Semester"))
+        {
+          src += " active";
+        } 
+        else
+        {
+          src = "collapsible-body";
+        }
+        <li class="active"><a class="@src" asp-area="Admin" asp-controller="Semesters" asp-action="Index"  data-i18n=""><i class="material-icons">accessible</i><span>Semesters</span></a>
+        </li>
       </ul>
       <div class="navigation-background"></div><a class="sidenav-trigger btn-sidenav-toggle btn-floating btn-medium waves-effect waves-light hide-on-large-only" href="#" data-target="slide-out"><i class="material-icons">menu</i></a>
     </aside>

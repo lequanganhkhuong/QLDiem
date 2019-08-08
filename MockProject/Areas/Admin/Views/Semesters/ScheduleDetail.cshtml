@@ -1,0 +1,40 @@
+﻿@model Tuple<Schedule,List<Transcript>>
+
+@{
+    ViewBag.Title = "title";
+    Layout = "_Layout";
+}
+
+<h2>Subject: @Model.Item1.Subject.Name - Teacher: @Model.Item1.User.Name</h2>
+<table class="table">
+    <thead>
+    <tr>
+        <th>
+            Student Name
+        </th>
+        <th>
+            Mark
+        </th>
+         
+        <th>
+            Actions
+        </th>
+    </tr>
+    </thead>
+    <tbody>
+    @foreach (var item in Model.Item2) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.User.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Mark)
+            </td>
+            <td>
+                <a asp-action="EditMark" asp-route-id="@item.Id">Edit</a> |
+                
+            </td>
+        </tr>
+    }
+    </tbody>
+</table>

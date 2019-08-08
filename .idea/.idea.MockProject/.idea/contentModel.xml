@@ -9,7 +9,7 @@
             <e p="Controllers" t="Include">
               <e p="FacultiesController.cs" t="Include" />
               <e p="HomeController.cs" t="Include" />
-              <e p="LoginController.cs" t="Include" />
+              <e p="SemestersController.cs" t="Include" />
               <e p="SubjectsController.cs" t="Include" />
               <e p="UsersController.cs" t="Include" />
             </e>
@@ -24,9 +24,13 @@
               <e p="Home" t="Include">
                 <e p="Index.cshtml" t="Include" />
               </e>
-              <e p="Login" t="Include">
-                <e p="ErrorForbbiden.cshtml" t="Include" />
+              <e p="Semesters" t="Include">
+                <e p="AddSchedule.cshtml" t="Include" />
+                <e p="Create.cshtml" t="Include" />
+                <e p="Edit.cshtml" t="Include" />
+                <e p="EditMark.cshtml" t="Include" />
                 <e p="Index.cshtml" t="Include" />
+                <e p="ScheduleDetail.cshtml" t="Include" />
               </e>
               <e p="Shared" t="Include">
                 <e p="Error.cshtml" t="Include" />
@@ -55,6 +59,7 @@
         </e>
         <e p="Controllers" t="Include">
           <e p="HomeController.cs" t="Include" />
+          <e p="LoginController.cs" t="Include" />
         </e>
         <e p="Data" t="Include">
           <e p="Interface" t="Include">
@@ -71,6 +76,8 @@
           <e p="20190805070050_Init.cs" t="Include" />
           <e p="20190806062809_facultyCode.Designer.cs" t="Include" />
           <e p="20190806062809_facultyCode.cs" t="Include" />
+          <e p="20190807075158_Change transcript.Designer.cs" t="Include" />
+          <e p="20190807075158_Change transcript.cs" t="Include" />
           <e p="AppDbContextModelSnapshot.cs" t="Include" />
         </e>
         <e p="MockProject.csproj" t="IncludeRecursive" />
@@ -94,6 +101,10 @@
           <e p="Home" t="Include">
             <e p="Index.cshtml" t="Include" />
             <e p="Privacy.cshtml" t="Include" />
+          </e>
+          <e p="Login" t="Include">
+            <e p="ErrorForbbiden.cshtml" t="Include" />
+            <e p="Index.cshtml" t="Include" />
           </e>
           <e p="Shared" t="Include">
             <e p="Error.cshtml" t="Include" />

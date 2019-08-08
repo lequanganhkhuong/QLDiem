@@ -1,8 +1,8 @@
-using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using MockProject.Data.Interface;
 using MockProject.Models;
 
 namespace MockProject.Areas.Admin.Controllers
@@ -11,22 +11,22 @@ namespace MockProject.Areas.Admin.Controllers
     [Authorize(Roles = "admin")]
     public class FacultiesController : Controller
     {
-        private readonly AppDbContext _context;
+        private readonly IUnitOfWork _unitOfWork;
 
-        public FacultiesController(AppDbContext context)
+        public FacultiesController(IUnitOfWork unitOfWork)
         {
-            _context = context;
+            _unitOfWork = unitOfWork;
         }
 
         // GET: Faculties
         public async Task<IActionResult> Index()
         {
             ViewBag.Pages = "Faculty";
-            return View(await _context.Faculties.ToListAsync());
+            return View(await _unitOfWork.FacultyRepository.GetAll().ToListAsync());
         }
 
         // GET: Faculties/Details/5
-        public async Task<IActionResult> Details(int? id)
+        public IActionResult Details(int? id)
         {
             ViewBag.Pages = "Faculty";
             if (id == null)
@@ -34,8 +34,7 @@ namespace MockProject.Areas.Admin.Controllers
                 return NotFound();
             }
 
-            var faculty = await _context.Faculties
-                .FirstOrDefaultAsync(m => m.Id == id);
+            var faculty = _unitOfWork.FacultyRepository.Get(id);
             if (faculty == null)
             {
                 return NotFound();
@@ -56,20 +55,20 @@ namespace MockProject.Areas.Admin.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Name,Credits,IsActive")] Faculty faculty)
+        public IActionResult Create([Bind("Id,Name,Credits,IsActive")] Faculty faculty)
         {
             ViewBag.Pages = "Faculty";
             if (ModelState.IsValid)
             {
-                _context.Add(faculty);
-                await _context.SaveChangesAsync();
+                _unitOfWork.FacultyRepository.Insert(faculty);
+                _unitOfWork.Save();
                 return RedirectToAction(nameof(Index));
             }
             return View(faculty);
         }
 
         // GET: Faculties/Edit/5
-        public async Task<IActionResult> Edit(int? id)
+        public IActionResult Edit(int? id)
         {
             ViewBag.Pages = "Faculty";
             if (id == null)
@@ -77,7 +76,7 @@ namespace MockProject.Areas.Admin.Controllers
                 return NotFound();
             }
 
-            var faculty = await _context.Faculties.FindAsync(id);
+            var faculty = _unitOfWork.FacultyRepository.Get(id);
             if (faculty == null)
             {
                 return NotFound();
@@ -90,7 +89,7 @@ namespace MockProject.Areas.Admin.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Name,Credits,IsActive")] Faculty faculty)
+        public IActionResult Edit(int id, [Bind("Id,Name,Credits,IsActive")] Faculty faculty)
         {
             ViewBag.Pages = "Faculty";
             if (id != faculty.Id)
@@ -102,19 +101,12 @@ namespace MockProject.Areas.Admin.Controllers
             {
                 try
                 {
-                    _context.Update(faculty);
-                    await _context.SaveChangesAsync();
+                    _unitOfWork.FacultyRepository.Update(faculty);
+                    _unitOfWork.Save();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!FacultyExists(faculty.Id))
-                    {
-                        return NotFound();
-                    }
-                    else
-                    {
-                        throw;
-                    }
+                    
                 }
                 return RedirectToAction(nameof(Index));
             }
@@ -122,7 +114,7 @@ namespace MockProject.Areas.Admin.Controllers
         }
 
         // GET: Faculties/Delete/5
-        public async Task<IActionResult> Delete(int? id)
+        public IActionResult Delete(int? id)
         {
             ViewBag.Pages = "Faculty";
             if (id == null)
@@ -130,8 +122,7 @@ namespace MockProject.Areas.Admin.Controllers
                 return NotFound();
             }
 
-            var faculty = await _context.Faculties
-                .FirstOrDefaultAsync(m => m.Id == id);
+            var faculty = _unitOfWork.FacultyRepository.Get(id);
             if (faculty == null)
             {
                 return NotFound();
@@ -143,18 +134,15 @@ namespace MockProject.Areas.Admin.Controllers
         // POST: Faculties/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(int id)
+        public IActionResult DeleteConfirmed(int id)
         {
             ViewBag.Pages = "Faculty";
-            var faculty = await _context.Faculties.FindAsync(id);
-            _context.Faculties.Remove(faculty);
-            await _context.SaveChangesAsync();
+            var faculty = _unitOfWork.FacultyRepository.Get(id);
+            _unitOfWork.FacultyRepository.Remove(faculty);
+            _unitOfWork.Save();
             return RedirectToAction(nameof(Index));
         }
 
-        private bool FacultyExists(int id)
-        {
-            return _context.Faculties.Any(e => e.Id == id);
-        }
+        
     }
 }

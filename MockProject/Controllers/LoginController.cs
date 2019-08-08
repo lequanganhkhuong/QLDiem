@@ -7,9 +7,9 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using MockProject.Models;
 
-namespace MockProject.Areas.Admin.Controllers
+namespace MockProject.Controllers
 {
-    [Area("Admin")]
+   
     public class LoginController : Controller
     {
         private readonly AppDbContext _context;
@@ -25,7 +25,7 @@ namespace MockProject.Areas.Admin.Controllers
         [HttpPost]
         public async Task<IActionResult> Login(string username, string password)
         {
-            
+         
             if (string.IsNullOrEmpty(username) || string.IsNullOrEmpty(password))
             {
                 ViewBag.Message = "username or password can't be empty";
@@ -55,8 +55,15 @@ namespace MockProject.Areas.Admin.Controllers
                 var principal = new ClaimsPrincipal(identity);
                 await HttpContext.SignInAsync(
                     CookieAuthenticationDefaults.AuthenticationScheme, principal);
-            
-                return RedirectToAction("Index","Home");
+                if (emp.RoleId == 1)
+                {
+                    return RedirectToAction("Index", "Home", new {area = "Admin"});
+                }
+                else
+                {
+                    return RedirectToAction("Index", "Home");
+                }
+                
             }
             
             

@@ -1,8 +1,8 @@
-using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using MockProject.Data.Interface;
 using MockProject.Models;
 
 namespace MockProject.Areas.Admin.Controllers
@@ -11,22 +11,22 @@ namespace MockProject.Areas.Admin.Controllers
     [Authorize(Roles = "admin")]
     public class SubjectsController : Controller
     {
-        private readonly AppDbContext _context;
+        private readonly IUnitOfWork _unitOfWork;
 
-        public SubjectsController(AppDbContext context)
+        public SubjectsController(IUnitOfWork unitOfWork)
         {
-            _context = context;
+            _unitOfWork = unitOfWork;
         }
 
         // GET: Subjects
         public async Task<IActionResult> Index()
         {
             ViewBag.Pages = "Subject";
-            return View(await _context.Subjectses.ToListAsync());
+            return View(await _unitOfWork.SubjectRepository.GetAll().ToListAsync());
         }
 
         // GET: Subjects/Details/5
-        public async Task<IActionResult> Details(int? id)
+        public IActionResult Details(int? id)
         {
             ViewBag.Pages = "Subject";
             if (id == null)
@@ -34,8 +34,7 @@ namespace MockProject.Areas.Admin.Controllers
                 return NotFound();
             }
 
-            var subject = await _context.Subjectses
-                .FirstOrDefaultAsync(m => m.Id == id);
+            var subject =  _unitOfWork.SubjectRepository.Get(id);
             if (subject == null)
             {
                 return NotFound();
@@ -56,20 +55,20 @@ namespace MockProject.Areas.Admin.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Name,Credits,IsActive")] Subject subject)
+        public IActionResult Create([Bind("Id,Name,Credits,IsActive")] Subject subject)
         {
             ViewBag.Pages = "Subject";
             if (ModelState.IsValid)
             {
-                _context.Add(subject);
-                await _context.SaveChangesAsync();
+                _unitOfWork.SubjectRepository.Insert(subject);
+                _unitOfWork.Save();
                 return RedirectToAction(nameof(Index));
             }
             return View(subject);
         }
 
         // GET: Subjects/Edit/5
-        public async Task<IActionResult> Edit(int? id)
+        public IActionResult Edit(int? id)
         {
             ViewBag.Pages = "Subject";
             if (id == null)
@@ -77,7 +76,7 @@ namespace MockProject.Areas.Admin.Controllers
                 return NotFound();
             }
 
-            var subject = await _context.Subjectses.FindAsync(id);
+            var subject = _unitOfWork.SubjectRepository.Get(id);
             if (subject == null)
             {
                 return NotFound();
@@ -90,7 +89,7 @@ namespace MockProject.Areas.Admin.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Name,Credits,IsActive")] Subject subject)
+        public IActionResult Edit(int id, [Bind("Id,Name,Credits,IsActive")] Subject subject)
         {
             ViewBag.Pages = "Subject";
             if (id != subject.Id)
@@ -102,19 +101,12 @@ namespace MockProject.Areas.Admin.Controllers
             {
                 try
                 {
-                    _context.Update(subject);
-                    await _context.SaveChangesAsync();
+                    _unitOfWork.SubjectRepository.Update(subject);
+                    _unitOfWork.Save();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!SubjectExists(subject.Id))
-                    {
-                        return NotFound();
-                    }
-                    else
-                    {
-                        throw;
-                    }
+                    
                 }
                 return RedirectToAction(nameof(Index));
             }
@@ -122,7 +114,7 @@ namespace MockProject.Areas.Admin.Controllers
         }
 
         // GET: Subjects/Delete/5
-        public async Task<IActionResult> Delete(int? id)
+        public IActionResult Delete(int? id)
         {
             ViewBag.Pages = "Subject";
             if (id == null)
@@ -130,8 +122,7 @@ namespace MockProject.Areas.Admin.Controllers
                 return NotFound();
             }
 
-            var subject = await _context.Subjectses
-                .FirstOrDefaultAsync(m => m.Id == id);
+            var subject =  _unitOfWork.SubjectRepository.Get(id);
             if (subject == null)
             {
                 return NotFound();
@@ -143,19 +134,15 @@ namespace MockProject.Areas.Admin.Controllers
         // POST: Subjects/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(int id)
+        public IActionResult DeleteConfirmed(int id)
         {
             ViewBag.Pages = "Subject";
-            var subject = await _context.Subjectses.FindAsync(id);
-            _context.Subjectses.Remove(subject);
-            await _context.SaveChangesAsync();
+            var subject = _unitOfWork.SubjectRepository.Get(id);
+            _unitOfWork.SubjectRepository.Remove(subject);
+            _unitOfWork.Save();
             return RedirectToAction(nameof(Index));
         }
 
-        private bool SubjectExists(int id)
-        {
-            ViewBag.Pages = "Subject";
-            return _context.Subjectses.Any(e => e.Id == id);
-        }
+       
     }
 }

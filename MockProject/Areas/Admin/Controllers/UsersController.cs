@@ -34,7 +34,7 @@ namespace MockProject.Areas.Admin.Controllers
             if (!string.IsNullOrEmpty(filter))
             {
                 int role = int.Parse(filter);
-                if (role != 1 || role != 2 || role != 3 || role != 0)
+                if (role != 1 && role != 2 && role != 3 && role != 0)
                 {
                     return Content("CLGT??");
                 }
