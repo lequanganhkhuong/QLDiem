@@ -304,7 +304,7 @@ namespace MockProject.Areas.Admin.Controllers
             {
                 return NotFound();
             }
-            ViewData["FacultyId"] = new SelectList(_unitOfWork.FacultyRepository.GetAll(filter: x => x.IsActive), "Id", "Id", semester.FacultyId);
+            ViewData["FacultyId"] = new SelectList(_unitOfWork.FacultyRepository.GetAll(filter: x => x.IsActive), "Id", "Name", semester.FacultyId);
             return View(semester);
         }
 
@@ -344,9 +344,83 @@ namespace MockProject.Areas.Admin.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["FacultyId"] = new SelectList(_unitOfWork.FacultyRepository.GetAll(filter: x => x.IsActive), "Id", "Id", semester.FacultyId);
+            ViewData["FacultyId"] = new SelectList(_unitOfWork.FacultyRepository.GetAll(filter: x => x.IsActive), "Id", "Name", semester.FacultyId);
             return View(semester);
         }
+        // GET: Semesters/Edit/5
+        public IActionResult EditSchedule(int? id)
+        {
+            ViewBag.Pages = "Semester";
+            if (id == null)
+            {
+                return NotFound();
+            }
 
+            var schedule = _unitOfWork.ScheduleRepository.Get(id);
+            if (schedule == null)
+            {
+                return NotFound();
+            }
+            ViewData["SubjectId"] = new SelectList(_unitOfWork.SubjectRepository.GetAll(filter: x => x.IsActive), "Id", "Name", schedule.SubjectId);
+            ViewData["UserId"] = new SelectList(_unitOfWork.UserRepository.GetAll(filter: x => x.RoleId == 2 && x.IsActive), "Id", "Name", schedule.UserId);
+            return View(schedule);
+        }
+
+        // POST: Semesters/Edit/5
+        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult EditSchedule(int id, [Bind("Id,SubjectId,UserId,SemesterId,IsActive")] Schedule schedule)
+        {
+            
+            ViewBag.Pages = "Semester";
+            
+            //check if subject is active
+            var subjects = _unitOfWork.SubjectRepository.GetAll(filter: x => x.Id == schedule.SubjectId && !x.IsActive).SingleOrDefault();
+            if (subjects != null)
+            {
+                return Content("This subject is no longer valid");
+            }
+            //check if user is active and is teacher
+            var user = _unitOfWork.UserRepository.GetAll(filter: x => x.Id == schedule.UserId).SingleOrDefault();
+            if (user != null)
+            {
+                if (!user.IsActive ) 
+                {
+                    return Content("This user is no longer valid");
+                }
+                if (user.RoleId != 2)
+                {
+                    return Content("This user is not a teacher");
+                } 
+            }
+           
+            
+
+            
+            //
+            if (id != schedule.Id)
+            {
+                return NotFound();
+            }
+
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    _unitOfWork.ScheduleRepository.Update(schedule);
+                    _unitOfWork.Save();
+                }
+                catch (DbUpdateConcurrencyException)
+                {
+                    
+                }
+                return RedirectToAction(nameof(Index));
+            }
+            ViewData["SubjectId"] = new SelectList(_unitOfWork.SubjectRepository.GetAll(filter: x => x.IsActive), "Id", "Name", schedule.SubjectId);
+            ViewData["UserId"] = new SelectList(_unitOfWork.UserRepository.GetAll(filter: x => x.RoleId == 2 && x.IsActive), "Id", "Name", schedule.UserId);
+            return View(schedule);
+        }
     }
 }

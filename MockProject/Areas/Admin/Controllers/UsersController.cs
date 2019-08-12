@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using MockProject.Data.Interface;
 using MockProject.Models;
+using MockProject.Models.ViewModels;
 
 namespace MockProject.Areas.Admin.Controllers
 {
@@ -78,8 +79,8 @@ namespace MockProject.Areas.Admin.Controllers
         public IActionResult Create()
         {
             ViewBag.Pages = "User";
-            ViewData["FacultyId"] = new SelectList(_unitOfWork.FacultyRepository.GetAll().ToList(), "Id", "Id");
-            ViewData["RoleId"] = new SelectList(_unitOfWork.RoleRepository.GetAll().ToList(), "Id", "Id");
+            ViewData["FacultyId"] = new SelectList(_unitOfWork.FacultyRepository.GetAll(filter:x => x.IsActive).ToList(), "Id", "Name");
+            ViewData["RoleId"] = new SelectList(_unitOfWork.RoleRepository.GetAll().ToList(), "Id", "Name");
             return View();
         }
 
@@ -100,8 +101,8 @@ namespace MockProject.Areas.Admin.Controllers
                 _unitOfWork.Save();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["FacultyId"] = new SelectList(_unitOfWork.FacultyRepository.GetAll().ToList(), "Name", "Name", user.FacultyId);
-            ViewData["RoleId"] = new SelectList(_unitOfWork.RoleRepository.GetAll().ToList(), "Name", "Name", user.RoleId);
+            ViewData["FacultyId"] = new SelectList(_unitOfWork.FacultyRepository.GetAll(filter:x => x.IsActive).ToList(), "Id", "Name", user.FacultyId);
+            ViewData["RoleId"] = new SelectList(_unitOfWork.RoleRepository.GetAll().ToList(), "Id", "Name", user.RoleId);
             return View(user);
         }
 
@@ -119,9 +120,22 @@ namespace MockProject.Areas.Admin.Controllers
             {
                 return NotFound();
             }
-            ViewData["FacultyId"] = new SelectList(_unitOfWork.FacultyRepository.GetAll().ToList(), "Id", "Id", user.FacultyId);
-            ViewData["RoleId"] = new SelectList(_unitOfWork.RoleRepository.GetAll().ToList(), "Id", "Id", user.RoleId);
-            return View(user);
+
+            var userVm = new UsersEditVm
+            {
+                Id = user.Id,
+                Address = user.Address,
+                Birthday = user.Birthday,
+                Code = user.Code,
+                FacultyId = user.FacultyId,
+                Gender = user.Gender,
+                IsActive = user.IsActive,
+                Name = user.Name,
+                RoleId = user.RoleId
+            };
+            ViewData["FacultyId"] = new SelectList(_unitOfWork.FacultyRepository.GetAll(filter:x => x.IsActive).ToList(), "Id", "Name", user.FacultyId);
+            ViewData["RoleId"] = new SelectList(_unitOfWork.RoleRepository.GetAll().ToList(), "Id", "Name", user.RoleId);
+            return View(userVm);
         }
 
         // POST: Users/Edit/5
@@ -129,10 +143,10 @@ namespace MockProject.Areas.Admin.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Edit(int id, [Bind("Id,Username,Password,Code,Name,Birthday,Address,Gender,IsActive,IsGraduated,FacultyId,RoleId")] User user)
+        public IActionResult Edit(int id, [Bind("Id,Code,Name,Birthday,Address,Gender,IsActive,FacultyId,RoleId")] UsersEditVm userVm)
         {
             ViewBag.Pages = "User";
-            if (id != user.Id)
+            if (id != userVm.Id)
             {
                 return NotFound();
             }
@@ -141,9 +155,21 @@ namespace MockProject.Areas.Admin.Controllers
             {
                 try
                 {
-                    PasswordHasher<User> hasher = new PasswordHasher<User>();
-                    user.Password = hasher.HashPassword(user,user.Password);
-                    
+//                    PasswordHasher<User> hasher = new PasswordHasher<User>();
+//                    user.Password = hasher.HashPassword(user,user.Password);
+                    var user = _unitOfWork.UserRepository.Get(userVm.Id);
+                    if (user == null)
+                    {
+                        return NotFound();
+                    }
+                    user.Code = userVm.Code;
+                    user.Name = userVm.Name;
+                    user.Birthday = userVm.Birthday;
+                    user.Address = userVm.Address;
+                    user.Gender = userVm.Gender;
+                    user.IsActive = userVm.IsActive;
+                    user.FacultyId = userVm.FacultyId;
+                    user.RoleId = userVm.RoleId;
                     _unitOfWork.UserRepository.Update(user);
                     _unitOfWork.Save();
                 }
@@ -153,9 +179,9 @@ namespace MockProject.Areas.Admin.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["FacultyId"] = new SelectList(_unitOfWork.FacultyRepository.GetAll().ToList(), "Name", "Name", user.FacultyId);
-            ViewData["RoleId"] = new SelectList(_unitOfWork.RoleRepository.GetAll().ToList(), "Name", "Name", user.RoleId);
-            return View(user);
+            ViewData["FacultyId"] = new SelectList(_unitOfWork.FacultyRepository.GetAll(filter:x => x.IsActive).ToList(), "Id", "Name", userVm.FacultyId);
+            ViewData["RoleId"] = new SelectList(_unitOfWork.RoleRepository.GetAll().ToList(), "Id", "Name", userVm.RoleId);
+            return View(userVm);
         }
 
         

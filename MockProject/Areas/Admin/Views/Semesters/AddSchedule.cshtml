@@ -23,6 +23,8 @@
 
                             <select name="teacherId">
                                 <option selected="selected" value="0">Select teacher</option>
+
+
                                 @{
                                     Debug.Assert(teachers != null, nameof(teachers) + " != null");
                                 }
@@ -87,8 +89,9 @@
                                 </td>
 
                                 <td>
+                                    <a asp-action="EditSchedule" asp-route-id="@item.Id">Edit</a> |
                                     <a asp-action="ScheduleDetail" asp-route-id="@item.Id">Details</a> |
-                
+
                                 </td>
                             </tr>
                         }

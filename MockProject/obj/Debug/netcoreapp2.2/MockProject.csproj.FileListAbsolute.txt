@@ -58,3 +58,4 @@
 /home/khuong/RiderProjects/Git/MockProject/obj/Debug/netcoreapp2.2/MockProject.dll
 /home/khuong/RiderProjects/Git/MockProject/obj/Debug/netcoreapp2.2/MockProject.pdb
 /home/khuong/RiderProjects/Git/MockProject/obj/Debug/netcoreapp2.2/MockProject.csproj.CopyComplete
+/home/khuong/RiderProjects/Git/MockProject/obj/Debug/netcoreapp2.2/Razor/Areas/Admin/Views/Semesters/EditSchedule.g.cshtml.cs
