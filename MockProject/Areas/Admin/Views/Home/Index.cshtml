@@ -6,25 +6,55 @@
 }
 
 <h2>Home</h2>
+<div class="card">
+    <div class="row">
+        <div class="col-lg-3 col-6">
+            <h3>Users:</h3>
+            <div class="card">
+                <div class="card-footer">
+                    <div>
+                        <a asp-area="Admin" asp-controller="Users" asp-action="Index" asp-route-filter="1">View admin list</a>
+                    </div>
+                    <div>
+                        <a asp-area="Admin" asp-controller="Users" asp-action="Index" asp-route-filter="2">View teacher list</a>
+                    </div>
+                    
+                    <div>
+                        <a asp-area="Admin" asp-controller="Users" asp-action="Index" asp-route-filter="3">View student list</a>
+                    </div>
+                    
+                    <div>
+                        <a asp-area="Admin" asp-controller="Users" asp-action="Create" asp-route-filter="3">Create new user</a>
+                    </div>
+                    
+                </div>
+                
+            </div>
 
-<div>
-    <a asp-area="Admin" asp-controller="Users" asp-action="Index" asp-route-filter="1">View admin list</a>
-</div>
-<div>
-    <a asp-area="Admin" asp-controller="Users" asp-action="Index" asp-route-filter="2">View teacher list</a>
-</div>
-<div>
-    <a asp-area="Admin" asp-controller="Users" asp-action="Index" asp-route-filter="3">View student list</a>
-</div>
-<div>
-    <a asp-area="Admin" asp-controller="Users" asp-action="Create" asp-route-filter="3">Create new user</a>
-</div>
-<div>
-    <a asp-area="Admin" asp-controller="Faculties" asp-action="Create" asp-route-filter="3">Create new faculty</a>
-</div>
-<div>
-    <a asp-area="Admin" asp-controller="Subjects" asp-action="Create" asp-route-filter="3">Create new subject</a>
-</div>
-<div>
-    <a asp-area="Admin" asp-controller="Semesters" asp-action="Create" asp-route-filter="3">Create new semester</a>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-3 col-6">
+            <h3>Create:</h3>
+            <div class="card">
+                <div class="card-footer">
+                    <div>
+                        <a asp-area="Admin" asp-controller="Users" asp-action="Create" asp-route-filter="3">Create new user</a>
+                    </div>
+                    <div>
+                        <a asp-area="Admin" asp-controller="Faculties" asp-action="Create" asp-route-filter="3">Create new faculty</a>
+                    </div>
+                    <div>
+                        <a asp-area="Admin" asp-controller="Subjects" asp-action="Create" asp-route-filter="3">Create new subject</a>
+                    </div>
+                    <div>
+                        <a asp-area="Admin" asp-controller="Semesters" asp-action="Create" asp-route-filter="3">Create new semester</a>
+                    </div>
+                </div>
+                
+            </div>
+
+        </div>
+    </div>
+    
 </div>

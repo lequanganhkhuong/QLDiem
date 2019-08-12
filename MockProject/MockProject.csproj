@@ -24,5 +24,7 @@
     <_ContentIncludedByDefault Remove="Views\Subjects\Details.cshtml" />
     <_ContentIncludedByDefault Remove="Views\Subjects\Edit.cshtml" />
     <_ContentIncludedByDefault Remove="Views\Subjects\Index.cshtml" />
+    <_ContentIncludedByDefault Remove="Pages\User\EditProfile.cshtml" />
+    <_ContentIncludedByDefault Remove="Pages\User\Index.cshtml" />
   </ItemGroup>
 </Project>

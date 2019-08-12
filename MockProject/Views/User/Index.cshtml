@@ -1,0 +1,90 @@
+﻿@using MockProject.Models
+@model User
+
+@{
+    ViewBag.Title = "Profile";
+    Layout = "_Layout";
+}
+
+<div class="text-center">
+    <h1>Personal Information</h1>
+</div>
+
+<div class="container-fluid">
+    <div class="card card-default">
+        <div class="card-header">
+            <h3 class="card-title">About's @User.FindFirst("UserName").Value</h3>
+
+            <div class="card-tools">
+                <button type="button" class="btn btn-tool" data-widget="collapse">
+                    <i class="fas fa-minus"></i>
+                </button>
+                <button type="button" class="btn btn-tool" data-widget="remove">
+                    <i class="fas fa-remove"></i>
+                </button>
+            </div>
+        </div>
+        <!-- /.card-header -->
+        <div class="card-body">
+            <div class="row">
+
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label>Name</label>
+                        <input disabled asp-for="Name" class="form-control"/>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Birth Day</label>
+
+                        <select class="form-control select2" disabled="disabled" style="width: 100%;">
+
+                            <option selected="selected">@Model.Birthday</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label>Faculty</label>
+                        <select class="form-control select2" disabled="disabled" style="width: 100%">
+                            <option selected="selected">@Model.Faculty.Name</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Address</label>
+                        <input asp-for="Address" disabled class="form-control"/>
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label>UserName</label>
+                        <input asp-for="Username" disabled class="form-control"/>
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label>Gender</label>
+
+                        <div class="form-control"> @Html.Raw(Model.Gender ? "Male" : "Famale")</div>
+                    </div>
+                </div>
+            </div>
+
+            <a asp-controller="User" asp-action="EditProfile" asp-route-id="@User.Identity.Name" class="btn btn-primary">
+                <i class="fas fa-user-edit"></i>
+            </a>
+
+
+            <!-- /.row -->
+        </div>
+        <!-- /.card-body -->
+        <div class="card-footer">
+            Design by Kai member team intern .NET
+        </div>
+    </div>
+    <!-- /.card -->
+</div>

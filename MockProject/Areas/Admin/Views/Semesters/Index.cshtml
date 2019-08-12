@@ -7,7 +7,7 @@
 <h1>Index</h1>
 
 <p>
-    <a asp-action="Create">Create New</a>
+    <a asp-action="Create" class="btn btn-success">Create New</a>
 </p>
 <div class="row">
     <div class="col-md-12">
@@ -48,8 +48,12 @@
                                     @Html.DisplayFor(modelItem => item.Faculty.Name)
                                 </td>
                                 <td>
-                                    <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                                    <a asp-action="AddSchedule" asp-route-id="@item.Id">Add schdules</a>
+                                    <a asp-action="Edit" asp-route-id="@item.Id" title="Edit">
+                                        <i class="fas fa-edit"></i>
+                                    </a> |
+                                    <a asp-action="AddSchedule" asp-route-id="@item.Id" title="Detail">
+                                        <i class="fas fa-plus"></i>
+                                    </a>
                                 </td>
                             </tr>
                         }

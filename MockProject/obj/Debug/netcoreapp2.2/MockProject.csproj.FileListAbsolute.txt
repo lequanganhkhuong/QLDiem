@@ -59,3 +59,9 @@
 /home/khuong/RiderProjects/Git/MockProject/obj/Debug/netcoreapp2.2/MockProject.pdb
 /home/khuong/RiderProjects/Git/MockProject/obj/Debug/netcoreapp2.2/MockProject.csproj.CopyComplete
 /home/khuong/RiderProjects/Git/MockProject/obj/Debug/netcoreapp2.2/Razor/Areas/Admin/Views/Semesters/EditSchedule.g.cshtml.cs
+/home/khuong/RiderProjects/Git/MockProject/obj/Debug/netcoreapp2.2/Razor/Views/Error/NotFound.g.cshtml.cs
+/home/khuong/RiderProjects/Git/MockProject/obj/Debug/netcoreapp2.2/Razor/Views/Student/Details.g.cshtml.cs
+/home/khuong/RiderProjects/Git/MockProject/obj/Debug/netcoreapp2.2/Razor/Views/Student/IdNotFound.g.cshtml.cs
+/home/khuong/RiderProjects/Git/MockProject/obj/Debug/netcoreapp2.2/Razor/Views/Student/List.g.cshtml.cs
+/home/khuong/RiderProjects/Git/MockProject/obj/Debug/netcoreapp2.2/Razor/Views/User/EditProfile.g.cshtml.cs
+/home/khuong/RiderProjects/Git/MockProject/obj/Debug/netcoreapp2.2/Razor/Views/User/Index.g.cshtml.cs
