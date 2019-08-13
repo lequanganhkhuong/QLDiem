@@ -62,6 +62,7 @@
           <e p="HomeController.cs" t="Include" />
           <e p="LoginController.cs" t="Include" />
           <e p="StudentController.cs" t="Include" />
+          <e p="TeacherController.cs" t="Include" />
           <e p="UserController.cs" t="Include" />
         </e>
         <e p="Data" t="Include">
@@ -95,6 +96,8 @@
           <e p="ViewModels" t="Include">
             <e p="StudentViewModel.cs" t="Include" />
             <e p="TeacherListVm.cs" t="Include" />
+            <e p="TeacherViewModel.cs" t="Include" />
+            <e p="UserEditProfile.cs" t="Include" />
             <e p="UsersEditVm.cs" t="Include" />
           </e>
         </e>
@@ -127,7 +130,13 @@
             <e p="IdNotFound.cshtml" t="Include" />
             <e p="List.cshtml" t="Include" />
           </e>
+          <e p="Teacher" t="Include">
+            <e p="Details.cshtml" t="Include" />
+            <e p="EditMark.cshtml" t="Include" />
+            <e p="List.cshtml" t="Include" />
+          </e>
           <e p="User" t="Include">
+            <e p="ChangePass.cshtml" t="Include" />
             <e p="EditProfile.cshtml" t="Include" />
             <e p="Index.cshtml" t="Include" />
           </e>
@@ -164,6 +173,7 @@
                 <e p="_all-skins.min.css" t="Include" />
                 <e p="adminlte.css" t="Include" />
                 <e p="adminlte.css.map" t="Include" />
+                <e p="adminlte.min.css" t="Include" />
                 <e p="adminlte.min.css.map" t="Include" />
               </e>
               <e p="fastclick" t="Include">
@@ -297,6 +307,7 @@
               <e p="_all-skins.min.css" t="Include" />
               <e p="adminlte.css" t="Include" />
               <e p="adminlte.css.map" t="Include" />
+              <e p="adminlte.min.css" t="Include" />
               <e p="adminlte.min.css.map" t="Include" />
             </e>
             <e p="fastclick" t="Include">

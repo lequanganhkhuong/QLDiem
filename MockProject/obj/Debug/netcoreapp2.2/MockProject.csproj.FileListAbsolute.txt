@@ -65,3 +65,7 @@
 /home/khuong/RiderProjects/Git/MockProject/obj/Debug/netcoreapp2.2/Razor/Views/Student/List.g.cshtml.cs
 /home/khuong/RiderProjects/Git/MockProject/obj/Debug/netcoreapp2.2/Razor/Views/User/EditProfile.g.cshtml.cs
 /home/khuong/RiderProjects/Git/MockProject/obj/Debug/netcoreapp2.2/Razor/Views/User/Index.g.cshtml.cs
+/home/khuong/RiderProjects/Git/MockProject/obj/Debug/netcoreapp2.2/Razor/Views/Teacher/Details.g.cshtml.cs
+/home/khuong/RiderProjects/Git/MockProject/obj/Debug/netcoreapp2.2/Razor/Views/Teacher/EditMark.g.cshtml.cs
+/home/khuong/RiderProjects/Git/MockProject/obj/Debug/netcoreapp2.2/Razor/Views/Teacher/List.g.cshtml.cs
+/home/khuong/RiderProjects/Git/MockProject/obj/Debug/netcoreapp2.2/Razor/Views/User/ChangePass.g.cshtml.cs

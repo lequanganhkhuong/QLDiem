@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using MockProject.Data.Interface;
 using MockProject.Models;
+using MockProject.Models.ViewModels;
 
 namespace MockProject.Controllers
 {
@@ -67,6 +68,60 @@ namespace MockProject.Controllers
                 return RedirectToAction(nameof(Index));
             }
             return View(user);
+        }
+        [HttpGet]
+        public IActionResult ChangePass(int? id)
+        {
+            ViewBag.Pages = "User";
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var user = _unitOfWork.UserRepository.Get(id);
+            if (user == null)
+            {
+                return NotFound();
+            }
+
+            var userVm = new UserEditProfile
+            {
+                Id = user.Id,
+                PasswordNew = user.Password
+            };
+
+            return View(userVm);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult ChangePass(int id, UserEditProfile userVm)
+        {
+            var user = _unitOfWork.UserRepository.Get(userVm.Id);
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    if (userVm.PasswordCurrent != user.Password)
+                    {
+                        ViewBag.Message = "Old password is not correct";
+                        return View(nameof(ChangePass));
+                    }
+                    else
+                    {
+                        user.Password = userVm.PasswordNew;
+                        _unitOfWork.UserRepository.Update(user);
+                        _unitOfWork.Save();
+                    }
+                }
+                catch (DbUpdateConcurrencyException)
+                {
+                }
+
+                return RedirectToAction("Index", "Home");
+            }
+
+            return View();
         }
     }
 } 

@@ -70,7 +70,7 @@
                                    
                                     
                                     <th>
-                                        <a asp-action="Index" asp-route-search="@ViewBag.search" asp-route-sort="@ViewBag.Name">@Html.DisplayNameFor(model => model.Name)</a>
+                                        @Html.DisplayNameFor(model => model.Name)
                                       
                                     </th>
                                   
@@ -78,12 +78,12 @@
                                         @Html.DisplayNameFor(model => model.Address)
                                     </th>
                                     <th>
-                                        <a asp-action="Index" asp-route-search="@ViewBag.search" asp-route-sort="@ViewBag.Gender">@Html.DisplayNameFor(model => model.Gender)</a>
+                                        @Html.DisplayNameFor(model => model.Gender)
                                        
                                     </th>
                                     <th>
                                    
-                                        <a asp-action="Index" asp-route-search="@ViewBag.search" asp-route-sort="@ViewBag.IsActive">@Html.DisplayNameFor(model => model.IsActive)</a>
+                                        @Html.DisplayNameFor(model => model.IsActive)
                                     </th>
                                     @* <th> *@
                                     @*     @Html.DisplayNameFor(model => model.IsGraduated) *@

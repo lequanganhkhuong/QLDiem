@@ -1,0 +1,97 @@
+﻿@model IEnumerable<MockProject.Models.ViewModels.TeacherViewModel>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "_Layout";
+}
+
+<div class="text-center">
+    <h1>Transcipt</h1>
+</div>
+
+<div class="container-fluid">
+    <div class="card-header">
+        <form asp-action="List" method="get">
+                <div class="col-md-12">
+                    <span>--Chọn năm học</span>
+                    <select name="year" style="width: 25%">
+                        @{
+                            var filteryear = ViewBag.ListYear;
+                            var check = ViewBag.Year;
+                            <option value="0">All</option>
+                            foreach (var a in filteryear)
+                            {
+
+                                if (a.Equals(check))
+                                {
+
+                                    <option selected="selected" value="@a">@a</option>
+                                }
+                                else
+                                {
+
+                                    <option value="@a">@a</option>
+                                }
+
+                            }
+                        }
+                    </select>
+                </div>
+            <div>
+                <span>---Chọc học kì    </span>
+                <select name="name" style="width: 27%">
+                    @{
+                        var filtername = ViewBag.HK;
+                        if (filtername.Equals("0"))
+                        {
+                            <option selected="selected" value="0">All</option>
+                            <option value="1">Học Kì I</option>
+                            <option value="2">Học Kì II</option>
+                        }
+                        if (filtername.Equals("Học Kì I"))
+                        {
+                            <option value="0">All</option>
+                            <option selected="selected" value="1">Học Kì I</option>
+                            <option value="2">Học Kì II</option>
+                        }
+                        if (filtername.Equals("Học Kì II"))
+                        {
+                            <option value="0">All</option>
+                            <option value="1">Học Kì I</option>
+                            <option selected="selected" value="2">Học Kì II</option>
+                        }
+                    }
+                </select>
+            </div>
+            <input type="submit" value="Submit" class="btn btn-default"/>
+        </form>
+
+    </div>
+    <table class="table" id="myTable">
+        <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.SubName)
+            </th>
+            <th>
+                Infor
+            </th>
+        </tr>
+        </thead>
+        <tbody>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.SubName)
+                </td>
+                <td>
+                    <a asp-controller="Teacher" asp-action="Details" asp-route-id="@item.Id" title="Detail">
+                        <i class="far fa-eye"></i>
+                    </a> 
+                </td>
+            </tr>
+        }
+        </tbody>
+    </table>
+</div>

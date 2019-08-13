@@ -63,40 +63,42 @@
     <div class="col-md-12">
         <div class="card">
             <div class="card-content">
-                 <table id="tableSchedule" class="table">
-                        <thead>
+                <h3>Schedules</h3>
+                <table id="tableSchedule" class="table">
+                    <thead>
+                    <tr>
+                        <th>
+                            Teacher Name
+                        </th>
+                        <th>
+                            Subject Name
+                        </th>
+
+                        <th>
+                            Actions
+                        </th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    @foreach (var item in Model.Item2)
+                    {
                         <tr>
-                            <th>
-                                Teacher Name
-                            </th>
-                            <th>
-                                Subject Name
-                            </th>
-         
-                            <th>
-                                Actions
-                            </th>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.User.Name)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Subject.Name)
+                            </td>
+
+                            <td>
+                                <a asp-action="EditSchedule" asp-route-id="@item.Id">Edit</a> |
+                                <a asp-action="ScheduleDetail" asp-route-id="@item.Id">Details</a> |
+
+                            </td>
                         </tr>
-                        </thead>
-                        <tbody>
-                        @foreach (var item in Model.Item2) {
-                            <tr>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.User.Name)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.Subject.Name)
-                                </td>
-
-                                <td>
-                                    <a asp-action="EditSchedule" asp-route-id="@item.Id">Edit</a> |
-                                    <a asp-action="ScheduleDetail" asp-route-id="@item.Id">Details</a> |
-
-                                </td>
-                            </tr>
-                        }
-                        </tbody>
-                    </table>
+                    }
+                    </tbody>
+                </table>
             </div>
         </div>
     </div>

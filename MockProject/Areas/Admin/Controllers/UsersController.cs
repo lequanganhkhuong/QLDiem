@@ -1,9 +1,11 @@
+using System;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.AspNetCore.Server.Kestrel.Core.Internal.Http2.FlowControl;
 using Microsoft.EntityFrameworkCore;
 using MockProject.Data.Interface;
 using MockProject.Models;
@@ -27,6 +29,44 @@ namespace MockProject.Areas.Admin.Controllers
             ViewBag.Pages = "User";
             var user =  _unitOfWork.UserRepository.Get(id);
             return View(user);
+        }
+        
+        //generate code
+        public IActionResult GenerateCode(int role)
+        { 
+            Random random = new Random();
+            const string chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+            
+            
+            var listCode = _unitOfWork.UserRepository.GetAll().Select(x => x.Code);
+            
+            string rs = "";
+
+            do
+            {
+                string code = new string(Enumerable.Repeat(chars, 8)
+                    .Select(s => s[random.Next(s.Length)]).ToArray());
+
+
+                switch (role)
+                {
+                    case 1:
+                        rs = "AD" + code;
+                        break;
+                    case 2:
+                        rs = "GV" + code;
+                        break;
+                    case 3:
+                        rs = "SV" + code;
+                        break;
+                }
+            } while (listCode.Contains(rs));
+            
+
+            
+           
+            
+            return Content(rs);
         }
 
         // GET: Users
@@ -92,6 +132,32 @@ namespace MockProject.Areas.Admin.Controllers
         public  IActionResult Create([Bind("Id,Username,Password,Code,Name,Birthday,Address,Gender,IsActive,FacultyId,RoleId")] User user)
         {
             ViewBag.Pages = "User";
+            
+            //validate code
+            if (user.Code.Length < 10)
+            {
+                return Content("Invalid code");
+            }
+            //check if code match the role
+            var codeCheck = user.Code.Substring(0, 2);
+            switch (user.RoleId)
+            {
+                case 1:
+                    if (!codeCheck.Equals("AD")) return Content("Invalid admin code");
+                    break;
+                case 2:
+                    if (!codeCheck.Equals("GV")) return Content("Invalid teacher code");
+                    break;
+                case 3:
+                    if (!codeCheck.Equals("SV")) return Content("Invalid student code");
+                    break;
+            }
+            //check if code existed
+            var codeList = _unitOfWork.UserRepository.GetAll().Select(x => x.Code);
+            if (codeList.Contains(user.Code)) return Content("This code already exists");
+            
+            
+            
             if (ModelState.IsValid)
             {
                 PasswordHasher<User> hasher = new PasswordHasher<User>();

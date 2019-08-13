@@ -24,11 +24,18 @@
                                     <input type="password" asp-for="Password" class="form-control" />
                                     <span asp-validation-for="Password" class="text-danger"></span>
                                 </div>
-                                
+                                <div class="form-group">
+                                    <label asp-for="RoleId" class="control-label">Role</label>
+                                    <select style="display: none" asp-for="RoleId" class ="form-control" asp-items="ViewBag.RoleId"></select>
+                                </div>
                                 <div class="form-group">
                                     <label asp-for="Code" class="control-label"></label>
-                                    <input asp-for="Code" class="form-control" />
+                                    <input id="code" readonly="readonly" asp-for="Code" class="form-control" />
                                     <span asp-validation-for="Code" class="text-danger"></span>
+                                   
+                                    <button class="btnCode btn btn-success" role="1" >Generate admin code </button>
+                                    <button class="btnCode btn btn-warning" role="2" >Generate teacher code </button>
+                                    <button class="btnCode btn btn-danger" role="3" >Generate student code </button>
                                 </div>
                                 
                                 <div class="form-group">
@@ -64,13 +71,10 @@
                                 
                                 <div class="form-group">
                                     <label asp-for="FacultyId" class="control-label">Faculty</label>
-                                    <select asp-for="FacultyId" class ="form-control" asp-items="ViewBag.FacultyId"></select>
+                                    <select style="display: none" asp-for="FacultyId" class ="form-control" asp-items="ViewBag.FacultyId"></select>
                                 </div>
                                 
-                                <div class="form-group">
-                                    <label asp-for="RoleId" class="control-label">Role</label>
-                                    <select asp-for="RoleId" class ="form-control" asp-items="ViewBag.RoleId"></select>
-                                </div>
+                               
                                 
                                 <div class="form-group col-md-4">
                                     <input type="submit" value="Tạo mới" class="btn btn-success" />
@@ -89,4 +93,19 @@
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    <script>
+        $(document).ready(function() {
+            $(".btnCode").click(function(e) {
+                e.preventDefault();
+                var role = $(this).attr("role");
+                $.get("/Admin/Users/GenerateCode?role="+role,
+                    function(rs) {
+                        $('#code').attr('readonly', false); 
+                        $("#code").val(rs);
+                        $('#code').attr('readonly', true); 
+                        
+                    });
+            });
+        })
+    </script>
 }

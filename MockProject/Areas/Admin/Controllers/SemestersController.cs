@@ -251,6 +251,14 @@ namespace MockProject.Areas.Admin.Controllers
             }
             int m = int.Parse(mark);
             transcript.Mark = m;
+            if (transcript.Mark < 5)
+            {
+                transcript.IsPassed = false;
+            }
+            else
+            {
+                transcript.IsPassed = true;
+            }
             _unitOfWork.Save();
             return RedirectToAction("ScheduleDetail", new {transcript.ScheduleId});
         }
