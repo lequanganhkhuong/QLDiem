@@ -34,11 +34,17 @@ namespace MockProject.Areas.Admin.Controllers
                 return NotFound();
             }
 
-            var subject =  _unitOfWork.SubjectRepository.Get(id);
+            var subject = _unitOfWork.SubjectRepository.Get(id);
             if (subject == null)
             {
                 return NotFound();
             }
+
+            var listTeacher = _unitOfWork.ScheduleRepository.GetAll(filter:x=>x.SubjectId ==id).Include(x=>x.User);
+            ViewBag.TC = listTeacher;
+            
+            var listStudent = _unitOfWork.TranscriptRepository.GetAll(filter:x=>x.Schedule.SubjectId ==id && x.User.RoleId==3).Include(x=>x.Schedule).Include(x=>x.User);
+            ViewBag.ST = listStudent;
 
             return View(subject);
         }

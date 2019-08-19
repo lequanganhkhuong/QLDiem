@@ -2,43 +2,131 @@
 
 @{
     ViewData["Title"] = "User's details";
+    var listTeacher = ViewBag.TC as IEnumerable<Schedule>;
+    var listStudent = ViewBag.ST as IEnumerable<Transcript>;
 }
 
 <h1>Details</h1>
 <h4>Subject</h4>
-<hr />
+<hr/>
 <div class="row">
     <div class="col-md-12">
         <div class="card">
             <div class="card-content">
-                       
-                        <dl class="row">
-                            <dt class = "col-sm-2">
-                                @Html.DisplayNameFor(model => model.Name)
-                            </dt>
-                            <dd class = "col-sm-10">
-                                @Html.DisplayFor(model => model.Name)
-                            </dd>
-                            <dt class = "col-sm-2">
-                                @Html.DisplayNameFor(model => model.Credits)
-                            </dt>
-                            <dd class = "col-sm-10">
-                                @Html.DisplayFor(model => model.Credits)
-                            </dd>
-                            <dt class = "col-sm-2">
-                                @Html.DisplayNameFor(model => model.IsActive)
-                            </dt>
-                            <dd class = "col-sm-10">
-                                @Html.DisplayFor(model => model.IsActive)
-                            </dd>
-                        </dl>
-                    </div>
-                    <div>
-                        <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a> |
-                        <a asp-action="Index">Back to List</a>
-                    </div>
-              
+
+                <dl class="row">
+                    <dt class="col-sm-2">
+                        @Html.DisplayNameFor(model => model.Name)
+                    </dt>
+                    <dd class="col-sm-10">
+                        @Html.DisplayFor(model => model.Name)
+                    </dd>
+                    <dt class="col-sm-2">
+                        @Html.DisplayNameFor(model => model.Credits)
+                    </dt>
+                    <dd class="col-sm-10">
+                        @Html.DisplayFor(model => model.Credits)
+                    </dd>
+                    <dt class="col-sm-2">
+                        @Html.DisplayNameFor(model => model.IsActive)
+                    </dt>
+                    <dd class="col-sm-10">
+                        @Html.DisplayFor(model => model.IsActive)
+                    </dd>
+                </dl>
+            </div>
+            <div style="margin: 5px">
+                <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-primary">Edit</a> |
+                <a asp-action="Index" class="btn btn-danger">Back to List</a>
+            </div>
+
         </div>
     </div>
 </div>
 
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-content">
+                <table  class="table">
+                    <thead>
+                    <tr>
+                        <th style="width: 50%">
+                            Teacher Name
+                        </th>
+
+                        <th style="width: 25%">
+                            Address
+                        </th>
+                        <th style="width: 25%">Code</th>
+
+                    </tr>
+                    </thead>
+                    <tbody>
+                    @foreach (var item in listTeacher)
+                    {
+                        <tr>
+                            <td> @Html.DisplayFor(hihi => item.User.Name)</td>
+
+                            <td> @Html.DisplayFor(hihi => item.User.Address)</td>
+                            <td> @Html.DisplayFor(hihi => item.User.Code)</td>
+
+                        </tr>
+                    }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-content">
+                <table id="listStudent" class="table">
+                    <thead>
+                    <tr>
+                        <th style="width: 50%">
+                            Student Name
+                        </th>
+
+                        <th style="width: 25%">
+                            Address
+                        </th>
+                        <th style="width: 25%">Code</th>
+
+                    </tr>
+                    </thead>
+                    <tbody>
+                    @foreach (var item in listStudent)
+                    {
+                        <tr>
+                            <td> @Html.DisplayFor(hihi => item.User.Name)</td>
+
+                            <td> @Html.DisplayFor(hihi => item.User.Address)</td>
+                            <td> @Html.DisplayFor(hihi => item.User.Code)</td>
+
+                        </tr>
+                    }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@section Scripts
+{
+    <script type="text/javascript">
+        $(document).ready(function() {
+
+            $('#listStudent').DataTable({
+                pageLength: 10
+            });
+        });
+    </script>
+}

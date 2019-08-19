@@ -19,7 +19,6 @@ namespace MockProject.Controllers
         {
             _context = context;
         }
-
         // GET
         public IActionResult Index()
         {

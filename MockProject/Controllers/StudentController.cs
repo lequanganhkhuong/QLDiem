@@ -24,50 +24,53 @@ namespace MockProject.Controllers
         {
             ViewBag.HK = name ?? "0";
             ViewBag.Year = year ?? 0;
+
             ViewBag.search = search;
 
             int id = int.Parse(User.Identity.Name) ;
-
-
+            
             var years = _unitOfWork.SemesterRepository.GetAll().Select(x => x.Year).Distinct();
+            var nameHK = _unitOfWork.SemesterRepository.GetAll().Select(x => x.Name).Distinct();
             ViewBag.ListYear = years;
-
+            ViewBag.ListName = nameHK;
+            
             int yearCheck = year ?? 0;
-            
-            
+ 
             var list = _unitOfWork.TranscriptRepository.GetAll();
             if (yearCheck != 0)
             {
                 list = list.Where( x => x.Schedule.Semester.Year == yearCheck);
             }
+            if (!list.Any())
+            {
+                return NotFound();
+            }    
             
-            list = list.Where(x => x.UserId == id)
+            list = list.Where(x => x.UserId == id )
                 .Include(x => x.Schedule.Subject)
                 .Include(x =>x.Schedule.User);
+                
 
-//            if (yearCheck != 0 && yearCheck != 2015 && yearCheck != 2016 )
-//            {
-//                return Content("CLGT??");
-//            }
 
             if (!string.IsNullOrEmpty(name) && !name.Equals("0"))
             {
-                int semId = int.Parse(name);
-                list = list.Where(x => x.Schedule.SemesterId == semId);
+                //int semId = int.Parse(name);
+                list = list.Where(x => x.Schedule.Semester.Name == name);
             }
-
-
+            
             List<StudentViewModel> rs = new List<StudentViewModel>();
-            foreach (var x in list)
-            {
+           
+                foreach (var x in list)
+                {
+                    StudentViewModel vm = new StudentViewModel();
+                    vm.SubjectName = x.Schedule.Subject.Name;
+                    vm.TeacherName = x.Schedule.User.Name;
+                    vm.Mark = x.Mark;
+                    vm.IsPass = x.IsPassed;
+                    vm.Id = x.Schedule.Subject.Id;
+                    rs.Add(vm);
+                }
 
-                StudentViewModel vm = new StudentViewModel();
-                vm.SubjectName = x.Schedule.Subject.Name;
-                vm.TeacherName = x.Schedule.User.Name;
-                vm.Mark = x.Mark;
-                vm.Id = x.Schedule.Subject.Id;
-                rs.Add(vm);
-            }
             return View(rs.AsEnumerable());
         }    
         public IActionResult Details(int? id)

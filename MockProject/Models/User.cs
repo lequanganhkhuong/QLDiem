@@ -40,7 +40,7 @@ namespace MockProject.Models
         {
             RuleFor(x => x.Username).Length(2, 16).NotEmpty();
             RuleFor(x => x.Password).Length(2, 16).NotEmpty();
-            RuleFor(x => x.Code).Length(3,8).NotEmpty();
+            RuleFor(x => x.Code).Length(3,10).NotEmpty();
             RuleFor(x => x.Name).Length(2,25).NotEmpty();
             RuleFor(x => x.Birthday).NotEmpty();
             RuleFor(x => x.Address).Length(2, 10).NotEmpty();

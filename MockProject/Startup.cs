@@ -39,8 +39,8 @@ namespace MockProject
             services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
                 .AddCookie(x =>
                 {
-                    x.AccessDeniedPath = "/Login/AccessDenied";
-                    x.LoginPath = "/Login/Index";
+                    x.AccessDeniedPath = "/Admin/Login/AccessDenied";
+                    x.LoginPath = "/Admin/Login/Index";
                 });
             //Authorize roles
             services.AddAuthorization(x =>
@@ -106,7 +106,7 @@ namespace MockProject
 
                 routes.MapRoute(
                     name: "default",
-                    template: "{controller=Home}/{action=Index}/{id?}");
+                    template: "{controller=Login}/{action=Index}/{id?}");
             });
         }
     }

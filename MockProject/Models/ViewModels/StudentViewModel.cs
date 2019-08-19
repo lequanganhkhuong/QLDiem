@@ -6,5 +6,6 @@
         public string TeacherName { get; set; }
         public string SubjectName { get; set; }
         public double? Mark { get; set; } 
+        public bool IsPass { get; set; }
     }
 } 

@@ -99,6 +99,7 @@ namespace MockProject.Areas.Admin.Controllers
         public  IActionResult Details(int? id)
         {
             ViewBag.Pages = "User";
+            ViewData["FacultyId"] = new SelectList(_unitOfWork.FacultyRepository.GetAll().ToList(), "Name", "Name");
             if (id == null)
             {
                 return NotFound();
@@ -160,8 +161,8 @@ namespace MockProject.Areas.Admin.Controllers
             
             if (ModelState.IsValid)
             {
-                PasswordHasher<User> hasher = new PasswordHasher<User>();
-                user.Password = hasher.HashPassword(user,user.Name);
+                //PasswordHasher<User> hasher = new PasswordHasher<User>();
+                //user.Password = hasher.HashPassword(user,user.Name);
                 
                 _unitOfWork.UserRepository.Insert(user);
                 _unitOfWork.Save();

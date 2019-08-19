@@ -54,9 +54,12 @@
                                             <a asp-action="Edit" asp-route-id="@item.Id" title="Edit">
                                                 <i class="fas fa-edit"></i>
                                             </a> |
-                                            <a asp-action="Details" asp-route-id="@item.Id" title="Detail">
+                                            <a asp-action="Details" asp-route-id="@item.Id" title="List Students">
                                                 <i class="far fa-eye"></i>
-                                            </a> 
+                                            </a> |
+                                            <a asp-action="ListSubject" asp-route-id="@item.Id" title="List Subject">
+                                                <i class="fas fa-list-ul"></i>
+                                            </a>
                                         </td>
                                     </tr>
                                 }

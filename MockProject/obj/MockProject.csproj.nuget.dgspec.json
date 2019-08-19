@@ -1,23 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "/home/khuong/RiderProjects/Git/MockProject/MockProject.csproj": {}
+    "/home/kimhung/RiderProjects/QLDiem/MockProject/MockProject.csproj": {}
   },
   "projects": {
-    "/home/khuong/RiderProjects/Git/MockProject/MockProject.csproj": {
+    "/home/kimhung/RiderProjects/QLDiem/MockProject/MockProject.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/home/khuong/RiderProjects/Git/MockProject/MockProject.csproj",
+        "projectUniqueName": "/home/kimhung/RiderProjects/QLDiem/MockProject/MockProject.csproj",
         "projectName": "MockProject",
-        "projectPath": "/home/khuong/RiderProjects/Git/MockProject/MockProject.csproj",
-        "packagesPath": "/home/khuong/.nuget/packages/",
-        "outputPath": "/home/khuong/RiderProjects/Git/MockProject/obj/",
+        "projectPath": "/home/kimhung/RiderProjects/QLDiem/MockProject/MockProject.csproj",
+        "packagesPath": "/home/kimhung/.nuget/packages/",
+        "outputPath": "/home/kimhung/RiderProjects/QLDiem/MockProject/obj/",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "/usr/share/dotnet/sdk/NuGetFallbackFolder"
         ],
         "configFilePaths": [
-          "/home/khuong/.nuget/NuGet/NuGet.Config"
+          "/home/kimhung/.nuget/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "netcoreapp2.2"
@@ -45,7 +45,7 @@
             },
             "FluentValidation.AspNetCore": {
               "target": "Package",
-              "version": "(, )"
+              "version": "[8.4.0, )"
             },
             "Microsoft.AspNetCore.App": {
               "suppressParent": "All",
