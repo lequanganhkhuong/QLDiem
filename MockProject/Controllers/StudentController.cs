@@ -40,6 +40,10 @@ namespace MockProject.Controllers
             {
                 list = list.Where( x => x.Schedule.Semester.Year == yearCheck);
             }
+            if (!list.Any())
+            {
+                return NotFound();
+            }
             
             list = list.Where(x => x.UserId == id)
                 .Include(x => x.Schedule.Subject)

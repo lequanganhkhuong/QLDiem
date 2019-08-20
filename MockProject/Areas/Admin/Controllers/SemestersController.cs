@@ -143,8 +143,11 @@ namespace MockProject.Areas.Admin.Controllers
             //automatically create transcript for all students who havent completed this subject
             //get all student, check if they have completed that subject yet, 
             //
-            var students = _unitOfWork.UserRepository.GetAll(filter:x => x.RoleId == 3).ToList();
-            var transcripts = _unitOfWork.TranscriptRepository.GetAll(filter:x => x.Schedule.SubjectId == sch.SubjectId && x.IsPassed == true && x.IsActive);
+            var students = _unitOfWork.UserRepository.GetAll(filter:x => x.RoleId == 3 && x.FacultyId == sch.Semester.FacultyId).ToList();
+            var transcripts = _unitOfWork.TranscriptRepository
+                .GetAll(filter:x => x.Schedule.SubjectId == sch.SubjectId
+                                    && x.Schedule.Semester.FacultyId == sch.Semester.FacultyId
+                                    && x.IsPassed == true && x.IsActive);
             var passedstudents = from a in students
                 join b in transcripts on a.Id equals b.UserId
                 select a;
@@ -169,7 +172,7 @@ namespace MockProject.Areas.Admin.Controllers
             }
 
             _unitOfWork.Save();
-            return RedirectToAction("AddSchedule");
+            return RedirectToAction("AddSchedule" , new {id = semId});
         }
 //        [HttpGet]
 //        public IActionResult Addstudent()
@@ -244,12 +247,22 @@ namespace MockProject.Areas.Admin.Controllers
             {
                 return NotFound();
             }
-            foreach (char c in mark)
+
+            double m ;
+            if (double.TryParse(mark, out m))
             {
-                if (c < '0' || c > '9')
-                    return Content("Number only");
+                m = double.Parse(mark);
             }
-            int m = int.Parse(mark);
+            else
+            {
+                foreach (char c in mark)
+                {
+                    if (c < '0' || c > '9')
+                        return Content("Number only");
+                }
+            }
+            
+            
             transcript.Mark = m;
             if (transcript.Mark < 5)
             {
@@ -260,7 +273,7 @@ namespace MockProject.Areas.Admin.Controllers
                 transcript.IsPassed = true;
             }
             _unitOfWork.Save();
-            return RedirectToAction("ScheduleDetail", new {transcript.ScheduleId});
+            return RedirectToAction("ScheduleDetail", new {id = transcript.ScheduleId});
         }
 
         // GET: Semesters/Create

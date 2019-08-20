@@ -107,12 +107,19 @@ namespace MockProject.Controllers
             {
                 return NotFound();
             }
-            foreach (char c in mark)
+            double m;
+            if (double.TryParse(mark, out m))
             {
-                if (c < '0' || c > '9')
-                    return Content("Number only");
+                m = double.Parse(mark);
             }
-            int m = int.Parse(mark);
+            else
+            {
+                foreach (char c in mark)
+                {
+                    if (c < '0' || c > '9')
+                        return Content("Number only");
+                }
+            }
             transcript.Mark = m;
             transcript.IsActive = false;
             if (transcript.Mark < 5)
