@@ -29,9 +29,9 @@ namespace MockProject.Controllers
             int id = int.Parse(User.Identity.Name) ;
 
             var years = _unitOfWork.SemesterRepository.GetAll().Select(x => x.Year).Distinct();
-            var nameHK = _unitOfWork.SemesterRepository.GetAll().Select(x => x.Name).Distinct();
+            var nameHk = _unitOfWork.SemesterRepository.GetAll().Select(x => x.Name).Distinct();
             ViewBag.ListYear = years;
-            ViewBag.ListName = nameHK;
+            ViewBag.ListName = nameHk;
 
             int yearCheck = year ?? 0;
 
@@ -125,12 +125,14 @@ namespace MockProject.Controllers
             {
                 return NotFound();
             }
+
             double m ;
             if (double.TryParse(mark, out m))
             {
                 m = double.Parse(mark);
             }
             
+
             transcript.Mark = m;
             transcript.IsActive = false;
             if (transcript.Mark < 5)

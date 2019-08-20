@@ -1,3 +1,4 @@
+@using System.Diagnostics
 @model Faculty
 
 @{
@@ -70,6 +71,10 @@
                     </tr>
                     </thead>
                     <tbody>
+
+                    @{
+                        Debug.Assert(listStudent != null, nameof(listStudent) + " != null");
+                    }
                     @foreach (var item in listStudent)
                     {
                         <tr>

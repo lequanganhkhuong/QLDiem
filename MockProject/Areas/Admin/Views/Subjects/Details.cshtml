@@ -1,3 +1,4 @@
+@using System.Diagnostics
 @model Subject
 
 @{
@@ -64,6 +65,10 @@
                     </tr>
                     </thead>
                     <tbody>
+
+                    @{
+                        Debug.Assert(listTeacher != null, nameof(listTeacher) + " != null");
+                    }
                     @foreach (var item in listTeacher)
                     {
                         <tr>
@@ -101,6 +106,10 @@
                     </tr>
                     </thead>
                     <tbody>
+
+                    @{
+                        Debug.Assert(listStudent != null, nameof(listStudent) + " != null");
+                    }
                     @foreach (var item in listStudent)
                     {
                         <tr>
