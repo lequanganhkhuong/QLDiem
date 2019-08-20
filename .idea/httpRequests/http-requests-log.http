@@ -1,0 +1,31 @@
+GET https://localhost:5001/students
+Accept: */*
+
+<> 2019-08-15T111534.200.html
+
+###
+
+GET https://localhost:5001/student
+Accept: */*
+
+###
+
+GET https://localhost:5001/teacher
+Accept: */*
+
+<> 2019-08-15T111512.200.html
+
+###
+
+GET https://localhost:5001/
+Accept: */*
+
+<> 2019-08-15T111501.200.html
+
+###
+
+GET http://localhost:8080/resources
+Accept: */*
+
+###
+

@@ -11,9 +11,6 @@
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.2.3" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Migrations" />
-  </ItemGroup>
-  <ItemGroup>
     <_ContentIncludedByDefault Remove="Views\Faculties\Create.cshtml" />
     <_ContentIncludedByDefault Remove="Views\Faculties\Delete.cshtml" />
     <_ContentIncludedByDefault Remove="Views\Faculties\Details.cshtml" />

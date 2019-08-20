@@ -2,10 +2,8 @@ using System;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
-using Microsoft.AspNetCore.Server.Kestrel.Core.Internal.Http2.FlowControl;
 using Microsoft.EntityFrameworkCore;
 using MockProject.Data.Interface;
 using MockProject.Models;
@@ -99,6 +97,7 @@ namespace MockProject.Areas.Admin.Controllers
         public  IActionResult Details(int? id)
         {
             ViewBag.Pages = "User";
+            ViewData["FacultyId"] = new SelectList(_unitOfWork.FacultyRepository.GetAll().ToList(), "Name", "Name");
             if (id == null)
             {
                 return NotFound();
@@ -160,8 +159,8 @@ namespace MockProject.Areas.Admin.Controllers
             
             if (ModelState.IsValid)
             {
-                PasswordHasher<User> hasher = new PasswordHasher<User>();
-                user.Password = hasher.HashPassword(user,user.Name);
+                //PasswordHasher<User> hasher = new PasswordHasher<User>();
+                //user.Password = hasher.HashPassword(user,user.Name);
                 
                 _unitOfWork.UserRepository.Insert(user);
                 _unitOfWork.Save();

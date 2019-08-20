@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using MockProject.Data.Interface;
@@ -7,6 +8,7 @@ using MockProject.Models.ViewModels;
 
 namespace MockProject.Controllers
 {
+    [Authorize(Roles = "teacher, admin")]
     public class TeacherController : Controller
     {
         private readonly IUnitOfWork _unitOfWork;
@@ -27,30 +29,45 @@ namespace MockProject.Controllers
             int id = int.Parse(User.Identity.Name) ;
 
             var years = _unitOfWork.SemesterRepository.GetAll().Select(x => x.Year).Distinct();
+            var nameHk = _unitOfWork.SemesterRepository.GetAll().Select(x => x.Name).Distinct();
             ViewBag.ListYear = years;
+            ViewBag.ListName = nameHk;
 
             int yearCheck = year ?? 0;
 
-            var list = _unitOfWork.ScheduleRepository.GetAll(filter: x => x.Semester.Year == yearCheck 
-                                                                        && x.UserId == id);
-
+            var list = _unitOfWork.ScheduleRepository.GetAll();
+            if (yearCheck != 0)
+            {
+                list = list.Where( x => x.Semester.Year == yearCheck);
+            }
+            if (!list.Any())
+            {
+                return NotFound();
+            }                                                         
+            list = list.Where(x => x.UserId == id)
+                .Include(x => x.Subject)
+                .Include(x =>x.User);
+            
             if (!string.IsNullOrEmpty(name) && !name.Equals("0"))
             {
-                int semId = int.Parse(name);
-                list = list.Where(x => x.SemesterId == semId).Include(x=>x.Semester).Include(x=>x.Subject);
+                //int semId = int.Parse(name);
+                list = list.Where(x => x.Semester.Name == name);
             }
-
+            
             List<TeacherViewModel> rs = new List<TeacherViewModel>();
-            foreach (var x in list)
-            {
-                TeacherViewModel vm = new TeacherViewModel();
-                vm.SubName = x.Subject.Name;
-                vm.Id = x.SubjectId;
-                rs.Add(vm);
-            }
+            
+                foreach (var x in list)
+                {
+                    TeacherViewModel vm = new TeacherViewModel();
+                    vm.SubName = x.Subject.Name;
+                    vm.Id = x.SubjectId;
+                    
+                    rs.Add(vm);
+                }
+            
             return View(rs.AsEnumerable());
         } 
-        public IActionResult Details(int? id)
+        public IActionResult Details(int? id, string name)
         {
 
             ViewBag.Pages = "Teacher";
@@ -60,6 +77,7 @@ namespace MockProject.Controllers
             }
 
             var schedule = _unitOfWork.SubjectRepository.Get(id);
+            
             if (schedule == null)
             {
                 Response.StatusCode = 404;
@@ -107,19 +125,14 @@ namespace MockProject.Controllers
             {
                 return NotFound();
             }
-            double m;
+
+            double m ;
             if (double.TryParse(mark, out m))
             {
                 m = double.Parse(mark);
             }
-            else
-            {
-                foreach (char c in mark)
-                {
-                    if (c < '0' || c > '9')
-                        return Content("Number only");
-                }
-            }
+            
+
             transcript.Mark = m;
             transcript.IsActive = false;
             if (transcript.Mark < 5)

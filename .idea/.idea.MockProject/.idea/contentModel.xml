@@ -19,6 +19,7 @@
                 <e p="Details.cshtml" t="Include" />
                 <e p="Edit.cshtml" t="Include" />
                 <e p="Index.cshtml" t="Include" />
+                <e p="ListSubject.cshtml" t="Include" />
               </e>
               <e p="Home" t="Include">
                 <e p="Index.cshtml" t="Include" />
@@ -76,10 +77,8 @@
           </e>
         </e>
         <e p="Migrations" t="Include">
-          <e p="20190807053514_db.Designer.cs" t="Include" />
-          <e p="20190807053514_db.cs" t="Include" />
-          <e p="20190807075158_Change transcript.Designer.cs" t="Include" />
-          <e p="20190807075158_Change transcript.cs" t="Include" />
+          <e p="20190819070453_aaa.Designer.cs" t="Include" />
+          <e p="20190819070453_aaa.cs" t="Include" />
           <e p="AppDbContextModelSnapshot.cs" t="Include" />
         </e>
         <e p="MockProject.csproj" t="IncludeRecursive" />

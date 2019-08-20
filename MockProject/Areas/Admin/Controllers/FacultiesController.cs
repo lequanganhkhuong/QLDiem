@@ -28,7 +28,7 @@ namespace MockProject.Areas.Admin.Controllers
 
         // GET: Faculties/Details/5
 
-        public IActionResult Details(int? id)
+        public IActionResult ListSubject(int? id)
         {
             ViewBag.Pages = "Faculty";
             if (id == null)
@@ -42,6 +42,28 @@ namespace MockProject.Areas.Admin.Controllers
                 return NotFound();
             }
 
+            var listSubject = _unitOfWork.ScheduleRepository.GetAll(filter:x
+                => x.Semester.FacultyId == id).Include(x=>x.Semester).Include(x=>x.Subject);
+            ViewBag.CC = listSubject;
+
+            return View(faculty);
+        }
+
+        public IActionResult Details(int? id)
+        {
+            ViewBag.Pages = "Faculty";
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var faculty = _unitOfWork.FacultyRepository.Get(id);
+            if (faculty == null)
+            {
+                return NotFound();
+            }
+            var liststudent = _unitOfWork.UserRepository.GetAll(filter:x=> x.FacultyId == id && x.RoleId == 3);
+            ViewBag.LS = liststudent;
             return View(faculty);
         }
 

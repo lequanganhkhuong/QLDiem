@@ -13,7 +13,7 @@ namespace MockProject.Models
         //Student
         public int? UserId { get; set; }
         public double? Mark { get; set; }
-        public bool? IsPassed { get; set; }
+        public bool IsPassed { get; set; }
         public bool IsActive { get; set; }
 
 

@@ -12,8 +12,8 @@
     <div class="card-header">
         <form asp-action="List" method="get">
                 <div class="col-md-12">
-                    <span>--Chọn năm học</span>
-                    <select name="year" style="width: 25%">
+                    <span>Chọn năm học</span>
+                    <select name="year" style="width: 25%" class="form-control">
                         @{
                             var filteryear = ViewBag.ListYear;
                             var check = ViewBag.Year;
@@ -37,27 +37,27 @@
                     </select>
                 </div>
             <div>
-                <span>---Chọc học kì    </span>
-                <select name="name" style="width: 27%">
+                <span>Chọn học kì</span>
+                <select name="name" style="width: 25%" class="form-control">
                     @{
-                        var filtername = ViewBag.HK;
-                        if (filtername.Equals("0"))
+                            
+                        var filter = ViewBag.ListName;
+                        var checkn = ViewBag.HK;
+                        <option value="0">All</option>
+                        foreach (var a in filter)
                         {
-                            <option selected="selected" value="0">All</option>
-                            <option value="1">Học Kì I</option>
-                            <option value="2">Học Kì II</option>
-                        }
-                        if (filtername.Equals("Học Kì I"))
-                        {
-                            <option value="0">All</option>
-                            <option selected="selected" value="1">Học Kì I</option>
-                            <option value="2">Học Kì II</option>
-                        }
-                        if (filtername.Equals("Học Kì II"))
-                        {
-                            <option value="0">All</option>
-                            <option value="1">Học Kì I</option>
-                            <option selected="selected" value="2">Học Kì II</option>
+
+                            if (a.Equals(checkn))
+                            {
+
+                                <option selected="selected" value="@a">@a</option>
+                            }
+                            else
+                            {
+
+                                <option value="@a">@a</option>
+                            }
+
                         }
                     }
                 </select>
@@ -73,7 +73,7 @@
                 @Html.DisplayNameFor(model => model.SubName)
             </th>
             <th>
-                Infor
+                Info
             </th>
         </tr>
         </thead>
