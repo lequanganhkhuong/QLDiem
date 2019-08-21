@@ -8,7 +8,9 @@ namespace MockProject.Data.Interface
     {
         IQueryable < T > GetAll(Expression<Func<T, bool>> filter = null,
             Func<IQueryable<T>, IOrderedQueryable<T>> orderBy = null,
-            string includeProperties = "");  
+            string includeProperties = "");
+
+        IQueryable<T> GetList();
         T Get(int? id);  
         void Insert(T entity);  
         void Update(T entity);  

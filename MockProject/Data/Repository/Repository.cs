@@ -45,6 +45,11 @@ namespace MockProject.Data.Repository
             }
         }
 
+        public IQueryable<T> GetList()
+        {
+            return _entity;
+        }
+
 //        public IQueryable<T> GetAll()
 //        {
 //            return _entity;

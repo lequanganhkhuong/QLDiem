@@ -15,7 +15,6 @@ namespace MockProject.Controllers
         public TeacherController( IUnitOfWork unitOfWork)
         {
             _unitOfWork = unitOfWork;
-
         }
 
         [Route("Teacher")]
@@ -29,9 +28,9 @@ namespace MockProject.Controllers
             int id = int.Parse(User.Identity.Name) ;
 
             var years = _unitOfWork.SemesterRepository.GetAll().Select(x => x.Year).Distinct();
-            var nameHK = _unitOfWork.SemesterRepository.GetAll().Select(x => x.Name).Distinct();
+            var namehk = _unitOfWork.SemesterRepository.GetAll().Select(x => x.Name).Distinct();
             ViewBag.ListYear = years;
-            ViewBag.ListName = nameHK;
+            ViewBag.ListName = namehk;
 
             int yearCheck = year ?? 0;
 
@@ -60,14 +59,14 @@ namespace MockProject.Controllers
                 {
                     TeacherViewModel vm = new TeacherViewModel();
                     vm.SubName = x.Subject.Name;
-                    vm.Id = x.SubjectId;
+                    vm.Id = x.Id;
                     
                     rs.Add(vm);
                 }
             
             return View(rs.AsEnumerable());
         } 
-        public IActionResult Details(int? id, string name)
+        public IActionResult Details(int? id)
         {
 
             ViewBag.Pages = "Teacher";
@@ -76,7 +75,9 @@ namespace MockProject.Controllers
                 return NotFound();
             }
 
-            var schedule = _unitOfWork.SubjectRepository.Get(id);
+            var schedule = _unitOfWork.ScheduleRepository.GetAll(filter: x=>x.Id == id)
+                .Include(x=>x.Subject)
+                .SingleOrDefault();
             
             if (schedule == null)
             {
@@ -84,8 +85,10 @@ namespace MockProject.Controllers
                 return NotFound();
             }
 
-            var liststudent = _unitOfWork.TranscriptRepository.GetAll(filter:x=> x.Schedule.SubjectId == id).Include(x=> x.User).Include(x=>x.Schedule);
-            ViewBag.LS = liststudent;
+            var liststudent = _unitOfWork.TranscriptRepository
+                .GetAll(filter: x => x.ScheduleId == id, includeProperties: "User,Schedule"); 
+            
+            ViewBag.LS = liststudent.ToList();
 
             return View(schedule);
         }
@@ -133,6 +136,10 @@ namespace MockProject.Controllers
             
             transcript.Mark = m;
             transcript.IsActive = false;
+            if(transcript.Mark < 0 || transcript.Mark >10)
+            {
+                return Content("Fail");
+            }
             if (transcript.Mark < 5)
             {
                 transcript.IsPassed = false;

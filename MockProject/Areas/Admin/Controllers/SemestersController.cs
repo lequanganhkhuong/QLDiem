@@ -1,7 +1,6 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Security.Cryptography.X509Certificates;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -149,7 +148,7 @@ namespace MockProject.Areas.Admin.Controllers
             var transcripts = _unitOfWork.TranscriptRepository
                 .GetAll(filter:x => x.Schedule.SubjectId == sch.SubjectId
                                     && x.Schedule.Semester.FacultyId == sch.Semester.FacultyId
-                                    && x.IsPassed == true && x.IsActive);
+                                    && x.IsPassed && x.IsActive);
             var passedstudents = from a in students
                 join b in transcripts on a.Id equals b.UserId
                 select a;
@@ -255,7 +254,11 @@ namespace MockProject.Areas.Admin.Controllers
                 m = double.Parse(mark);
             }
             transcript.Mark = m;
-            if (transcript.Mark < 5)
+            if(transcript.Mark < 0 || transcript.Mark >10)
+            {
+                return Content("Fail");
+            }
+            if(transcript.Mark < 5)
             {
                 transcript.IsPassed = false;
             }

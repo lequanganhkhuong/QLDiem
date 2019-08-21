@@ -1,4 +1,3 @@
-using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -21,7 +20,7 @@ namespace MockProject.Areas.Admin.Controllers
 
         // GET: Faculties
       
-        public async Task<IActionResult> Index()
+        public async Task<ViewResult> Index()
         {
             ViewBag.Pages = "Faculty";
             return View(await _unitOfWork.FacultyRepository.GetAll().ToListAsync());
@@ -45,6 +44,7 @@ namespace MockProject.Areas.Admin.Controllers
 
             var listSubject = _unitOfWork.ScheduleRepository.GetAll(filter:x
                 => x.Semester.FacultyId == id).Include(x=>x.Semester).Include(x=>x.Subject);
+            
             ViewBag.CC = listSubject;
 
             return View(faculty);
@@ -55,16 +55,17 @@ namespace MockProject.Areas.Admin.Controllers
             ViewBag.Pages = "Faculty";
             if (id == null)
             {
-                return NotFound();
+               return NotFound(); 
             }
 
             var faculty = _unitOfWork.FacultyRepository.Get(id);
             if (faculty == null)
             {
-                return NotFound();
+                //return NotFound();
+                return Content("Session not found.");
             }
-            var liststudent = _unitOfWork.UserRepository.GetAll(filter:x=> x.FacultyId == id && x.RoleId == 3);
-            ViewBag.LS = liststudent;
+//            var liststudent = _unitOfWork.UserRepository.GetAll(filter:x=> x.FacultyId == id && x.RoleId == 3);
+//            ViewBag.LS = liststudent;
             return View(faculty);
         }
 
