@@ -26,7 +26,7 @@ namespace MockProject.Areas.Admin.Controllers
             return View(await _unitOfWork.FacultyRepository.GetAll().ToListAsync());
         }
 
-        // GET: Faculties/Details/5
+        
 
         public IActionResult ListSubject(int? id)
         {
@@ -48,7 +48,7 @@ namespace MockProject.Areas.Admin.Controllers
 
             return View(faculty);
         }
-
+        // GET: Faculties/Details/5
         public IActionResult Details(int? id)
         {
             ViewBag.Pages = "Faculty";

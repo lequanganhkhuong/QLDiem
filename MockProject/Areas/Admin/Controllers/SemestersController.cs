@@ -228,6 +228,10 @@ namespace MockProject.Areas.Admin.Controllers
             if (double.TryParse(mark, out m))
             {
                 m = double.Parse(mark);
+                if(m < 0 || m >10)
+                {
+                    return Content("Mark can only be from 0 to 10");
+                }
             }
 
             else

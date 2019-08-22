@@ -98,7 +98,7 @@ namespace MockProject.Controllers
                 .GetAll(filter:x=> x.ScheduleId == id, includeProperties:"User,Schedule");
 
             
-            ViewBag.LS = liststudent;
+            ViewBag.LS = liststudent.ToList();
 
             return View(schedule);
         }
@@ -143,6 +143,10 @@ namespace MockProject.Controllers
             if (double.TryParse(mark, out m))
             {
                 m = double.Parse(mark);
+                if(m < 0 || m >10)
+                {
+                    return Content("Mark can only be from 0 to 10");
+                }
             }
             
 
