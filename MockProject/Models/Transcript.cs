@@ -27,7 +27,7 @@ namespace MockProject.Models
         public TranscriptValidator()
         {
             RuleFor(x => x.UserId).NotEmpty();
-            RuleFor(x => x.Mark).NotEmpty();
+            RuleFor(x => x.Mark).NotEmpty().LessThanOrEqualTo(10).GreaterThanOrEqualTo(0);
             
         }
     }

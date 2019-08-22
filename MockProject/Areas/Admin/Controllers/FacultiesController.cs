@@ -60,15 +60,15 @@ namespace MockProject.Areas.Admin.Controllers
             var faculty = _unitOfWork.FacultyRepository.Get(id);
             if (faculty == null)
             {
-                return NotFound();
+                return BadRequest();
             }
-            var liststudent = _unitOfWork.UserRepository.GetAll(filter:x=> x.FacultyId == id && x.RoleId == 3);
-            ViewBag.LS = liststudent;
+            //var liststudent = _unitOfWork.UserRepository.GetAll(filter:x=> x.FacultyId == id && x.RoleId == 3);
+            //ViewBag.LS = liststudent;
             return View(faculty);
         }
 
         // GET: Faculties/Create
-  
+
         public IActionResult Create()
         {
             ViewBag.Pages = "Faculty";

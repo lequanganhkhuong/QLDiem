@@ -60,31 +60,44 @@ namespace MockProject.Controllers
                 {
                     TeacherViewModel vm = new TeacherViewModel();
                     vm.SubName = x.Subject.Name;
-                    vm.Id = x.SubjectId;
+                    vm.Id = x.Id;
                     
                     rs.Add(vm);
                 }
             
             return View(rs.AsEnumerable());
         } 
-        public IActionResult Details(int? id, string name)
+        public IActionResult Details(int? id)
         {
-
+            int currentUser = int.Parse(User.Identity.Name);
             ViewBag.Pages = "Teacher";
             if (id == null)
             {
                 return NotFound();
             }
 
-            var schedule = _unitOfWork.SubjectRepository.Get(id);
-            
+            var schedule = _unitOfWork.ScheduleRepository
+                .GetAll(filter: x=>x.Id == id)
+                .Include(x=>x.Subject)
+                .SingleOrDefault();
             if (schedule == null)
             {
                 Response.StatusCode = 404;
                 return NotFound();
             }
+            
+            //check 
+            if (schedule.UserId != currentUser)
+            {
+//                return Content("You are not allowed to access this action");
+                return Unauthorized();
+            }
+            
 
-            var liststudent = _unitOfWork.TranscriptRepository.GetAll(filter:x=> x.Schedule.SubjectId == id).Include(x=> x.User).Include(x=>x.Schedule);
+            var liststudent = _unitOfWork.TranscriptRepository
+                .GetAll(filter:x=> x.ScheduleId == id, includeProperties:"User,Schedule");
+
+            
             ViewBag.LS = liststudent;
 
             return View(schedule);

@@ -155,7 +155,7 @@ namespace MockProject.Migrations
 
                     b.Property<bool>("IsActive");
 
-                    b.Property<bool?>("IsPassed");
+                    b.Property<bool>("IsPassed");
 
                     b.Property<double?>("Mark");
 

@@ -30,7 +30,7 @@ namespace MockProject.Areas.Admin.Controllers
         }
         
         //generate code
-        public IActionResult GenerateCode(int role)
+        public string GenerateCode(int role)
         { 
             Random random = new Random();
             const string chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
@@ -59,14 +59,35 @@ namespace MockProject.Areas.Admin.Controllers
                         break;
                 }
             } while (listCode.Contains(rs));
-            
-
-            
-           
-            
-            return Content(rs);
+            return rs;
         }
-
+//        [HttpGet]
+//        public IActionResult AddTeacher()
+//        {
+//            int[] khoa = {1, 2, 3, 4, 5};
+//            Random r = new Random();
+//            for (int i = 0; i < 5; i++)
+//            {
+//                var s = new User
+//                {
+//                    Code = GenerateCode(3),
+//                    Birthday = new DateTime(1995,1,1),
+//                    Address = "abcxyz" + i,
+//                    FacultyId = khoa[r.Next(khoa.Length)],
+//                    Gender = false,
+//                    Name = "GV" + i,
+//                    IsActive = true,
+//                    Username = "GV" + i,
+//                    Password = "GV" + i,
+//                    RoleId = 2
+//                    
+//                };
+//                _unitOfWork.UserRepository.Insert(s);
+//                
+//            }
+//            _unitOfWork.Save();
+//            return Content("OK");
+//        }
         // GET: Users
         public async Task<IActionResult> Index( string filter)
         {

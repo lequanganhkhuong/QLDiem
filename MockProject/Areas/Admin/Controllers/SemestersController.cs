@@ -52,7 +52,7 @@ namespace MockProject.Areas.Admin.Controllers
                 .ToList();
             
             //get teacher list and subject list
-            var teachers = _unitOfWork.UserRepository.GetAll(filter:x => x.RoleId == 2 && x.IsActive);
+            var teachers = _unitOfWork.UserRepository.GetAll(filter:x => x.RoleId == 2 && x.IsActive && x.FacultyId == semester.FacultyId);
             var subjects = _unitOfWork.SubjectRepository.GetAll(filter: x =>x.IsActive).ToList();
 
             var teacherList = new List<TeacherListVm>();
@@ -177,33 +177,7 @@ namespace MockProject.Areas.Admin.Controllers
             _unitOfWork.Save();
             return RedirectToAction("AddSchedule" , new {id = semId});
         }
-//        [HttpGet]
-//        public IActionResult Addstudent()
-//        {
-//            int[] khoa = {1, 2, 3, 4};
-//            Random r = new Random();
-//            for (int i = 0; i < 10; i++)
-//            {
-//                var s = new User
-//                {
-//                    Code = "SV000" + i,
-//                    Birthday = new DateTime(1995,1,1),
-//                    Address = "abcxyz" + i,
-//                    FacultyId = khoa[r.Next(khoa.Length)],
-//                    Gender = true,
-//                    Name = "SV" + i,
-//                    IsActive = true,
-//                    Username = "SV" + i,
-//                    Password = "SV" + i,
-//                    RoleId = 3
-//                    
-//                };
-//                _context.Users.Add(s);
-//                
-//            }
-//            _context.SaveChanges();
-//            return Content("OK");
-//        }
+
         public IActionResult ScheduleDetail(int? id)
         {
             ViewBag.Pages = "Semester";

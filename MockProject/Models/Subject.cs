@@ -21,7 +21,7 @@ namespace MockProject.Models
     {
        public SubjectValidator()
        {
-           RuleFor(x => x.Name).Length(10, 30).NotEmpty();
+           RuleFor(x => x.Name).Length(2, 30).NotEmpty();
            RuleFor(x => x.Credits).NotEmpty();
        }
     }
