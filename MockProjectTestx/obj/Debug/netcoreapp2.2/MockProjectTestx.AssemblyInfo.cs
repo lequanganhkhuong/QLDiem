@@ -7,7 +7,6 @@
 using System;
 using System.Reflection;
 
-[assembly: Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactoryContentRootAttribute("MockProject, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null", "/home/kimhung/RiderProjects/QLDiem/MockProject", "MockProject.csproj", "0")]
 [assembly: System.Reflection.AssemblyCompanyAttribute("MockProjectTestx")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]

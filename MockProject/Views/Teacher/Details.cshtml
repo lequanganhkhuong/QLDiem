@@ -52,29 +52,31 @@
                     Debug.Assert(liststudent != null, nameof(liststudent) + " != null");
                 }
                 @foreach (var item in liststudent)
-                    {
-                        <tr>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.User.Name)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.Mark)
-                            </td>
-                            <td>
-                                @if (item.IsActive)
-                                {
-                                    <a asp-action="EditMark" asp-route-id="@item.Id" title="Edit">
-                                        <i class="fas fa-edit"></i>
-                                    </a>
-                                }
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.User.Name)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Mark)
+                        </td>
+                        <td>
+                            @if (item.IsActive)
+                            {
+                                <a asp-action="EditMark" asp-route-id="@item.Id" title="Edit">
+                                    <i class="fas fa-edit"></i>
+                                </a>
+                            }
 
-                            </td>
-                        </tr>
-                    }
+                        </td>
+                    </tr>
+                }
                 </tbody>
+                
             </table>
             <div>
                 <a asp-action="List">Back to List</a>
+                <a asp-action="ExportToExcel">ExportToExcel</a>
             </div>
         </div>
 

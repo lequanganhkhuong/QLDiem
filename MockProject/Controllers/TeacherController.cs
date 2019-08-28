@@ -1,10 +1,16 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Collections.Immutable;
+using System.Drawing;
 using System.Linq;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using MockProject.Data.Interface;
+using MockProject.Models;
 using MockProject.Models.ViewModels;
+using OfficeOpenXml;
 
 namespace MockProject.Controllers
 {
@@ -91,6 +97,46 @@ namespace MockProject.Controllers
             ViewBag.LS = liststudent.ToList();
 
             return View(schedule);
+        }
+
+        public IActionResult ExportToExcel()
+        {
+            byte[] fileContents;
+            List<Transcript> emplist = _unitOfWork.TranscriptRepository.GetAll(filter: x => x.ScheduleId == 6 ).Select(x => new Transcript
+            {
+                User = x.User,
+                Mark = x.Mark
+            }).ToList();
+
+            ExcelPackage pck = new ExcelPackage();
+            ExcelWorksheet ws = pck.Workbook.Worksheets.Add("Report");
+
+
+            ws.Cells["A1"].Value = "Name1111";
+            ws.Cells["B1"].Value = "Mark111";
+
+
+
+            int rowStart = 2;
+            foreach (var item in emplist)
+            {
+                ws.Cells[string.Format("A{0}", rowStart)].Value = item.User.Name;
+                ws.Cells[string.Format("B{0}", rowStart)].Value = item.Mark;
+                rowStart++;
+            }
+
+            ws.Cells["A:AZ"].AutoFitColumns();
+            fileContents = pck.GetAsByteArray();
+            if (fileContents == null || fileContents.Length == 0)
+            {
+                return NotFound();
+            }
+
+            return File(
+                fileContents: fileContents,
+                contentType: "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+                fileDownloadName: "test.xlsx"
+            );
         }
 
         public IActionResult EditMark(int? id)

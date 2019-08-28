@@ -1,4 +1,4 @@
-using System.Threading.Tasks;
+            using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -64,8 +64,8 @@ namespace MockProject.Areas.Admin.Controllers
                 //return NotFound();
                 return Content("Session not found.");
             }
-//            var liststudent = _unitOfWork.UserRepository.GetAll(filter:x=> x.FacultyId == id && x.RoleId == 3);
-//            ViewBag.LS = liststudent;
+            //var liststudent = _unitOfWork.UserRepository.GetAll(filter:x=> x.FacultyId == id && x.RoleId == 3);
+            //ViewBag.LS = liststudent;
             return View(faculty);
         }
 

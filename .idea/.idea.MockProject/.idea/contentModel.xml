@@ -56,6 +56,7 @@
                 <e p="Details.cshtml" t="Include" />
                 <e p="Edit.cshtml" t="Include" />
                 <e p="Index.cshtml" t="Include" />
+                <e p="IndexAddUserExcel.cshtml" t="Include" />
                 <e p="InfoUser.cshtml" t="Include" />
                 <e p="NotFound.cshtml" t="Include" />
               </e>
@@ -103,6 +104,7 @@
             <e p="TeacherListVm.cs" t="Include" />
             <e p="TeacherViewModel.cs" t="Include" />
             <e p="UserEditProfile.cs" t="Include" />
+            <e p="UserListViewModel.cs" t="Include" />
             <e p="UsersEditVm.cs" t="Include" />
           </e>
         </e>
@@ -159,6 +161,11 @@
           </e>
         </e>
         <e p="wwwroot" t="Include">
+          <e p="Upload" t="Include">
+            <e p="Sổ làm việc.xlsx" t="Include" />
+            <e p="test (3).xlsx" t="Include" />
+            <e p="test.xlsx" t="Include" />
+          </e>
           <e p="app-assets" t="Include">
             <e p="client" t="Include">
               <e p="bootstrap" t="Include">

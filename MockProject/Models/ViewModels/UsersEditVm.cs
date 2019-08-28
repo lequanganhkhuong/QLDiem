@@ -8,6 +8,7 @@ namespace MockProject.Models.ViewModels
         public int Id { get; set; }
         public string Code { get; set; }
         public string Name { get; set; }
+        public double? Mark { get; set; }
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         [DataType(DataType.Date)]
         public DateTime Birthday { get; set; }

@@ -1,15 +1,17 @@
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
-using Microsoft.AspNetCore.Server.Kestrel.Core.Internal.Http2.FlowControl;
 using Microsoft.EntityFrameworkCore;
 using MockProject.Data.Interface;
 using MockProject.Models;
 using MockProject.Models.ViewModels;
+using OfficeOpenXml;
+using OfficeOpenXml.FormulaParsing.ExpressionGraph.FunctionCompilers;
 
 namespace MockProject.Areas.Admin.Controllers
 {
@@ -17,11 +19,15 @@ namespace MockProject.Areas.Admin.Controllers
     [Authorize(Roles = "admin")]
     public class UsersController : Controller
     {
+        private IHostingEnvironment _hostingEnvironment;
         private readonly IUnitOfWork _unitOfWork;
+        private readonly AppDbContext _context;
 
-        public UsersController(IUnitOfWork unitOfWork)
+        public UsersController(IUnitOfWork unitOfWork, IHostingEnvironment hostingEnvironment, AppDbContext context)
         {
             _unitOfWork = unitOfWork;
+            _hostingEnvironment = hostingEnvironment;
+            _context = context;
         }
 
         public IActionResult InfoUser(int? id)
@@ -251,8 +257,64 @@ namespace MockProject.Areas.Admin.Controllers
             return View(userVm);
         }
 
-        
+        [HttpGet]
+        public IActionResult IndexAddUserExcel()
+        {
+            ViewBag.Pages = "User";         
+            return View();
+        }
+        public IActionResult ExportToExcel()
+        {
+            byte[] fileContents;
+            List<UserListViewModel> emplist = _unitOfWork.UserRepository.GetAll().Include(x=>x.Faculty).Include(x=>x.Role).Select(x => new UserListViewModel
+            {
+                Name = x.Name,
+                Address = x.Address,
+                Gender = x.Gender,
+                NameFaculty = x.Faculty.Name,
+                NameRole = x.Role.Name
+            }).ToList();
 
+            ExcelPackage pck = new ExcelPackage();
+            ExcelWorksheet ws = pck.Workbook.Worksheets.Add("Report");
+
+
+            ws.Cells["A1"].Value = "Name";
+            ws.Cells["B1"].Value = "Address";
+            ws.Cells["C1"].Value = "Gender";
+            ws.Cells["D1"].Value = "Faculty";
+            ws.Cells["E1"].Value = "Role";
+    
+
+
+
+            int rowStart = 2;
+            foreach (var item in emplist)
+            {
+                ws.Cells[string.Format("A{0}", rowStart)].Value = item.Name;
+                ws.Cells[string.Format("B{0}", rowStart)].Value = item.Address;
+                ws.Cells[string.Format("C{0}", rowStart)].Value = item.Gender;
+                ws.Cells[string.Format("D{0}", rowStart)].Value = item.NameFaculty;
+                ws.Cells[string.Format("E{0}", rowStart)].Value = item.NameRole;
+                rowStart++;
+            }
+
+            ws.Cells["A:AZ"].AutoFitColumns();
+            fileContents = pck.GetAsByteArray();
+            if (fileContents == null || fileContents.Length == 0)
+            {
+                return NotFound();
+            }
+
+            return File(
+                fileContents: fileContents,
+                contentType: "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+                fileDownloadName: "ListUser.xlsx"
+            );
+        }
+
+
+       
         
     }
 }
