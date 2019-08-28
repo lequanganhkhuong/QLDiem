@@ -55,6 +55,7 @@
                 <e p="Create.cshtml" t="Include" />
                 <e p="Details.cshtml" t="Include" />
                 <e p="Edit.cshtml" t="Include" />
+                <e p="Import.cshtml" t="Include" />
                 <e p="Index.cshtml" t="Include" />
                 <e p="IndexAddUserExcel.cshtml" t="Include" />
                 <e p="InfoUser.cshtml" t="Include" />
@@ -162,9 +163,7 @@
         </e>
         <e p="wwwroot" t="Include">
           <e p="Upload" t="Include">
-            <e p="Sổ làm việc.xlsx" t="Include" />
-            <e p="test (3).xlsx" t="Include" />
-            <e p="test.xlsx" t="Include" />
+            <e p="55d104e0-ccfe-40ef-9399-6d8f6cd295f0.xlsx" t="Include" />
           </e>
           <e p="app-assets" t="Include">
             <e p="client" t="Include">

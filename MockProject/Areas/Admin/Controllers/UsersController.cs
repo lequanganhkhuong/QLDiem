@@ -1,9 +1,11 @@
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -21,13 +23,13 @@ namespace MockProject.Areas.Admin.Controllers
     {
         private IHostingEnvironment _hostingEnvironment;
         private readonly IUnitOfWork _unitOfWork;
-        private readonly AppDbContext _context;
+        private readonly AppDbContext _db;
 
         public UsersController(IUnitOfWork unitOfWork, IHostingEnvironment hostingEnvironment, AppDbContext context)
         {
             _unitOfWork = unitOfWork;
             _hostingEnvironment = hostingEnvironment;
-            _context = context;
+            _db = context;
         }
 
         public IActionResult InfoUser(int? id)
@@ -313,8 +315,76 @@ namespace MockProject.Areas.Admin.Controllers
             );
         }
 
-
-       
+        public IActionResult Import()
+        {
+            ViewBag.Pages = "User";
+            return View();
+        }
+        
+        public string ImportUpload(IFormFile reportfile)
+        {
+            string folderName = "Upload";
+            string webRootPath = _hostingEnvironment.WebRootPath;
+            string newPath = Path.Combine(webRootPath, folderName);
+            // Delete Files from Directory
+            System.IO.DirectoryInfo di = new DirectoryInfo(newPath);
+            foreach (FileInfo filesDelete in di.GetFiles())
+            {
+                filesDelete.Delete();
+            }// End Deleting files form directories
+ 
+            if (!Directory.Exists(newPath))// Crate New Directory if not exist as per the path
+            {
+                Directory.CreateDirectory(newPath);
+            }
+            var fiName = Guid.NewGuid().ToString() + Path.GetExtension(reportfile.FileName);
+            using (var fileStream = new FileStream(Path.Combine(newPath, fiName), FileMode.Create))
+            {
+                reportfile.CopyTo(fileStream);
+            }
+            // Get uploaded file path with root
+            string rootFolder = _hostingEnvironment.WebRootPath;
+            string fileName = @"Upload/" + fiName;
+            FileInfo file = new FileInfo(Path.Combine(rootFolder, fileName));
+            
+            using (ExcelPackage package = new ExcelPackage(file))
+            {
+                ExcelWorksheet workSheet = package.Workbook.Worksheets["Report"];
+                int totalRows = workSheet.Dimension.Rows;
+                List<User> reportList = new List<User>();
+                for (int i = 2; i <= totalRows; i++)
+                {
+                    try
+                    {
+                        string Username = workSheet?.Cells[i, 1]?.Value?.ToString();
+                        string Name = workSheet?.Cells[i, 2]?.Value?.ToString(); 
+                        string Address = workSheet?.Cells[i, 3]?.Value?.ToString(); 
+                        string Gender =workSheet?.Cells[i, 4]?.Value?.ToString();
+                        string IsActive = workSheet?.Cells[i, 5]?.Value?.ToString();
+                        int FacultyId =Int32.Parse(workSheet?.Cells[i, 6]?.Value?.ToString());
+                        int RoleId = Int32.Parse(workSheet?.Cells[i, 7]?.Value?.ToString());
+                        reportList.Add(new User
+                        {  
+                            Username = Username,
+                            Name = Name,
+                            Address = Address,
+                            Gender = Gender == "Male",
+                            IsActive = IsActive == "TRUE",
+                            FacultyId = FacultyId,
+                            RoleId = RoleId,
+                        });
+                     
+                    }
+                    catch (Exception Ex)
+                    {
+                        // Exception
+                    }
+                }
+                _db.Users.AddRange(reportList);
+                _db.SaveChanges();
+                return "Uploaded";
+            }
+        }
         
     }
 }
