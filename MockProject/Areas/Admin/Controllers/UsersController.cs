@@ -369,7 +369,7 @@ namespace MockProject.Areas.Admin.Controllers
                             Name = Name,
                             Address = Address,
                             Gender = Gender == "Male",
-                            IsActive = IsActive == "TRUE",
+                            IsActive = IsActive == "1" ,
                             FacultyId = FacultyId,
                             RoleId = RoleId,
                         });
