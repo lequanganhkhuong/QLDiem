@@ -17,7 +17,7 @@ namespace MockProject.Models
         public DbSet<Subject> Subjectses { get; set; }
         public DbSet<Transcript> Transcripts { get; set; }
         public DbSet<User> Users { get; set; }
-
+        public DbSet<Class> Classes { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

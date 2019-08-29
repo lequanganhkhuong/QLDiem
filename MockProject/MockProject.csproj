@@ -4,11 +4,13 @@
     <AspNetCoreHostingModel>InProcess</AspNetCoreHostingModel>
   </PropertyGroup>
   <ItemGroup>
+    <PackageReference Include="EPPlus" Version="4.5.3.2" />
     <PackageReference Include="FluentValidation" Version="8.4.0" />
     <PackageReference Include="FluentValidation.AspNetCore" Version="8.4.0" />
     <PackageReference Include="Microsoft.AspNetCore.App" />
     <PackageReference Include="Microsoft.AspNetCore.Razor.Design" Version="2.2.0" PrivateAssets="All" />
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.2.3" />
+    <PackageReference Include="Syncfusion.XlsIO.Net.Core" Version="17.2.0.47" />
   </ItemGroup>
   <ItemGroup>
     <_ContentIncludedByDefault Remove="Views\Faculties\Create.cshtml" />
@@ -23,5 +25,8 @@
     <_ContentIncludedByDefault Remove="Views\Subjects\Index.cshtml" />
     <_ContentIncludedByDefault Remove="Pages\User\EditProfile.cshtml" />
     <_ContentIncludedByDefault Remove="Pages\User\Index.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="wwwroot\Upload" />
   </ItemGroup>
 </Project>

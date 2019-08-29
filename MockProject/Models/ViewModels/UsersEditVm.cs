@@ -16,7 +16,7 @@ namespace MockProject.Models.ViewModels
         public bool Gender { get; set; }
 
         public bool IsActive { get; set; }
-        
+        public bool? IsGraduated { get; set; }
         public int? FacultyId { get; set; }
         public int? RoleId { get; set; }
     }

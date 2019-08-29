@@ -1,0 +1,18 @@
+﻿@model object
+
+@{
+    ViewBag.Title = "title";
+    Layout = "_Layout";
+}
+
+
+<form method="post" asp-action="ImportUpload" enctype="multipart/form-data">
+    <div class="row">
+        <div class="col-md-4">
+            <input type="file" id="reportfile" name="reportfile" class="form-control" />
+        </div>
+        <div class="col-md-8">
+            <input type="submit" id="btnUpload" value="Upload" />
+        </div>
+    </div>
+</form>

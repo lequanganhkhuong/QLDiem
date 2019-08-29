@@ -11,6 +11,7 @@ namespace MockProject.Data.Interface
         IRepository<Semester> SemesterRepository { get; }
         IRepository<Transcript> TranscriptRepository { get; }
         IRepository<Schedule> ScheduleRepository { get; }
+        IRepository<Class> ClassRepository { get; }
         void Save();
     }
 }

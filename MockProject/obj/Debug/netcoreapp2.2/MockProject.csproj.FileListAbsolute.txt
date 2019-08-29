@@ -70,3 +70,9 @@
 /home/khuong/RiderProjects/Git/MockProject/obj/Debug/netcoreapp2.2/MockProject.dll
 /home/khuong/RiderProjects/Git/MockProject/obj/Debug/netcoreapp2.2/MockProject.pdb
 /home/khuong/RiderProjects/Git/MockProject/obj/Debug/netcoreapp2.2/MockProject.csproj.CopyComplete
+/home/khuong/RiderProjects/Git/MockProject/obj/Debug/netcoreapp2.2/Razor/Areas/Admin/Views/Classes/Create.g.cshtml.cs
+/home/khuong/RiderProjects/Git/MockProject/obj/Debug/netcoreapp2.2/Razor/Areas/Admin/Views/Classes/Details.g.cshtml.cs
+/home/khuong/RiderProjects/Git/MockProject/obj/Debug/netcoreapp2.2/Razor/Areas/Admin/Views/Classes/Edit.g.cshtml.cs
+/home/khuong/RiderProjects/Git/MockProject/obj/Debug/netcoreapp2.2/Razor/Areas/Admin/Views/Classes/Index.g.cshtml.cs
+/home/khuong/RiderProjects/Git/MockProject/obj/Debug/netcoreapp2.2/Razor/Areas/Admin/Views/Users/Import.g.cshtml.cs
+/home/khuong/RiderProjects/Git/MockProject/obj/Debug/netcoreapp2.2/Razor/Areas/Admin/Views/Users/IndexAddUserExcel.g.cshtml.cs

@@ -13,6 +13,7 @@
         <e p="Areas" t="Include">
           <e p="Admin" t="Include">
             <e p="Controllers" t="Include">
+              <e p="ClassesController.cs" t="Include" />
               <e p="FacultiesController.cs" t="Include" />
               <e p="HomeController.cs" t="Include" />
               <e p="SemestersController.cs" t="Include" />
@@ -20,6 +21,12 @@
               <e p="UsersController.cs" t="Include" />
             </e>
             <e p="Views" t="Include">
+              <e p="Classes" t="Include">
+                <e p="Create.cshtml" t="Include" />
+                <e p="Details.cshtml" t="Include" />
+                <e p="Edit.cshtml" t="Include" />
+                <e p="Index.cshtml" t="Include" />
+              </e>
               <e p="Faculties" t="Include">
                 <e p="Create.cshtml" t="Include" />
                 <e p="Details.cshtml" t="Include" />
@@ -55,7 +62,9 @@
                 <e p="Create.cshtml" t="Include" />
                 <e p="Details.cshtml" t="Include" />
                 <e p="Edit.cshtml" t="Include" />
+                <e p="Import.cshtml" t="Include" />
                 <e p="Index.cshtml" t="Include" />
+                <e p="IndexAddUserExcel.cshtml" t="Include" />
                 <e p="InfoUser.cshtml" t="Include" />
                 <e p="NotFound.cshtml" t="Include" />
               </e>
@@ -87,11 +96,16 @@
           <e p="20190819070453_aaa.cs" t="Include" />
           <e p="20190822022852_Validation.Designer.cs" t="Include" />
           <e p="20190822022852_Validation.cs" t="Include" />
+          <e p="20190829081543_graduateUpdate.Designer.cs" t="Include" />
+          <e p="20190829081543_graduateUpdate.cs" t="Include" />
+          <e p="20190829085556_Class.Designer.cs" t="Include" />
+          <e p="20190829085556_Class.cs" t="Include" />
           <e p="AppDbContextModelSnapshot.cs" t="Include" />
         </e>
         <e p="MockProject.csproj" t="IncludeRecursive" />
         <e p="Models" t="Include">
           <e p="AppDbContext.cs" t="Include" />
+          <e p="Class.cs" t="Include" />
           <e p="ErrorViewModel.cs" t="Include" />
           <e p="Faculty.cs" t="Include" />
           <e p="Role.cs" t="Include" />
@@ -105,6 +119,7 @@
             <e p="TeacherListVm.cs" t="Include" />
             <e p="TeacherViewModel.cs" t="Include" />
             <e p="UserEditProfile.cs" t="Include" />
+            <e p="UserListViewModel.cs" t="Include" />
             <e p="UsersEditVm.cs" t="Include" />
           </e>
         </e>
@@ -161,6 +176,10 @@
           </e>
         </e>
         <e p="wwwroot" t="Include">
+          <e p="Upload" t="Include">
+            <e p="4bd6f071-7ea7-4e21-b3a5-ba985ebd2510.xlsx" t="Include" />
+          </e>
+          <e p="Upload.xlsx" t="Include" />
           <e p="app-assets" t="Include">
             <e p="client" t="Include">
               <e p="bootstrap" t="Include">
