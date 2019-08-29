@@ -130,6 +130,7 @@ namespace MockProject.Areas.Admin.Controllers
             ViewBag.Pages = "User";
             ViewData["FacultyId"] = new SelectList(_unitOfWork.FacultyRepository.GetAll(filter:x => x.IsActive).ToList(), "Id", "Name");
             ViewData["RoleId"] = new SelectList(_unitOfWork.RoleRepository.GetAll().ToList(), "Id", "Name");
+            ViewData["ClassesId"] = new SelectList(_unitOfWork.ClassRepository.GetAll().ToList(), "Id", "NameClass");
             return View();
         }
 
@@ -178,6 +179,9 @@ namespace MockProject.Areas.Admin.Controllers
             }
             ViewData["FacultyId"] = new SelectList(_unitOfWork.FacultyRepository.GetAll(filter:x => x.IsActive).ToList(), "Id", "Name", user.FacultyId);
             ViewData["RoleId"] = new SelectList(_unitOfWork.RoleRepository.GetAll().ToList(), "Id", "Name", user.RoleId);
+            ViewData["ClassesId"] = new SelectList(_unitOfWork.ClassRepository.GetAll().ToList(), "Id", "NameClass", user.ClassesId);
+
+
             return View(user);
         }
 

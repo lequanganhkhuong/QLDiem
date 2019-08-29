@@ -19,6 +19,25 @@ namespace MockProject.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+            modelBuilder.Entity("Class", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("FacultyId");
+
+                    b.Property<string>("NameClass");
+
+                    b.Property<int>("Year");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("FacultyId");
+
+                    b.ToTable("Classes");
+                });
+
             modelBuilder.Entity("MockProject.Models.Faculty", b =>
                 {
                     b.Property<int>("Id")
@@ -155,7 +174,7 @@ namespace MockProject.Migrations
 
                     b.Property<bool>("IsActive");
 
-                    b.Property<bool?>("IsPassed");
+                    b.Property<bool>("IsPassed");
 
                     b.Property<double?>("Mark");
 
@@ -182,6 +201,10 @@ namespace MockProject.Migrations
 
                     b.Property<DateTime>("Birthday");
 
+                    b.Property<int?>("ClassId");
+
+                    b.Property<int?>("ClassesId");
+
                     b.Property<string>("Code");
 
                     b.Property<int?>("FacultyId");
@@ -199,6 +222,8 @@ namespace MockProject.Migrations
                     b.Property<string>("Username");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("ClassId");
 
                     b.HasIndex("FacultyId");
 
@@ -220,6 +245,14 @@ namespace MockProject.Migrations
                             RoleId = 1,
                             Username = "admin"
                         });
+                });
+
+            modelBuilder.Entity("Class", b =>
+                {
+                    b.HasOne("MockProject.Models.Faculty", "Faculty")
+                        .WithMany()
+                        .HasForeignKey("FacultyId")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 
             modelBuilder.Entity("MockProject.Models.Schedule", b =>
@@ -261,6 +294,10 @@ namespace MockProject.Migrations
 
             modelBuilder.Entity("MockProject.Models.User", b =>
                 {
+                    b.HasOne("Class", "Class")
+                        .WithMany("User")
+                        .HasForeignKey("ClassId");
+
                     b.HasOne("MockProject.Models.Faculty", "Faculty")
                         .WithMany("Users")
                         .HasForeignKey("FacultyId");

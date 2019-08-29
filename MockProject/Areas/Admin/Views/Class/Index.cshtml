@@ -1,0 +1,76 @@
+﻿@model IEnumerable<Class>
+
+@{
+    ViewData["Title"] = "Class List";
+}
+
+<h1>Class list</h1>
+<div class="row">
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-content">
+                <div class="row">
+                    <p>
+                        <a asp-action="Create" class="btn btn-success"><i class="fas fa-plus">ADD</i></a>
+                    </p>
+                    <div class="container">
+
+                        <table id="tableClass" class="table">
+                            <thead>
+                            <tr>
+                                <th>
+                                   ClassName
+                                </th>
+                                <th>
+                                   Year
+                                </th>
+                                <th>
+                                   Faculty
+                                </th>
+                                <th></th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.NameClass)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Year)
+                                    </td>
+                                    <td>
+                                       @Html.DisplayFor(modelItem=>item.Faculty.Name)
+                                    </td>
+                                    <td>
+                                        <a asp-action="Edit" asp-route-id="@item.Id" title="Edit"> 
+                                            <i class="fas fa-edit"></i> 
+                                        </a> 
+                                        <a asp-action="Details" asp-route-id="@item.Id" title="Detail">
+                                            <i class="far fa-eye"></i>
+                                        </a>
+                                    </td>
+                                </tr>
+                            }
+                            </tbody>
+                        </table>
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts
+{
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('#tableClass').DataTable({
+                pageLength: 10
+            });
+        });
+    </script>
+}

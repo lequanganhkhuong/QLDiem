@@ -13,6 +13,7 @@
         <e p="Areas" t="Include">
           <e p="Admin" t="Include">
             <e p="Controllers" t="Include">
+              <e p="ClassController.cs" t="Include" />
               <e p="FacultiesController.cs" t="Include" />
               <e p="HomeController.cs" t="Include" />
               <e p="SemestersController.cs" t="Include" />
@@ -20,6 +21,12 @@
               <e p="UsersController.cs" t="Include" />
             </e>
             <e p="Views" t="Include">
+              <e p="Class" t="Include">
+                <e p="Create.cshtml" t="Include" />
+                <e p="Details.cshtml" t="Include" />
+                <e p="Edit.cshtml" t="Include" />
+                <e p="Index.cshtml" t="Include" />
+              </e>
               <e p="Faculties" t="Include">
                 <e p="Create.cshtml" t="Include" />
                 <e p="Details.cshtml" t="Include" />
@@ -87,11 +94,14 @@
         <e p="Migrations" t="Include">
           <e p="20190819070453_aaa.Designer.cs" t="Include" />
           <e p="20190819070453_aaa.cs" t="Include" />
+          <e p="20190829010002_createclass.Designer.cs" t="Include" />
+          <e p="20190829010002_createclass.cs" t="Include" />
           <e p="AppDbContextModelSnapshot.cs" t="Include" />
         </e>
         <e p="MockProject.csproj" t="IncludeRecursive" />
         <e p="Models" t="Include">
           <e p="AppDbContext.cs" t="Include" />
+          <e p="Class.cs" t="Include" />
           <e p="ErrorViewModel.cs" t="Include" />
           <e p="Faculty.cs" t="Include" />
           <e p="Role.cs" t="Include" />

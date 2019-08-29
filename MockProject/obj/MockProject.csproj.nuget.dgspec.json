@@ -39,6 +39,14 @@
       "frameworks": {
         "netcoreapp2.2": {
           "dependencies": {
+            "DotNetCore.NPOI": {
+              "target": "Package",
+              "version": "[1.0.2, )"
+            },
+            "EPPlus": {
+              "target": "Package",
+              "version": "[4.5.3.2, )"
+            },
             "FluentValidation": {
               "target": "Package",
               "version": "[8.4.0, )"

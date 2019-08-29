@@ -143,3 +143,7 @@
 /home/kimhung/RiderProjects/QLDiem/MockProject/obj/Debug/netcoreapp2.2/Razor/Areas/Admin/Views/Faculties/ListSubject.g.cshtml.cs
 /home/kimhung/RiderProjects/QLDiem/MockProject/obj/Debug/netcoreapp2.2/Razor/Areas/Admin/Views/Users/IndexAddUserExcel.g.cshtml.cs
 /home/kimhung/RiderProjects/QLDiem/MockProject/obj/Debug/netcoreapp2.2/Razor/Areas/Admin/Views/Users/Import.g.cshtml.cs
+/home/kimhung/RiderProjects/QLDiem/MockProject/obj/Debug/netcoreapp2.2/Razor/Areas/Admin/Views/Class/Create.g.cshtml.cs
+/home/kimhung/RiderProjects/QLDiem/MockProject/obj/Debug/netcoreapp2.2/Razor/Areas/Admin/Views/Class/Details.g.cshtml.cs
+/home/kimhung/RiderProjects/QLDiem/MockProject/obj/Debug/netcoreapp2.2/Razor/Areas/Admin/Views/Class/Index.g.cshtml.cs
+/home/kimhung/RiderProjects/QLDiem/MockProject/obj/Debug/netcoreapp2.2/Razor/Areas/Admin/Views/Class/Edit.g.cshtml.cs

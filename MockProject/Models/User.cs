@@ -24,10 +24,12 @@ namespace MockProject.Models
 
         public bool IsActive { get; set; }
         //public bool? IsGraduated { get; set; }
-
+        
+        public int? ClassesId { get; set; }
         public int? FacultyId { get; set; }
         public int? RoleId { get; set; }
 
+        public virtual Class Class { get; set; }
         public virtual Faculty Faculty { get; set; }
         public virtual Role Role { get; set; }
         public virtual ICollection<Transcript> Transcripts { get; set; }
